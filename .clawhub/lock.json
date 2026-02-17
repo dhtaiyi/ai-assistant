@@ -80,6 +80,10 @@
     "agent-team-orchestration": {
       "version": "1.0.0",
       "installedAt": 1771316406341
+    },
+    "humanize-zh": {
+      "version": "1.0.0",
+      "installedAt": 1771337627189
     }
   }
 }
