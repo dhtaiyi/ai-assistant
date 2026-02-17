@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1770803375381
+    },
+    "elite-longterm-memory": {
+      "version": "1.2.3",
+      "installedAt": 1770829429962
+    },
+    "jarvis-voice": {
+      "version": "1.0.0",
+      "installedAt": 1770829435848
+    },
+    "tokenmeter": {
+      "version": "0.1.1",
+      "installedAt": 1770831211780
+    },
+    "minimax-usage": {
+      "version": "1.0.1",
+      "installedAt": 1770831213993
+    },
+    "qveris": {
+      "version": "0.1.0",
+      "installedAt": 1770832221624
+    },
+    "xiaohongshutools": {
+      "version": "0.1.0",
+      "installedAt": 1770863572103
+    },
+    "analyst": {
+      "version": "1.0.0",
+      "installedAt": 1770882208187
+    },
+    "chrome": {
+      "version": "1.0.0",
+      "installedAt": 1770882214714
+    },
+    "monitor": {
+      "version": "1.0.0",
+      "installedAt": 1770882222532
+    },
+    "search": {
+      "version": "1.0.0",
+      "installedAt": 1770882224499
+    },
+    "baidu-search": {
+      "version": "1.0.6",
+      "installedAt": 1770882226522
+    },
+    "image-ocr": {
+      "version": "1.0.0",
+      "installedAt": 1770882458142
+    },
+    "image2prompt": {
+      "version": "1.0.0",
+      "installedAt": 1770882487749
+    }
+  }
+}

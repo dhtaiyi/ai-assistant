@@ -1,0 +1,162 @@
+[
+  {
+    "name": "acw_tc",
+    "value": "0a0d0d6817710012598278513e1d18ad189b010047691ec1f850a922dd44e0",
+    "domain": "creator.xiaohongshu.com",
+    "path": "/",
+    "expires": 1771003059.847235,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "xsecappid",
+    "value": "ugc",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1802537270,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "a1",
+    "value": "19c57e6aa937xl1jnxt9q90qifgeuau26xlsc0fhn40000137180",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1802537260,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "webId",
+    "value": "672061f9362467f4342a32bd53171cd4",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1802537260,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "acw_tc",
+    "value": "0a0b122517710012608092303edd18a88fc54508f3bb671b47a90110f0b1c2",
+    "domain": "edith.xiaohongshu.com",
+    "path": "/",
+    "expires": 1771003060.816875,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "websectiga",
+    "value": "16g444b9ff5e3d7e258b5f7674489196303a0b160e16647c6c2b4dcb609f4234",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1771260460,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "sec_poison_id",
+    "value": "f11c7cbe-a41b-49b3-991b-2d89ed2d868b",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1771001865,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "acw_tc",
+    "value": "0a0d01bc17710012610847028e7ac4e26b3a8fe2689f754b830b8229115813",
+    "domain": "customer.xiaohongshu.com",
+    "path": "/",
+    "expires": 1771003061.101677,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "gid",
+    "value": "yjS2WdKDWWKDyjS2WdK00C8ijqWC1yVIC9jA1xIj8A3ikM48d707JS888yqWyY882WqyYDYJ",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1805561274.089154,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "customer-sso-sid",
+    "value": "68c517606392535989420033kdthxpb20swiybys",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1771606069.404974,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "x-user-id-creator.xiaohongshu.com",
+    "value": "6989f9c9000000002102c9bb",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1805561270.405087,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "customerClientId",
+    "value": "680476200008114",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1805561270.405129,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "access-token-creator.xiaohongshu.com",
+    "value": "customer.creator.AT-68c517606392535989387264wbuecu4bzbmfwm00",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1773593269.405162,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "galaxy_creator_session_id",
+    "value": "fdCWa3nbwlO3v5M2y6O0iAQgAphV1iRnbUmL",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1773593270.405197,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "galaxy.creator.beaker.session.id",
+    "value": "1771001270380063338293",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1773593270.405233,
+    "httpOnly": true,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "loadts",
+    "value": "1771001270986",
+    "domain": ".xiaohongshu.com",
+    "path": "/",
+    "expires": 1802537270,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  }
+]

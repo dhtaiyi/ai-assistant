@@ -1,0 +1,26 @@
+{
+  "cookies": {
+    "a1": "19c38bfe575soyif192b9m5hpwx5ygtwre6wcv09w50000229354",
+    "abRequestId": "e768898e-35ae-54a2-a4a1-587b896f9955",
+    "access-token-creator.xiaohongshu.com": "customer.creator.AT-68c5176060170613584363544rx4ztxdhdwotvno",
+    "acw_tc": "0a0d0e0317709137884433592ef2f665a9b785524a57c916832d24a08f26bd",
+    "customer-sso-sid": "68c517606017061358436353ouxcymlejyqay2wy",
+    "customerClientId": "160139854637268",
+    "galaxy_creator_session_id": "tDey7Boy08m2QfisKLPKrDuN66Ko1MwBcUWE",
+    "galaxy.creator.beaker.session.id": "1770913848725034258274",
+    "gid": "yjSqYDiiq2FJyjSqYDid2dh8W2Mlv3iyjJDjKjE62xUECE282vk9ES888JJjq2488KYy4jDd",
+    "id_token": "VjEAACDaUI0D+1zFUxWFbYl3GIHhWUa+tpoXfMmwljH4IwPpF8ASAo+58f4jmHsxqv9D8TH8Kz+z8tix/L7WPD+FgcwBnace7PBJtkB1jmw2IYr2SX7dzR07spSlVYIFAn2iMt2D",
+    "loadts": "1770913850235",
+    "sec_poison_id": "47ae0b9a-b9ff-455a-8107-f3239b1a8e03",
+    "unread": "%7B%22ub%22%3A%22696e2a75000000000a03cc9c%22%2C%22ue%22%3A%22698551f9000000002202d306%22%2C%22uc%22%3A31%7D",
+    "web_session": "040069b8fdba81d499edaaa6b83b4ba06a3a64",
+    "webBuild": "5.11.0",
+    "webId": "6b2463b432cb16239a3aeab9b3ab11df",
+    "websectiga": "82e85efc5500b609ac1166aaf086ff8aa4261153a448ef0be5b17417e4512f28",
+    "x-user-id-creator.xiaohongshu.com": "6989f9c9000000002102c9bb",
+    "xsecappid": "ugc"
+  },
+  "saved_at": "2026-02-13T00:25:00.000000",
+  "type": "creator",
+  "note": "创作者平台Cookie"
+}
