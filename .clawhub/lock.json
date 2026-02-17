@@ -60,6 +60,10 @@
     "proactive-agent": {
       "version": "3.1.0",
       "installedAt": 1771302868894
+    },
+    "deep-research-pro": {
+      "version": "1.0.2",
+      "installedAt": 1771306501926
     }
   }
 }
