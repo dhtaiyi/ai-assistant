@@ -1,0 +1,8 @@
+time="2026-02-17T18:59:08+08:00" level=info msg="Registered 13 MCP tools"
+time="2026-02-17T18:59:08+08:00" level=info msg="MCP Server initialized with official SDK"
+time="2026-02-17T18:59:08+08:00" level=info msg="启动 HTTP 服务器: :18060"
+[GIN] 2026/02/17 - 18:59:11 | 404 |       3.977µs |       127.0.0.1 | GET      "/api/health"
+[GIN] 2026/02/17 - 18:59:17 | 404 |       3.665µs |       127.0.0.1 | GET      "/"
+[GIN] 2026/02/17 - 18:59:17 | 405 |      69.938µs |       127.0.0.1 | GET      "/mcp"
+time="2026-02-17T19:02:32+08:00" level=info msg="正在关闭服务器..."
+time="2026-02-17T19:02:32+08:00" level=info msg="服务器已优雅关闭"
