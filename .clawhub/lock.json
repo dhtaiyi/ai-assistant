@@ -64,6 +64,22 @@
     "deep-research-pro": {
       "version": "1.0.2",
       "installedAt": 1771306501926
+    },
+    "deploy": {
+      "version": "1.0.0",
+      "installedAt": 1771315985389
+    },
+    "ticktick-cli": {
+      "version": "1.0.0",
+      "installedAt": 1771316583006
+    },
+    "adaptive-reasoning": {
+      "version": "1.0.0",
+      "installedAt": 1771316404096
+    },
+    "agent-team-orchestration": {
+      "version": "1.0.0",
+      "installedAt": 1771316406341
     }
   }
 }
