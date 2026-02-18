@@ -104,6 +104,46 @@
     "focus-deep-work": {
       "version": "1.0.0",
       "installedAt": 1771386965974
+    },
+    "taskr": {
+      "version": "1.0.2",
+      "installedAt": 1771389720697
+    },
+    "cron-scheduling": {
+      "version": "1.0.0",
+      "installedAt": 1771389722707
+    },
+    "reminder": {
+      "version": "0.1.1",
+      "installedAt": 1771389724857
+    },
+    "deep-scraper": {
+      "version": "1.0.1",
+      "installedAt": 1771390141535
+    },
+    "playwright-scraper-skill": {
+      "version": "1.2.0",
+      "installedAt": 1771390144203
+    },
+    "news-aggregator-skill": {
+      "version": "0.1.0",
+      "installedAt": 1771390215152
+    },
+    "ddg-web-search": {
+      "version": "1.0.0",
+      "installedAt": 1771390235860
+    },
+    "smart-model-switching": {
+      "version": "1.0.0",
+      "installedAt": 1771390462511
+    },
+    "math": {
+      "version": "1.0.0",
+      "installedAt": 1771390516851
+    },
+    "tushare-finance": {
+      "version": "2.0.6",
+      "installedAt": 1771395087233
     }
   }
 }
