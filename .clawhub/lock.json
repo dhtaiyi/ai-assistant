@@ -84,6 +84,26 @@
     "humanize-zh": {
       "version": "1.0.0",
       "installedAt": 1771337627189
+    },
+    "data-analysis": {
+      "version": "1.0.0",
+      "installedAt": 1771384888814
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1771385004576
+    },
+    "content-repurposing-engine": {
+      "version": "1.0.0",
+      "installedAt": 1771385773130
+    },
+    "todoist": {
+      "version": "0.2.1",
+      "installedAt": 1771386963610
+    },
+    "focus-deep-work": {
+      "version": "1.0.0",
+      "installedAt": 1771386965974
     }
   }
 }
