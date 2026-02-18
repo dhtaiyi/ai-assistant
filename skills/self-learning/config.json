@@ -1,0 +1,15 @@
+{
+  "learning_hours": 6,
+  "check_interval": 300,
+  "auto_install": true,
+  "save_knowledge": true,
+  "optimize_skills": true,
+  "log_file": "self_learning.log",
+  "knowledge_dir": "knowledge_base",
+  "learning_goals": [
+    "掌握新技能",
+    "积累知识",
+    "优化系统",
+    "提升能力"
+  ]
+}
