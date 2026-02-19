@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 400px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff2442 0%, #ff6b6b 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #ff2442;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .card h3::before {
+            content: '📝';
+        }
+        
+        .input-group {
+            margin-bottom: 10px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        
+        .input-group textarea {
+            height: 80px;
+            resize: none;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff2442 0%, #ff6b6b 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 10px;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff2442;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: #999;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #ff2442;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            padding: 15px;
+            color: #333;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .quick-btn {
+            padding: 8px;
+            font-size: 11px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .quick-btn:hover {
+            background: #ff2442;
+            color: white;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 10px;
+            font-size: 11px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌸 小红书助手</h1>
+        <p>Powered by OpenClaw AI</p>
+    </div>
+    
+    <div class="status" id="status">
+        ✅ 已连接 OpenClaw
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="create">创作</div>
+        <div class="tab" data-tab="stats">数据</div>
+        <div class="tab" data-tab="tools">工具</div>
+    </div>
+    
+    <!-- 创作面板 -->
+    <div class="content" id="create-panel">
+        <div class="card">
+            <h3>快速创作</h3>
+            
+            <div class="input-group">
+                <label>笔记标题</label>
+                <input type="text" id="post-title" placeholder="输入标题...">
+            </div>
+            
+            <div class="input-group">
+                <label>正文内容</label>
+                <textarea id="post-content" placeholder="输入正文内容..."></textarea>
+            </div>
+            
+            <button class="btn btn-primary" id="generate-btn">🤖 AI 帮我写</button>
+            <button class="btn btn-secondary" id="publish-btn">🚀 发布到小红书</button>
+        </div>
+        
+        <div class="card">
+            <h3>快捷功能</h3>
+            <div class="quick-actions">
+                <button class="quick-btn" data-action="efficiency">💼 效率工具</button>
+                <button class="quick-btn" data-action="beauty">💄 护肤心得</button>
+                <button class="quick-btn" data-action="food">🍜 美食探店</button>
+                <button class="quick-btn" data-action="travel">✈️ 旅游攻略</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 数据面板 -->
+    <div class="content hidden" id="stats-panel">
+        <div class="card">
+            <h3>今日数据</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-views">0</div>
+                    <div class="stat-label">浏览</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-likes">0</div>
+                    <div class="stat-label">点赞</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="stat-comments">0</div>
+                    <div class="stat-label">评论</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>定时发布</h3>
+            <div class="input-group">
+                <label>发布时间</label>
+                <input type="datetime-local" id="schedule-time">
+            </div>
+            <button class="btn btn-secondary" id="schedule-btn">⏰ 设置定时发布</button>
+        </div>
+    </div>
+    
+    <!-- 工具面板 -->
+    <div class="content hidden" id="tools-panel">
+        <div class="card">
+            <h3>常用工具</h3>
+            <button class="btn btn-secondary" id="clean-btn">🧹 清除缓存</button>
+            <button class="btn btn-secondary" id="settings-btn">⚙️ 设置</button>
+            <button class="btn btn-secondary" id="help-btn">❓ 使用帮助</button>
+        </div>
+        
+        <div class="card">
+            <h3>OpenClaw 状态</h3>
+            <p style="font-size: 12px; color: #666;">
+                🟢 服务正常<br>
+                📡 已连接<br>
+                ⚡ 版本: 1.0.0
+            </p>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "小红书助手 - OpenClaw",
+  "version": "1.0.0",
+  "description": "辅助小红书运营，支持内容创作、定时发布、数据分析",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.xiaohongshu.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
