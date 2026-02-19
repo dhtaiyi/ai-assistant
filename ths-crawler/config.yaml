@@ -1,0 +1,39 @@
+# 同花顺数据采集配置
+
+# 浏览器控制服务器地址
+BROWSER_SERVER_URL: http://localhost:9999
+
+# 数据保存目录
+DATA_DIR: /root/.openclaw/workspace/ths-crawler/data
+REPORT_DIR: /root/.openclaw/workspace/ths-crawler/reports
+
+# 缓存设置
+CACHE_ENABLED: true
+CACHE_TIMEOUT: 60  # 秒
+
+# 请求间隔（避免被封）
+REQUEST_INTERVAL: 1  # 秒
+PAGE_LOAD_WAIT: 2  # 秒
+
+# 默认股票列表
+DEFAULT_STOCKS:
+  - 600519  # 贵州茅台
+  - 000001  # 平安银行
+  - 600036  # 招商银行
+  - 600887  # 伊利股份
+  - 300750  # 宁德时代
+
+# 大盘指数代码
+MARKET_INDICES:
+  shanghai: 000001
+  shenzhen: 399001
+  chuangye: 399006
+  hs300: 000300
+
+# 导出设置
+EXPORT_FORMAT: csv
+EXPORT_ENCODING: utf-8-sig
+
+# 日志设置
+LOG_LEVEL: INFO
+LOG_FILE: /root/.openclaw/workspace/ths-crawler/crawler.log

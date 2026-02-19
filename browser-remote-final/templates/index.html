@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Remote</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; color: white; }
+        .container { max-width: 500px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; color: #333; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .card h3 { color: #667eea; margin-bottom: 15px; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; color: #666; }
+        .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; font-size: 16px; }
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; margin-bottom: 10px; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-success { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+        .btn-secondary { background: #f5f5f5; color: #333; }
+        .quick { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .quick button { padding: 10px 15px; background: #f0f0f0; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; }
+        .quick button:hover { background: #667eea; color: white; }
+        .result { background: #1e1e1e; color: #00ff00; padding: 15px; border-radius: 10px; font-family: monospace; max-height: 200px; overflow-y: auto; white-space: pre-wrap; }
+        .status { text-align: center; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .status.connected { background: rgba(102, 187, 106, 0.3); }
+        .status.waiting { background: rgba(255, 193, 7, 0.3); }
+        .url-display { background: #f5f5f5; padding: 10px; border-radius: 8px; font-family: monospace; font-size: 14px; word-break: break-all; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 OpenClaw 远程控制</h1>
+        
+        <div class="status connected" id="status">
+            🟢 已连接 - 等待命令
+        </div>
+        
+        <div class="card">
+            <h3>🔗 扩展连接状态</h3>
+            <p style="font-size: 14px; color: #666;">
+                请确保Chrome扩展已安装并运行<br>
+                扩展会轮询此服务器获取命令
+            </p>
+        </div>
+        
+        <div class="card">
+            <h3>📤 发送命令</h3>
+            <div class="input-group">
+                <label>命令类型</label>
+                <select id="cmd-type">
+                    <option value="navigate">导航</option>
+                    <option value="click">点击</option>
+                    <option value="getStockData">获取股票数据</option>
+                    <option value="getPageInfo">获取页面信息</option>
+                    <option value="evaluate">执行代码</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>参数</label>
+                <input type="text" id="cmd-param" placeholder="URL或选择器">
+            </div>
+            <button class="btn btn-primary" onclick="sendCommand()">发送命令</button>
+        </div>
+        
+        <div class="card">
+            <h3>⚡ 快捷操作</h3>
+            <div class="quick">
+                <button onclick="quickNavigate('https://www.10jqka.com.cn')">同花顺</button>
+                <button onclick="quickNavigate('https://quote.eastmoney.com')">东方财富</button>
+                <button onclick="quickNavigate('https://xueqiu.com')">雪球</button>
+                <button onclick="sendCommand('getStockData')">股票数据</button>
+                <button onclick="sendCommand('getPageInfo')">页面信息</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>📥 执行结果</h3>
+            <button class="btn btn-secondary" onclick="checkResult()">🔄 刷新结果</button>
+            <div class="result" id="result">等待执行...</div>
+        </div>
+    </div>
+
+    <script>
+        let lastCommandId = null;
+        let lastResultTime = 0;
+        
+        async function sendCommand(type, param) {
+            const cmdType = type || document.getElementById('cmd-type').value;
+            const paramValue = param || document.getElementById('cmd-param').value;
+            
+            const command = { type: cmdType };
+            if (paramValue) {
+                if (cmdType === 'navigate') command.url = paramValue;
+                else command.selector = paramValue;
+            }
+            
+            try {
+                const response = await fetch('/command', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ command })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    lastCommandId = data.id;
+                    document.getElementById('result').textContent = '命令已发送，等待执行...\n' + JSON.stringify(command, null, 2);
+                } else {
+                    document.getElementById('result').textContent = '发送失败: ' + data.error;
+                }
+            } catch (e) {
+                document.getElementById('result').textContent = '错误: ' + e.message;
+            }
+        }
+        
+        function quickNavigate(url) {
+            document.getElementById('cmd-type').value = 'navigate';
+            document.getElementById('cmd-param').value = url;
+            sendCommand('navigate', url);
+        }
+        
+        async function checkResult() {
+            try {
+                const response = await fetch('/result?id=' + (lastCommandId || ''));
+                const data = await response.json();
+                
+                if (data.success && data.result) {
+                    const time = data.time ? new Date(data.time).toLocaleTimeString() : '';
+                    document.getElementById('result').textContent = `[${time}]\n` + JSON.stringify(data.result, null, 2);
+                } else {
+                    document.getElementById('result').textContent = '暂无结果或命令正在执行';
+                }
+            } catch (e) {
+                document.getElementById('result').textContent = '检查失败: ' + e.message;
+            }
+        }
+        
+        // 定时检查结果
+        setInterval(checkResult, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+# OpenClaw 远程浏览器控制 - 依赖
+
+# 核心依赖
+requests>=2.25.0
+
+# 可选依赖（增强功能）
+# pip install -r requirements.txt

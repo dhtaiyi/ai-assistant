@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device, initial-scale=1.0">
+    <title>OpenClaw 远程控制</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 400px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 11px;
+            opacity: 0.9;
+        }
+        
+        .status {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .status.connected {
+            background: rgba(102, 187, 106, 0.3);
+        }
+        
+        .status.disconnected {
+            background: rgba(239, 83, 80, 0.3);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .card h3 {
+            font-size: 13px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .input-group {
+            margin-bottom: 8px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+        
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .command-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+        
+        .command-btn {
+            padding: 8px 5px;
+            font-size: 10px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .command-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .log {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 10px;
+            max-height: 100px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .log-entry {
+            margin-bottom: 3px;
+        }
+        
+        .log-entry.success {
+            color: #00ff00;
+        }
+        
+        .log-entry.error {
+            color: #ff5555;
+        }
+        
+        .log-entry.info {
+            color: #55aaff;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            font-size: 11px;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        
+        .tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        .panel {
+            display: none;
+        }
+        
+        .panel.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 OpenClaw 远程控制</h1>
+        <p>让AI远程操作Chrome浏览器</p>
+    </div>
+    
+    <div class="status connected" id="status">
+        🟢 已连接 - 等待命令
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" data-tab="commands">命令</div>
+        <div class="tab" data-tab="navigate">导航</div>
+        <div class="tab" data-tab="execute">执行</div>
+        <div class="tab" data-tab="logs">日志</div>
+    </div>
+    
+    <!-- 命令面板 -->
+    <div class="panel active" id="commands-panel">
+        <div class="card">
+            <h3>⚡ 快速命令</h3>
+            <div class="command-list">
+                <button class="command-btn" data-cmd='{"type":"scroll","direction":"up","amount":300}'>⬆️ 上滚</button>
+                <button class="command-btn" data-cmd='{"type":"scroll","direction":"down","amount":300}'>⬇️ 下滚</button>
+                <button class="command-btn" data-cmd='{"type":"scroll","direction":"bottom"}'>⬇️ 到底</button>
+                <button class="command-btn" data-cmd='{"type":"wait","duration":1000}'>⏳ 等待</button>
+                <button class="command-btn" data-cmd='{"type":"screenshot"}'>📷 截图</button>
+                <button class="command-btn" data-cmd='{"type":"getPageInfo"}'>📄 页面</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h3>🔢 常用操作</h3>
+            <button class="btn btn-primary" id="refresh-btn">🔄 刷新页面</button>
+            <button class="btn btn-secondary" id="back-btn">⬅️ 后退</button>
+            <button class="btn btn-secondary" id="forward-btn">➡️ 前进</button>
+        </div>
+    </div>
+    
+    <!-- 导航面板 -->
+    <div class="panel" id="navigate-panel">
+        <div class="card">
+            <h3>🌐 打开网页</h3>
+            <div class="input-group">
+                <label>URL地址</label>
+                <input type="text" id="url-input" placeholder="https://www.xiaohongshu.com">
+            </div>
+            <button class="btn btn-success" id="navigate-btn">🚀 跳转</button>
+        </div>
+        
+        <div class="card">
+            <h3>📝 页面信息</h3>
+            <div id="page-info" style="font-size: 11px; color: #666;">
+                暂无页面信息
+            </div>
+        </div>
+    </div>
+    
+    <!-- 执行面板 -->
+    <div class="panel" id="execute-panel">
+        <div class="card">
+            <h3>👆 点击元素</h3>
+            <div class="input-group">
+                <label>CSS选择器</label>
+                <input type="text" id="click-selector" placeholder=".className 或 #id">
+            </div>
+            <button class="btn btn-primary" id="click-btn">👆 点击</button>
+        </div>
+        
+        <div class="card">
+            <h3>⌨️ 输入文本</h3>
+            <div class="input-group">
+                <label>选择器</label>
+                <input type="text" id="type-selector" placeholder=".input-class">
+            </div>
+            <div class="input-group">
+                <label>文本内容</label>
+                <input type="text" id="type-text" placeholder="要输入的内容">
+            </div>
+            <button class="btn btn-primary" id="type-btn">⌨️ 输入</button>
+        </div>
+        
+        <div class="card">
+            <h3>🔍 查找元素</h3>
+            <div class="input-group">
+                <label>选择器</label>
+                <input type="text" id="find-selector" placeholder="button, .class, #id">
+            </div>
+            <button class="btn btn-secondary" id="find-btn">🔍 查找</button>
+        </div>
+        
+        <div class="card">
+            <h3>💻 执行代码</h3>
+            <div class="input-group">
+                <label>JavaScript代码</label>
+                <textarea id="code-input" style="height: 60px;" placeholder="document.title"></textarea>
+            </div>
+            <button class="btn btn-danger" id="execute-btn">💻 执行</button>
+        </div>
+    </div>
+    
+    <!-- 日志面板 -->
+    <div class="panel" id="logs-panel">
+        <div class="card">
+            <h3>📋 执行日志</h3>
+            <div class="log" id="log-container">
+                <div class="log-entry info">[系统] 等待命令...</div>
+            </div>
+            <button class="btn btn-secondary" id="clear-log" style="margin-top: 5px;">🗑️ 清除</button>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

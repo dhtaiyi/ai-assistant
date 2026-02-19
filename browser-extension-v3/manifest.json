@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "OpenClaw 浏览器控制",
+  "version": "1.0.0",
+  "description": "纯浏览器扩展，完整控制浏览器 - 无需Python",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "OpenClaw 浏览器控制"
+  }
+}

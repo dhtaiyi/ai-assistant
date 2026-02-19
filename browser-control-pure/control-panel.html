@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Browser Control Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px;
+            color: white;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 30px; font-size: 28px; }
+        
+        .status {
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        .status.connected { background: rgba(102, 187, 106, 0.3); }
+        .status.disconnected { background: rgba(239, 83, 80, 0.3); }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .card h3 { 
+            margin-bottom: 20px; 
+            color: #667eea; 
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .input-group { margin-bottom: 15px; }
+        .input-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-size: 14px; 
+            color: #666; 
+        }
+        .input-group input { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #ddd; 
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .input-group input:focus { outline: none; border-color: #667eea; }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .btn:hover { transform: scale(1.02); }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .btn-success { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+        .btn-secondary { background: #f5f5f5; color: #333; }
+        
+        .quick-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .quick-link {
+            padding: 12px 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .quick-link:hover { background: #667eea; color: white; }
+        
+        .result {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            margin-top: 15px;
+        }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .command-btn {
+            padding: 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .command-btn:hover { background: #667eea; color: white; }
+        
+        .tabs { display: flex; margin-bottom: 20px; }
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+        .tab.active { background: white; color: #667eea; }
+        
+        .panel { display: none; }
+        .panel.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 OpenClaw Browser Control</h1>
+        
+        <div class="status connected" id="status">🟢 已连接 - 等待命令</div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="navigate">导航</div>
+            <div class="tab" data-tab="operate">操作</div>
+            <div class="tab" data-tab="data">数据</div>
+            <div class="tab" data-tab="advanced">高级</div>
+        </div>
+        
+        <!-- 导航面板 -->
+        <div class="panel active" id="navigate-panel">
+            <div class="card">
+                <h3>🌐 打开网页</h3>
+                <div class="input-group">
+                    <input type="text" id="url-input" placeholder="输入URL，如 https://www.10jqka.com.cn">
+                </div>
+                <button class="btn btn-success" onclick="navigate()">🚀 跳转</button>
+                
+                <div class="quick-links">
+                    <div class="quick-link" onclick="go('https://www.10jqka.com.cn')">📈 同花顺</div>
+                    <div class="quick-link" onclick="go('https://quote.eastmoney.com')">💰 东方财富</div>
+                    <div class="quick-link" onclick="go('https://xueqiu.com')">🎯 雪球</div>
+                    <div class="quick-link" onclick="go('https://www.baidu.com')">🔍 百度</div>
+                    <div class="quick-link" onclick="refresh()">🔄 刷新</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 操作面板 -->
+        <div class="panel" id="operate-panel">
+            <div class="card">
+                <h3>👆 点击元素</h3>
+                <div class="input-group">
+                    <input type="text" id="click-selector" placeholder="CSS选择器，如 .btn-primary, #submit-btn">
+                </div>
+                <button class="btn btn-primary" onclick="click()">👆 点击</button>
+            </div>
+            
+            <div class="card">
+                <h3>⌨️ 输入文本</h3>
+                <div class="grid">
+                    <div class="input-group">
+                        <input type="text" id="type-selector" placeholder="选择器">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="type-text" placeholder="文本内容">
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="type()">⌨️ 输入</button>
+            </div>
+            
+            <div class="card">
+                <h3>📜 滚动页面</h3>
+                <div class="grid">
+                    <button class="command-btn" onclick="scroll('up', 300)">⬆️ 向上</button>
+                    <button class="command-btn" onclick="scroll('down', 300)">⬇️ 向下</button>
+                    <button class="command-btn" onclick="scroll('top')">⬆️ 顶部</button>
+                    <button class="command-btn" onclick="scroll('bottom')">⬇️ 底部</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 数据面板 -->
+        <div class="panel" id="data-panel">
+            <div class="card">
+                <h3>📊 同花顺数据</h3>
+                <button class="btn btn-success" onclick="getStockData()">📈 获取股票价格</button>
+                <button class="btn btn-secondary" onclick="getPageHTML()">📄 获取页面HTML</button>
+                <button class="btn btn-secondary" onclick="getPageText()">📝 获取页面文本</button>
+            </div>
+            
+            <div class="card">
+                <h3>🔍 查找元素</h3>
+                <div class="input-group">
+                    <input type="text" id="find-selector" placeholder="CSS选择器">
+                </div>
+                <button class="btn btn-secondary" onclick="find()">🔍 查找元素</button>
+            </div>
+        </div>
+        
+        <!-- 高级面板 -->
+        <div class="panel" id="advanced-panel">
+            <div class="card">
+                <h3>💻 执行JavaScript</h3>
+                <div class="input-group">
+                    <input type="text" id="js-code" placeholder="document.title">
+                </div>
+                <button class="btn btn-secondary" onclick="evaluate()">💻 执行</button>
+            </div>
+            
+            <div class="card">
+                <h3>📋 历史记录</h3>
+                <button class="btn btn-secondary" onclick="clearHistory()">🗑️ 清除历史</button>
+                <div id="history-list" style="margin-top: 10px; font-size: 12px; color: #666;"></div>
+            </div>
+        </div>
+        
+        <!-- 结果 -->
+        <div class="card">
+            <h3>📋 执行结果</h3>
+            <div class="result" id="result">等待命令...</div>
+        </div>
+    </div>
+
+    <script>
+        let history = [];
+        
+        // Tab切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab + '-panel').classList.add('active');
+            });
+        });
+
+        // 检查连接
+        async function checkConnection() {
+            const statusEl = document.getElementById('status');
+            try {
+                const response = await chrome.runtime.sendMessage({ action: 'getStatus' });
+                if (chrome.runtime.lastError || !response) {
+                    statusEl.className = 'status disconnected';
+                    statusEl.textContent = '🔴 未连接 - 请确保扩展已安装';
+                    return false;
+                }
+                statusEl.className = 'status connected';
+                statusEl.textContent = '🟢 已连接 - 等待命令';
+                return true;
+            } catch (e) {
+                statusEl.className = 'status disconnected';
+                statusEl.textContent = '🔴 未连接 - 请确保扩展已安装';
+                return false;
+            }
+        }
+        
+        checkConnection();
+        setInterval(checkConnection, 3000);
+
+        // 执行命令
+        async function execute(command) {
+            const time = new Date().toLocaleTimeString();
+            showResult(`[${time}] 执行命令: ${command.type || 'unknown'}...`, 'info');
+            
+            try {
+                const response = await chrome.runtime.sendMessage({
+                    action: 'execute',
+                    command: command
+                });
+                
+                if (response.success) {
+                    const result = response.result || response;
+                    const formatted = typeof result === 'object' 
+                        ? JSON.stringify(result, null, 2) 
+                        : String(result);
+                    
+                    showResult(`[${time}] ✅ 成功\n${formatted}`, 'success');
+                    addToHistory(command.type, '成功');
+                    
+                    // 保存到localStorage
+                    localStorage.setItem('openclaw_last_result', formatted);
+                } else {
+                    showResult(`[${time}] ❌ 失败: ${response.error || '未知错误'}`, 'error');
+                    addToHistory(command.type, '失败');
+                }
+            } catch (error) {
+                showResult(`[${time}] ❌ 错误: ${error.message}`, 'error');
+            }
+        }
+
+        // 显示结果
+        function showResult(text, type) {
+            const el = document.getElementById('result');
+            el.textContent = text;
+            el.className = 'result';
+        }
+
+        // 添加到历史
+        function addToHistory(cmd, status) {
+            history.unshift({ cmd, status, time: new Date().toLocaleTimeString() });
+            if (history.length > 10) history.pop();
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const el = document.getElementById('history-list');
+            el.innerHTML = history.map(h => 
+                `<div>[${h.time}] ${h.cmd} - ${h.status}</div>`
+            ).join('');
+        }
+
+        // 命令函数
+        function navigate() {
+            const url = document.getElementById('url-input').value;
+            if (url) execute({ type: 'navigate', url });
+        }
+
+        function go(url) {
+            document.getElementById('url-input').value = url;
+            execute({ type: 'navigate', url });
+        }
+
+        function refresh() {
+            execute({ type: 'navigate', url: 'current' });
+        }
+
+        function click() {
+            const selector = document.getElementById('click-selector').value;
+            if (selector) execute({ type: 'click', selector });
+        }
+
+        function type() {
+            const selector = document.getElementById('type-selector').value;
+            const text = document.getElementById('type-text').value;
+            if (selector && text) execute({ type: 'type', selector, text });
+        }
+
+        function scroll(direction, amount) {
+            execute({ type: 'scroll', direction, amount: amount || 500 });
+        }
+
+        function getStockData() {
+            execute({ type: 'getStockData' });
+        }
+
+        function getPageHTML() {
+            execute({ type: 'getHTML' });
+        }
+
+        function getPageText() {
+            execute({ type: 'evaluate', code: 'document.body.innerText.substring(0, 2000)' });
+        }
+
+        function find() {
+            const selector = document.getElementById('find-selector').value;
+            if (selector) {
+                execute({ 
+                    type: 'evaluate', 
+                    code: `JSON.stringify(Array.from(document.querySelectorAll('${selector}')).map((el,i)=>({i,tag:el.tagName,text:el.innerText?.substring(0,50)})))` 
+                });
+            }
+        }
+
+        function evaluate() {
+            const code = document.getElementById('js-code').value;
+            if (code) execute({ type: 'evaluate', code });
+        }
+
+        function clearHistory() {
+            history = [];
+            updateHistoryDisplay();
+            localStorage.removeItem('openclaw_last_result');
+            showResult('历史已清除', 'info');
+        }
+
+        // 恢复上次结果
+        const lastResult = localStorage.getItem('openclaw_last_result');
+        if (lastResult) {
+            showResult('上次结果:\n' + lastResult, 'info');
+        }
+    </script>
+</body>
+</html>
