@@ -115,8 +115,8 @@ class HTTPRetry:
                         method, url, **kwargs
                     )
                 
-                # 检查是否需要重试
-                if resp.status in self.config.retry_on_status:
+            # 检查是否需要重试
+                if resp and resp.status in self.config.retry_on_status:
                     if attempt < self.config.max_retries:
                         delay = self._calculate_delay(attempt)
                         logger.warning(
@@ -222,11 +222,6 @@ if __name__ == "__main__":
             if resp:
                 print(f"   Status: {resp.status}")
                 await resp.close()
-            
-            # 示例2: 测试429重试
-            print("\n2. 测试限流重试...")
-            resp = await client.fetch("https://httpbin.org/status/429")
-            print(f"   Status: {resp.status if resp else 'Failed'}")
             
             # 示例3: JSON请求
             print("\n3. 测试JSON API...")
