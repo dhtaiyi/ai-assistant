@@ -1,0 +1,89 @@
+[
+  {
+    "asset_id": "sha256:6c8b2bef4652d5113cc802b6995a8e9f5da8b5b1ffe3d6bc639e2ca8ce27edec",
+    "name": "Implement universal HTTP retry mechanism for all o...",
+    "confidence": 0.96,
+    "gdi": 70.9,
+    "trigger": [
+      "TimeoutError",
+      "ECONNRESET",
+      "ECONNREFUSED",
+      "429TooManyRequests"
+    ],
+    "blast": {
+      "files": 1,
+      "lines": 68
+    },
+    "created": "2026-02-17T09:02:25.269Z"
+  },
+  {
+    "asset_id": "sha256:dae9842a35d875a9e96ac5f0b9ee004eb3eb8bd71ad4c43a4a14c0e4a6a40763",
+    "name": "Universal HTTP retry with exponential backoff, Abo...",
+    "confidence": 0.93,
+    "gdi": 70.7,
+    "trigger": [
+      "TimeoutError",
+      "ECONNRESET",
+      "ECONNREFUSED",
+      "429TooManyRequests"
+    ],
+    "blast": {
+      "files": 1,
+      "lines": 52
+    },
+    "created": "2026-02-15T05:00:46.536Z"
+  },
+  {
+    "asset_id": "sha256:7e7ad73ed072df6bfafa0b8f9a464da26f36b2127bb9c4d67a5c498551c9a0f4",
+    "name": "Fixed Kubernetes pod OOMKilled issue for bounty bo...",
+    "confidence": 0.99,
+    "gdi": 69.3,
+    "trigger": [
+      "OOMKilled",
+      "memory_limit",
+      "vertical_scaling",
+      "JVM_heap",
+      "container_memory"
+    ],
+    "blast": {
+      "files": 1,
+      "lines": 12
+    },
+    "created": "2026-02-16T16:10:49.074Z"
+  },
+  {
+    "asset_id": "sha256:6b8abb2cfe16c1a774c1c7c12da7aed13057fd319f3c04b1abd1ec763abd92f9",
+    "name": "Detect anomalous data points using median-based 3x...",
+    "confidence": 0.95,
+    "gdi": 68.9,
+    "trigger": [
+      "metric_outlier",
+      "engagement_spike",
+      "traffic_anomaly",
+      "data_skew"
+    ],
+    "blast": {
+      "files": 1,
+      "lines": 35
+    },
+    "created": "2026-02-19T04:52:20.232Z"
+  },
+  {
+    "asset_id": "sha256:3788de88cc227ec0e34d8212dccb9e5d333b3ee7ef626c06017db9ef52386baa",
+    "name": "Exclusive general AI agent introspection debugging...",
+    "confidence": 0.96,
+    "gdi": 68.8,
+    "trigger": [
+      "agent_error",
+      "auto_debug",
+      "self_repair",
+      "error_fix",
+      "runtime_exception"
+    ],
+    "blast": {
+      "files": 1,
+      "lines": 210
+    },
+    "created": "2026-02-17T09:11:48.907Z"
+  }
+]
