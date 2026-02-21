@@ -1,25 +1,15 @@
 {
   "cookies": {
-    "a1": "19c38bfe575soyif192b9m5hpwx5ygtwre6wcv09w50000229354",
-    "abRequestId": "e768898e-35ae-54a2-a4a1-587b896f9955",
-    "access-token-creator.xiaohongshu.com": "customer.creator.AT-68c517606018702036107265s5weo4o3r9k3kuct",
-    "acw_tc": "0a4ae12d17709137894136294e258c07867ec3e8cdf81fd55a12a242809933",
-    "acw_tc_creator": "0a0d0e0317709137884433592ef2f665a9b785524a57c916832d24a08f26bd",
-    "customer-sso-sid": "68c517606017061358436353ouxcymlejyqay2wy",
-    "customerClientId": "160139854637268",
-    "galaxy_creator_session_id": "5exykqCH4F3XnXRAnAhpqTUT6y0fyEz8Pkpz",
-    "galaxy.creator.beaker.session.id": "1770914230242084286265",
-    "gid": "yjSqYDiiq2FJyjSqYDid2dh8W2Mlv3iyjJDjKjE62xUECE282vk9ES888JJjq2488KYy4jDd",
-    "id_token": "VjEAACDaUI0D+1zFUxWFbYl3GIHhWUa+tpoXfMmwljH4IwPpF8ASAo+58f4jmHsxqv9D8TH8Kz+z8tix/L7WPD+FgcwBnace7PBJtkB1jmw2IYr2SX7dzR07spSlVYIFAn2iMt2D",
-    "loadts": "1770914867230",
-    "sec_poison_id": "17f8bf3a-a2f1-48af-aed8-20a5c781fcc4",
-    "unread": "%7B%22ub%22%3A%22696e2a75000000000a03cc9c%22%2C%22ue%22%3A%22698551f9000000002202d306%22%2C%22uc%22%3A31%7D",
-    "web_session": "040069b8fdba81d499edaaa6b83b4ba06a3a64",
+    "a1": "19c6b789499n96bjtm8212zdhgqp0yi5dgalsv42v50000103235",
+    "id_token": "VjEAAJuiTY7J7Z6CSj8wfq8rz86r4/03kEvCsf0mWUyT9yFKbCm6jiYgMy6yO2Xjzoo54C6NzsC0KXtPSHU+s81+79o6cMGGtaXJeA1P0gIjIsOQbHzxGFudD4SRNYi41MI3E7y+",
+    "acw_tc": "0a00d67b17713295891251071e317997bad72dfc068fa68eb34f0be30a8c12",
+    "web_session": "040069b8fdba81d499ed8b10a13b4b4a755af3",
+    "xsecappid": "xhs-pc-web",
     "webBuild": "5.11.0",
-    "webId": "6b2463b432cb16239a3aeab9b3ab11df",
-    "websectiga": "7750c37de43b7be9de8ed9ff8ea0e576519e8cd2157322eb972ecb429a7735d4",
-    "x-user-id-creator.xiaohongshu.com": "6989f9c9000000002102c9bb",
-    "xsecappid": "ugc"
-  },
-  "saved_at": "2026-02-13T00:41:00.000000"
+    "abRequestId": "92cb4cd667fc4ffd86befb925e56998f",
+    "websectiga": "634d3ad75ffb42a2ade2c5e1705a73c845837578aeb31ba0e442d75c648da36a",
+    "sec_poison_id": "2c4ed023-8770-4c3f-8edc-557817f3899b",
+    "loadts": "1771330198698",
+    "gid": "yjSKDWY08WfdyjSKDWYj4kh4jjIjKDV96YJy0JhJufxkA128U8v32M888y8qJq28S4W0YWi2"
+  }
 }
