@@ -754,3 +754,9 @@
 2026-02-23 03:00:02 - 检查登录状态...
 2026-02-23 03:00:03 - 警告：登录状态异常
 {"error":"服务器内部错误","code":"INTERNAL_ERROR","details":{"Reason":"net::ERR_CONNECTION_RESET"}}
+2026-02-23 03:30:01 - 检查登录状态...
+2026-02-23 03:30:02 - 警告：登录状态异常
+{"error":"服务器内部错误","code":"INTERNAL_ERROR","details":{}}
+2026-02-23 04:00:01 - 检查登录状态...
+2026-02-23 04:00:02 - 警告：登录状态异常
+{"error":"服务器内部错误","code":"INTERNAL_ERROR","details":{"Reason":"net::ERR_SOCKET_NOT_CONNECTED"}}
