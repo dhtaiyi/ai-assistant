@@ -17,6 +17,9 @@ browser = None
 playwright_instance = None
 port = 18090
 
+# 代理配置
+PROXY_SERVER = "socks5://xiaoyu:socks5pass123@10.0.0.15:1080"
+
 def get_browser():
     global browser, playwright_instance
     if browser is None:
