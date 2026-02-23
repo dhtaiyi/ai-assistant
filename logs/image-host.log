@@ -1,0 +1,15 @@
+📷 图片托管服务启动!
+   端口: 18081
+   存储: /root/.openclaw/workspace/images
+   访问: http://10.0.0.15:18081
+Traceback (most recent call last):
+  File "/root/.openclaw/workspace/image-host.py", line 146, in <module>
+    HTTPServer(('0.0.0.0', PORT), ImageHandler).serve_forever()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/socketserver.py", line 456, in __init__
+    self.server_bind()
+  File "/usr/lib64/python3.11/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/lib64/python3.11/socketserver.py", line 472, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use
