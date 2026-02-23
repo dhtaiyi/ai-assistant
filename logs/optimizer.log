@@ -396,3 +396,24 @@ Total reclaimed space: 0B
 [0;32m[2026-02-24 04:00:03][0m ✅ 日志清理完成（保留7天）
 
 [0;32m[2026-02-24 04:00:03][0m 💾 清理旧备份...
+-rw-r--r-- 1 root root  713 Feb 23 12:34 /root/.openclaw/workspace/logs/image-host.log
+-rw-r--r-- 1 root root 492K Feb 24 04:00 /root/.openclaw/workspace/logs/monitor.log
+-rw-r--r-- 1 root root  20K Feb 24 04:00 /root/.openclaw/workspace/logs/optimizer.log
+-rw-r--r-- 1 root root    0 Feb 17 15:00 /root/.openclaw/workspace/logs/task-queue.log
+-rw-r--r-- 1 root root  43K Feb 24 04:00 /root/.openclaw/workspace/logs/xiaohongshu-keepalive.log
+[0;32m[2026-02-24 04:00:06][0m ✅ 备份管理完成（保留30天）
+
+[0;32m[2026-02-24 04:00:06][0m 🔍 系统健康检查...
+[0;32m[2026-02-24 04:00:06][0m ✅ 磁盘使用率: 31%
+[0;32m[2026-02-24 04:00:06][0m ✅ 内存使用率: 17%
+[0;32m[2026-02-24 04:00:06][0m ✅ 系统负载: 0.22
+[0;32m[2026-02-24 04:00:06][0m ✅ OpenClaw 运行中
+
+[0;32m[2026-02-24 04:00:06][0m 🔄 检查更新...
+[0;32m[2026-02-24 04:00:06][0m Node.js版本: 
+[0;32m[2026-02-24 04:00:06][0m Python版本: Python 3.11.6
+[0;32m[2026-02-24 04:00:06][0m ✅ 更新检查完成
+
+╔════════════════════════════════════╗
+║   ✅ 系统优化完成！               ║
+╚════════════════════════════════════╝
