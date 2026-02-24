@@ -68,7 +68,48 @@ You wake up fresh each session. These files are your continuity:
 
 ---
 
+## Config Modification Rules
+
+### 修改配置文件前必须备份
+**Always backup before editing config files!**
+
+```bash
+# Step 1: Backup
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak
+
+# Step 2: Edit
+# ... make your changes ...
+
+# Step 3: Verify & Test
+
+# Step 4: Restore if needed
+mv ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json
+```
+
+### 配置文件路径
+- 主配置: `~/.openclaw/openclaw.json`
+- Agent 配置: `~/.openclaw/agents/<agent-id>/`
+
+---
+
 ## Safety
+
+### Config Modification Rules
+**Always backup before editing config files!**
+
+1. **Backup first** - Copy config before any modification
+   ```bash
+   cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak
+   ```
+
+2. **Verify** - Check if the change is valid
+
+3. **Auto-recover** - If something breaks, restore immediately:
+   ```bash
+   mv ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json
+   ```
+
+4. **Restart** - Restart affected services
 
 ### Core Rules
 - Don't exfiltrate private data

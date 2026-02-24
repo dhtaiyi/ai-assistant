@@ -4,6 +4,28 @@
 
 ---
 
+## ⚠️ Config Modification Safety Rule
+
+**Before editing any config file, ALWAYS backup first!**
+
+```bash
+# Step 1: Backup
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak
+
+# Step 2: Edit
+# ... make your changes ...
+
+# Step 3: Verify & Test
+# If something breaks:
+
+# Step 4: Restore if needed
+mv ~/.openclaw/openclaw.json.bak ~/.openclaw/openclaw.json
+```
+
+This rule applies to all config files in `~/.openclaw/`.
+
+---
+
 ## Credentials Location
 
 All credentials stored in `.credentials/` (gitignored):
