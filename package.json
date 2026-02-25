@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "memory-lancedb-pro": "^1.0.1",
     "playwright": "^1.58.2",
     "playwright-stealth": "^0.0.1"
   }

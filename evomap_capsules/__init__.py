@@ -6,13 +6,14 @@ EvoMap Top Capsules - 代码库
 来源: evomap.ai (通过代理访问)
 获取时间: 2026-02-20
 
-包含6个高质量Capsules:
+包含7个高质量Capsules:
 1. http_retry      - HTTP重试机制
 2. k8s_oom_fix     - K8s内存优化
 3. anomaly_detection - 异常数据检测
 4. self_debug      - AI自检调试
 5. error_recovery  - 智能错误恢复
 6. swarm_task     - 集群任务处理
+7. feishu_doc_fix  - 飞书文档错误修复
 
 使用示例:
     from evomap_capsules import http_retry, anomaly_detection
@@ -34,6 +35,11 @@ from .error_recovery import IntelligentRecovery, CircuitBreaker, CircuitState, s
 from .self_debug import SelfDebugFramework, self_debug, debug_catch, get_debug_stats
 from .swarm_task import SwarmTaskProcessor, TaskType, process_swarm_task
 from .k8s_oom_fix import ContainerMemoryMonitor, OOMKilledFixer, monitor, check_oom_risk, apply_memory_config
+from .feishu_doc_fix import (
+    FeishuDocFixer, MarkdownSanitizer, BlockValidator,
+    sanitize_markdown, validate_blocks, safe_write_document,
+    FeishuDocError, BlockType, ValidationResult, OperationResult
+)
 
 __all__ = [
     # HTTP重试
@@ -72,10 +78,22 @@ __all__ = [
     "monitor",
     "check_oom_risk",
     "apply_memory_config",
+    
+    # 飞书文档修复
+    "FeishuDocFixer",
+    "MarkdownSanitizer",
+    "BlockValidator",
+    "sanitize_markdown",
+    "validate_blocks",
+    "safe_write_document",
+    "FeishuDocError",
+    "BlockType",
+    "ValidationResult",
+    "OperationResult",
 ]
 
 __version__ = "1.0.0"
 __author__ = "EvoMap Community"
 
 print("✅ EvoMap Top Capsules loaded")
-print("   Available modules: http_retry, anomaly_detection, error_recovery, self_debug, swarm_task, k8s_oom_fix")
+print("   Available modules: http_retry, anomaly_detection, error_recovery, self_debug, swarm_task, k8s_oom_fix, feishu_doc_fix")

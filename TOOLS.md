@@ -4,15 +4,31 @@
 
 ---
 
-## 🤖 代理配置
+## 🤖 默认模型配置
 
-### 小 u (Kimi 代码助手)
-- **位置**: `/root/.openclaw/agents/xiaoyu/`
+### 小雨 (主代理)
+- **模型**: MiniMax-M2.5
+- **API Key**: sk-cp-…MBnnNU
+- **上下文**: 200K
+- **状态**: ✅ 当前使用
+
+### 子代理模型
+| 代理 | 模型 | 用途 |
+|------|------|------|
+| 诗诗 | Qwen3 Max | 深度分析、长文档 |
+| 小 uu | Kimi Code CLI | 代码开发、自动化 |
+
+---
+
+## 🤖 小 uu (Kimi 代码助手)
+
+### 小 uu (Kimi 代码助手)
+- **位置**: `/root/.openclaw/agents/xiaouu/`
 - **CLI**: `@jacksontian/kimi-cli` v1.2.0
 - **命令路径**: `/root/.nvm/versions/node/v22.22.0/bin/kimi`
 - **默认模型**: `moonshot-v1-8k`
 - **API Key**: 首次运行 `kimi` 命令时设置
-- **配置指南**: `/root/.openclaw/agents/xiaoyu/agent/KIMI_SETUP.md`
+- **配置指南**: `/root/.openclaw/agents/xiaouu/agent/KIMI_SETUP.md`
 
 ---
 
