@@ -1,0 +1,48 @@
+# 敏感信息
+*.env
+.tushare.env
+credentials/
+.credentials/
+
+# 日志文件
+logs/*.log
+*.log
+
+# 备份文件（太大了）
+*.tar.gz
+backups/
+backup/*.tar.gz
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.pid
+
+# 缓存
+.cache/
+__pycache__/
+*.pyc
+*.pyo
+
+# Node modules
+node_modules/
+
+# 特定大文件
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.mov
+
+# 图片目录
+images/
+xiaohongshu_images/
+
+# 数据库
+*.db
+*.sqlite
+
+# 特定文件
+self_learning.log

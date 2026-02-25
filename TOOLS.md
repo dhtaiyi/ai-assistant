@@ -4,6 +4,18 @@
 
 ---
 
+## 🤖 代理配置
+
+### 小 u (Kimi 代码助手)
+- **位置**: `/root/.openclaw/agents/xiaoyu/`
+- **CLI**: `@jacksontian/kimi-cli` v1.2.0
+- **命令路径**: `/root/.nvm/versions/node/v22.22.0/bin/kimi`
+- **默认模型**: `moonshot-v1-8k`
+- **API Key**: 首次运行 `kimi` 命令时设置
+- **配置指南**: `/root/.openclaw/agents/xiaoyu/agent/KIMI_SETUP.md`
+
+---
+
 ## ⚠️ Config Modification Safety Rule
 
 **Before editing any config file, ALWAYS backup first!**
