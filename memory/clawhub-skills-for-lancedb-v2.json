@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-02-26T13:59:50.443593",
+  "total_clawhub_skills": 116,
+  "memories": [
+    {
+      "category": "clawhub-top",
+      "text": "🔥 ClawHub Top 热门 Skill\n\n1. MoltGuard - OpenClaw Security Plugin by OpenGuardrails (v6.6.14)\n   下载：6515 | slug: moltguard\n   MoltGuard — runtime security plugin for OpenClaw agents by OpenGuardrails. Helps users install, regi\n\n2. Square (v1.0.2)\n   下载：2324 | slug: squareup\n   Square API integration with managed OAuth. Process payments, manage customers, orders, catalog, inve\n\n3. Agent Church (v1.0.4)\n   下载：1923 | slug: agent-church\n   Identity formation, portraits, resurrection, and evolution for AI agents via SOUL.md\n\n4. CueCue Deep Research (v1.0.4)\n   下载：1121 | slug: cuecue-deep-research\n   Conduct deep financial research using CueCue's AI-powered multi-agent system\n\n5. muninn (v2.3.7)\n   下载：913 | slug: muninn\n   Universal Context Protocol (CXP) for AI agents. v2.3.7 includes the latest high-performance CXP engi\n\n6. Sendgrid Skills (v1.2.2)\n   下载：868 | slug: sendgrid-skills\n   SendGrid email platform integration for sending and receiving emails. Routes to sub-skills for outbo\n\n7. Equity Analyst (v1.0.7)\n   下载：831 | slug: equity-analyst\n   전문 투자 분석가 AI로, 한국 주식 종목의 재무제표, 뉴스, 차트를 분석하여 Investment Attractiveness Score (0-100)와 BUY/HOLD/AVOID \n\n8. Binance-Hunter (v1.0.0)\n   下载：797 | slug: binance-hunter\n   The Hunter: Professional Binance Trading Skill. Features AI market analysis, auto-risk calculation, \n\n9. Openclaw Config (v0.1.0)\n   下载：690 | slug: openclaw-config\n   Edit and validate OpenClaw Gateway config (openclaw.json / JSON5). Use when adding/changing config k\n\n10. Windows Remote (v1.0.0)\n   下载：672 | slug: windows-remote\n   Control remote Windows machines via SSH. Use when executing commands on Windows, checking GPU status\n\n",
+      "count": 10
+    },
+    {
+      "category": "clawhub-security",
+      "text": "📁 ClawHub Skill 分类：security\n\n包含 3 个 skill:\n\n- MoltGuard - OpenClaw Security Plugin by OpenGuardrails (v6.6.14)\n  slug: moltguard\n  MoltGuard — runtime security plugin for OpenClaw agents by OpenGuardrails. Helps\n\n- Senseguard (v1.0.1)\n  slug: senseguard\n  Semantic security scanner for OpenClaw skills. Detects prompt injection, data ex\n\n- Hackathon (v1.0.0)\n  slug: aegis-security-hackathon\n  Blockchain security scanner for AI agents (testnet). Pay with Base Sepolia USDC \n\n",
+      "count": 3
+    },
+    {
+      "category": "clawhub-other",
+      "text": "📁 ClawHub Skill 分类：other\n\n包含 104 个 skill:\n\n- Square (v1.0.2)\n  slug: squareup\n  Square API integration with managed OAuth. Process payments, manage customers, o\n\n- Agent Church (v1.0.4)\n  slug: agent-church\n  Identity formation, portraits, resurrection, and evolution for AI agents via SOU\n\n- muninn (v2.3.7)\n  slug: muninn\n  Universal Context Protocol (CXP) for AI agents. v2.3.7 includes the latest high-\n\n- Equity Analyst (v1.0.7)\n  slug: equity-analyst\n  전문 투자 분석가 AI로, 한국 주식 종목의 재무제표, 뉴스, 차트를 분석하여 Investment Attractiveness Score (0-1\n\n- Openclaw Config (v0.1.0)\n  slug: openclaw-config\n  Edit and validate OpenClaw Gateway config (openclaw.json / JSON5). Use when addi\n\n- Windows Remote (v1.0.0)\n  slug: windows-remote\n  Control remote Windows machines via SSH. Use when executing commands on Windows,\n\n- Agent Social — Meet, Match & Connect (v1.1.4)\n  slug: social\n  Meet agents and form connections on the social network built for AI. Find compat\n\n- Cloudflare R2 (v1.0.0)\n  slug: cloudflare-r2\n  Upload files to Cloudflare R2 storage using wrangler CLI. Use when needing to up\n\n- Clawland (v1.0.4)\n  slug: clawland\n  Play on-chain odd/even games on Solana devnet via Clawland. Mint GEM from SOL or\n\n- Voice Assistant (v0.1.0)\n  slug: voice-assistant\n  Real-time voice assistant for OpenClaw. Streams mic audio through configurable S\n\n- Blacksnow (v0.1.0)\n  slug: blacksnow\n  Detects pre-news ambient risk signals across human, legal, and operational syste\n\n- Claw Werewolf (v0.1.10)\n  slug: claw-werewolf-live\n  AI Bot werewolf variety show. Register your bot and stream the match as a read-o\n\n- ERC-8004 Identity (v1.0.0)\n  slug: erc8004-identity\n  Deploy and manage an AI agent's onchain identity, reputation, and task capabilit\n\n- Google AI Usage Monitor (v1.0.0)\n  slug: google-ai-usage-monitor\n  Monitor Google AI Studio (Gemini API) usage, rate limits, and quota consumption \n\n- Sonarqube Analyzer (v0.1.2)\n  slug: sonarqube-analyzer\n  Analisa projetos SonarQube self-hosted, obtém issues filtradas, verifica Quality\n\n",
+      "count": 104
+    },
+    {
+      "category": "clawhub-research",
+      "text": "📁 ClawHub Skill 分类：research\n\n包含 3 个 skill:\n\n- CueCue Deep Research (v1.0.4)\n  slug: cuecue-deep-research\n  Conduct deep financial research using CueCue's AI-powered multi-agent system\n\n- 投资组合分析技能 (v1.0.0)\n  slug: financial-analysis-skill\n  提供基于免费数据的多资产投资组合风险平价分析、滚动调仓回测及图文报告生成功能。\n\n- OutboundSync Analysis (v0.1.1)\n  slug: outboundsync-analysis\n  Analyze outbound campaign performance, reply rates, open-to-reply conversion, fo\n\n",
+      "count": 3
+    },
+    {
+      "category": "clawhub-email",
+      "text": "📁 ClawHub Skill 分类：email\n\n包含 1 个 skill:\n\n- Sendgrid Skills (v1.2.2)\n  slug: sendgrid-skills\n  SendGrid email platform integration for sending and receiving emails. Routes to \n\n",
+      "count": 1
+    },
+    {
+      "category": "clawhub-finance",
+      "text": "📁 ClawHub Skill 分类：finance\n\n包含 3 个 skill:\n\n- Binance-Hunter (v1.0.0)\n  slug: binance-hunter\n  The Hunter: Professional Binance Trading Skill. Features AI market analysis, aut\n\n- Query real-time and historical financial data across equities and crypto prices (v1.0.0)\n  slug: openclaw-aisa-finance-stock-equity-crypto-market-price-data-yahoo-finance-coinhacko\n  Query real-time and historical financial data across equities and crypto—prices,\n\n- Daily Stock Analysis (v1.0.1)\n  slug: daily-stock-analysis\n  Daily stock analysis and forecasting skill for multi-market equities, with expli\n\n",
+      "count": 3
+    },
+    {
+      "category": "clawhub-weather",
+      "text": "📁 ClawHub Skill 分类：weather\n\n包含 2 个 skill:\n\n- Yr Weather (v1.0.0)\n  slug: yr-weather\n  Fetch weather forecasts from the Norwegian Meteorological Institute (MET) using \n\n- Weather Query (v0.1.0)\n  slug: weather-query\n  Use when users ask about weather conditions, forecasts, or climate information f\n\n",
+      "count": 2
+    }
+  ]
+}

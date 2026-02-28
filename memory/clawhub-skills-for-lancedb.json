@@ -1,0 +1,44 @@
+{
+  "memories": [
+    {
+      "category": "unknown",
+      "text": "ClawHub Skill 分类：unknown\n\n包含 29 个 skill:\n\n- adaptive-reasoning: --- (路径：/root/.openclaw/skills/adaptive-reasoning)\n- agent-team-orchestration: --- (路径：/root/.openclaw/skills/agent-team-orchestration)\n- automation-workflows: --- (路径：/root/.openclaw/skills/automation-workflows)\n- chrome: --- (路径：/root/.openclaw/skills/chrome)\n- content-repurposing-engine: --- (路径：/root/.openclaw/skills/content-repurposing-engine)\n- data-analysis: --- (路径：/root/.openclaw/skills/data-analysis)\n- deep-scraper: A high-performance engineering tool for deep web scraping. It uses a containerized Docker + Crawlee  (路径：/root/.openclaw/skills/deep-scraper)\n- deploy: --- (路径：/root/.openclaw/skills/deploy)\n- focus-deep-work: --- (路径：/root/.openclaw/skills/focus-deep-work)\n- humanize-zh: --- (路径：/root/.openclaw/skills/humanize-zh)\n... 还有 19 个",
+      "count": 29
+    },
+    {
+      "category": "browser",
+      "text": "ClawHub Skill 分类：browser\n\n包含 1 个 skill:\n\n- agent-browser: --- (路径：/root/.openclaw/skills/agent-browser)",
+      "count": 1
+    },
+    {
+      "category": "search",
+      "text": "ClawHub Skill 分类：search\n\n包含 4 个 skill:\n\n- baidu-search: --- (路径：/root/.openclaw/skills/baidu-search)\n- ddg-web-search: --- (路径：/root/.openclaw/skills/ddg-web-search)\n- deep-research-pro: --- (路径：/root/.openclaw/skills/deep-research-pro)\n- search: --- (路径：/root/.openclaw/skills/search)",
+      "count": 4
+    },
+    {
+      "category": "productivity",
+      "text": "ClawHub Skill 分类：productivity\n\n包含 2 个 skill:\n\n- cron-scheduling: --- (路径：/root/.openclaw/skills/cron-scheduling)\n- todoist: --- (路径：/root/.openclaw/skills/todoist)",
+      "count": 2
+    },
+    {
+      "category": "memory",
+      "text": "ClawHub Skill 分类：memory\n\n包含 1 个 skill:\n\n- elite-longterm-memory: --- (路径：/root/.openclaw/skills/elite-longterm-memory)",
+      "count": 1
+    },
+    {
+      "category": "dev",
+      "text": "ClawHub Skill 分类：dev\n\n包含 2 个 skill:\n\n- github: GitHub 仓库搜索和信息查询工具。 (路径：/root/.openclaw/skills/github)\n- xiaohongshu-mcp-github: **名称**: xiaohongshu-mcp (路径：/root/.openclaw/skills/xiaohongshu-mcp-github)",
+      "count": 2
+    },
+    {
+      "category": "vision",
+      "text": "ClawHub Skill 分类：vision\n\n包含 3 个 skill:\n\n- image-generator: 支持多个平台的 AI 图像生成。 (路径：/root/.openclaw/skills/image-generator)\n- image-ocr: --- (路径：/root/.openclaw/skills/image-ocr)\n- image2prompt: --- (路径：/root/.openclaw/skills/image2prompt)",
+      "count": 3
+    },
+    {
+      "category": "data",
+      "text": "ClawHub Skill 分类：data\n\n包含 2 个 skill:\n\n- news-aggregator-skill: --- (路径：/root/.openclaw/skills/news-aggregator-skill)\n- tushare-finance: --- (路径：/root/.openclaw/skills/tushare-finance)",
+      "count": 2
+    }
+  ]
+}
