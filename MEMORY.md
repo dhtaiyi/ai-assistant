@@ -73,7 +73,29 @@
 
 ## Ongoing Context
 
-### 2026-02-27 最新
+## Ongoing Context
+
+### 2026-03-01 最新
+- **飞书语音条研究**：使用 file_type=opus 上传，msg_type=audio 发送，但 duration 显示 0 的问题未解决
+- **企业微信语音条成功**：需要将 MP3 转换为 AMR 格式（使用 /usr/local/bin/mp3-to-amr.py）
+- 抖音直播监控正常运行（每10分钟检查一次）
+
+### 语音发送方案
+
+#### 企业微信（成功 ✅）
+- 凭证：corp_id=wwf684d252386fc0b6, agent_id=1000002, userid=KunKun
+- 流程：MP3 → AMR 转换 → 上传 voice 类型 → 发送 voice 消息
+- 脚本：`/root/.openclaw/workspace/wecom_voice.py`
+- AMR 转换工具：`/usr/local/bin/mp3-to-amr.py`
+
+#### 飞书（有问题 ❌）
+- 应用凭证：cli_a9295e013c785bc0 (App Secret: SFDeXXVozEoSrELeiTlHsbWc0xufJaMg)
+- 上传：POST /open-apis/im/v1/files, file_type=opus
+- 发送：POST /open-apis/im/v1/messages, msg_type=audio
+- 问题：返回 duration=0，语音条无法播放
+- 脚本：`/root/.openclaw/workspace/feishu_voice.py`
+
+### 2026-02-27
 - 小红书 MCP 部署成功，登录用户：困困困
 - Docker 安装成功，镜像：xpzouying/xiaohongshu-mcp
 - Agents 模型配置修复完成
