@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""
+抖音直播监控 - 检查直播状态并提取房间号
+"""
+import subprocess
+import os
+import time
+from datetime import datetime
+from playwright.sync_api import sync_playwright
+
+ROOM_URL = "https://v.douyin.com/r1GsrLkLAYQ/"
+LOG_FILE = "/tmp/douyin_monitor.log"
+
+def write_log(msg):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log_msg = f"[{timestamp}] {msg}"
+    with open(LOG_FILE, 'a') as f:
+        f.write(log_msg + "\n")
+    print(log_msg)
+
+def extract_room_info():
+    """提取直播信息（房间号、状态、FLV地址）"""
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(
+                headless=True,
+                args=['--no-sandbox', '--disable-blink-features=AutomationControlled']
+            )
+            context = browser.new_context(
+                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            )
+            page = context.new_page()
+            
+            # 注入脚本隐藏 webdriver
+            page.add_init_script("""
+                Object.defineProperty(navigator, 'webdriver', { get: () => false });
+            """)
+            
+            write_log("打开直播间...")
+            page.goto(ROOM_URL, timeout=20000)
+            page.wait_for_timeout(10000)
+            
+            # 检查是否需要登录
+            text = page.evaluate("document.body.innerText")
+            if "登录" in text and "手机号" in text:
+                write_log("⚠️ 需要登录")
+                browser.close()
+                return None, "login_required"
+            
+            # 检查直播状态
+            is_live = "直播中" in text
+            write_log(f"直播状态: {'live' if is_live else 'offline'}")
+            
+            # 提取房间号
+            room_id = None
+            links = page.query_selector_all('a')
+            for link in links:
+                href = link.get_attribute('href')
+                if href and 'live.douyin.com' in href and '/live/' in href:
+                    # 提取房间号 from https://live.douyin.com/123456
+                    room_id = href.split('/live/')[-1].split('?')[0]
+                    write_log(f"房间号: {room_id}")
+                    break
+            
+            # 尝试获取 FLV 地址（可选，用于录制）
+            flv_url = None
+            if is_live and room_id:
+                # 方法：通过 network 请求捕获
+                flv_urls = []
+                def handle_request(req):
+                    if 'douyincdn' in req.url and ('flv' in req.url or 'm3u8' in req.url):
+                        flv_urls.append(req.url)
+                        write_log(f"找到流地址: {req.url[:80]}...")
+                
+                page2 = context.new_page()
+                page2.on("request", handle_request)
+                page2.goto(f"https://live.douyin.com/{room_id}", timeout=20000)
+                page2.wait_for_timeout(10000)
+                
+                if flv_urls:
+                    flv_url = flv_urls[0]
+                    write_log(f"FLV URL: {flv_url[:80]}")
+                page2.close()
+            
+            browser.close()
+            
+            if room_id:
+                return {"room_id": room_id, "flv_url": flv_url, "is_live": is_live}, "success"
+            else:
+                return None, "no_room"
+                
+    except Exception as e:
+        write_log(f"错误: {e}")
+        return None, "error"
+
+if __name__ == "__main__":
+    write_log("=== 提取房间信息 ===")
+    info, status = extract_room_info()
+    
+    if info:
+        write_log(f"结果: 房间号={info['room_id']}, 直播中={info['is_live']}")
+    else:
+        write_log(f"结果: {status}")
