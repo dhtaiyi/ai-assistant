@@ -1,0 +1,30 @@
+version: '3'
+services:
+  squid:
+    image: ubuntu/squid
+    container_name: squid
+    restart: always
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf:ro
+    command: squid -f /etc/squid/squid.conf -N -d 1
+
+  frpc:
+    image: snowdreamtech/frpc
+    container_name: frpc
+    restart: always
+    network_mode: host
+    command:
+      - -c
+      - |
+        [common]
+        server_addr = 129.211.82.60
+        server_port = 7000
+        auth.token = ChangeMeStrongToken123!
+
+        [squid-proxy]
+        type = tcp
+        local_ip = 127.0.0.1
+        local_port = 3128
+        remote_port = 13128
