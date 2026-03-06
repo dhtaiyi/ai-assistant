@@ -1,1 +1,6 @@
-{"last_heartbeat": "2026-03-06T06:31:00+08:00", "status": "healthy", "log_errors": 0, "note": "晚间检查 - 系统正常"}
+{
+  "last_heartbeat": "2026-03-05T23:31:00+08:00",
+  "status": "healthy",
+  "log_errors": 0,
+  "note": "Night heartbeat - system normal"
+}
