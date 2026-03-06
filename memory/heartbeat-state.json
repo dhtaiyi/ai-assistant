@@ -1,6 +1,8 @@
 {
-  "last_heartbeat": "2026-03-06T13:58:00+08:00",
+  "last_heartbeat": "2026-03-06T07:31:00+08:00",
   "status": "healthy",
   "log_errors": 0,
-  "note": "Morning heartbeat - system normal"
+  "douyin_live": false,
+  "recording": false,
+  "note": "System running normally"
 }
