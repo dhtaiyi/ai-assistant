@@ -75,7 +75,44 @@
 
 ## Ongoing Context
 
-### 2026-03-01 最新
+### 2026-03-08 更新
+
+### FRP 代理（远程访问家里）
+
+**架构：**
+- ☁️ 云服务器：129.211.82.60 (小雨所在)
+- 🏠 家里
+  - NAS：运行 frpc-visitor (Docker)，与 PC 同内网
+  - PC：运行小小雨 OpenClaw Gateway (端口 18789)
+
+**FRP 服务：**
+- frps (服务端)：systemd 管理，端口 8080
+- frpc-visitor (客户端)：Docker 管理，--restart unless-stopped
+
+**访问小小雨：**
+- 通过云服务器：129.211.82.60:8080 → NAS → 内网 → 小小雨 :18789
+
+**内网架构：**
+- NAS 和 PC 在同一内网，可直接互访
+- FRP 只暴露 NAS 的访问入口，内网转发由 NAS 处理
+
+**管理命令：**
+```bash
+# 服务端
+systemctl status/start/stop/restart frps
+tail -f /var/log/frps.log
+
+# 客户端
+docker logs frpc-visitor --tail 20
+docker restart frpc-visitor
+```
+
+**技能文件：**
+- `~/.openclaw/workspace/skills/frp-proxy/SKILL.md`
+
+---
+
+## 2026-03-01 最新
 - **飞书语音条研究**：使用 file_type=opus 上传，msg_type=audio 发送，但 duration 显示 0 的问题未解决
 - **企业微信语音条成功**：需要将 MP3 转换为 AMR 格式（使用 /usr/local/bin/mp3-to-amr.py）
 - 抖音直播监控正常运行（每10分钟检查一次）
