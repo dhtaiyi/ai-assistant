@@ -276,3 +276,48 @@ Based on [RedCrack](https://github.com/Cialle/RedCrack) - Pure Python reverse en
 ### Import errors
 - Ensure all dependencies are installed: `pip install aiohttp loguru pycryptodome getuseragent`
 - Check that the skill path is correct in `sys.path.insert()`
+
+---
+
+## 🌐 代理配置（防检测）
+
+为了防止被小红书检测到机房 IP，建议通过代理访问。
+
+### 使用代理脚本
+
+```python
+from proxy_config import enable_proxy, get_proxy
+
+# 启用代理
+enable_proxy()
+
+# 获取代理配置
+proxy = get_proxy()
+# {'http': 'http://10.0.0.4:7890', 'https': 'http://10.0.0.4:7890'}
+
+# 之后的所有请求都会通过代理
+```
+
+### 环境变量方式
+
+```bash
+# 设置代理
+export HTTP_PROXY=http://<NAS-IP>:7890
+export HTTPS_PROXY=http://<NAS-IP>:7890
+```
+
+### 修改 NAS IP
+
+如果你的 NAS IP 不是 `10.0.0.4`，可以修改 `proxy_config.py` 或设置环境变量：
+
+```bash
+export NAS_PROXY_IP=192.168.x.x
+```
+
+### 代理端口参考
+
+| 端口 | 类型 |
+|------|------|
+| 7890 | HTTP/HTTPS |
+| 7891 | SOCKS5 |
+| 1080 | SOCKS5 |
