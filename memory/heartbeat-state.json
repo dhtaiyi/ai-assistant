@@ -1,8 +1,6 @@
 {
-  "last_heartbeat": "2026-03-06T16:39:00+08:00",
+  "last_heartbeat": "2026-03-09T21:07:00+08:00",
   "status": "healthy",
   "log_errors": 0,
-  "douyin_live": false,
-  "recording": false,
-  "note": "System running normally, morning time in Beijing"
+  "note": "Evening time in Beijing, system normal"
 }
