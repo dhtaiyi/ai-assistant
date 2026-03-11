@@ -152,6 +152,22 @@
     "find-skills": {
       "version": "0.1.0",
       "installedAt": 1773215939204
+    },
+    "image-translator": {
+      "version": "1.0.0",
+      "installedAt": 1773216051964
+    },
+    "video-downloader-skill": {
+      "version": "1.0.1",
+      "installedAt": 1773216057046
+    },
+    "content-rewriter": {
+      "version": "1.0.0",
+      "installedAt": 1773216062162
+    },
+    "xiaohongshu-v2": {
+      "version": "2.0.0",
+      "installedAt": 1773218606986
     }
   }
 }
