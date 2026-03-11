@@ -6,8 +6,9 @@ LOG_FILE="/tmp/git_backup.log"
 
 cd "$REPO_DIR" || exit 1
 
-# 添加所有更改
-git add -A
+# 先更新并添加 submodule
+git submodule update --init --recursive 2>> "$LOG_FILE"
+git add . 2>> "$LOG_FILE"
 
 # 检查是否有更改
 if git diff --staged --quiet; then
