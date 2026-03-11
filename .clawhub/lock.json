@@ -144,6 +144,14 @@
     "tushare-finance": {
       "version": "2.0.6",
       "installedAt": 1771395087233
+    },
+    "xiaohongshu-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1773215164482
+    },
+    "find-skills": {
+      "version": "0.1.0",
+      "installedAt": 1773215939204
     }
   }
 }
