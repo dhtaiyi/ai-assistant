@@ -172,6 +172,14 @@
     "proactive-agent-skill": {
       "version": "1.0.0",
       "installedAt": 1773295119925
+    },
+    "openclaw-mcp-plugin": {
+      "version": "0.1.1",
+      "installedAt": 1773295326959
+    },
+    "web-search-free": {
+      "version": "1.0.1",
+      "installedAt": 1773295481015
     }
   }
 }
