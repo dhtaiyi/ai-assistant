@@ -741,3 +741,12 @@ uvx minimax-mcp <功能名> [参数]
 - 腾讯 web.ifzq.gtimg.cn ✅ 历史K线（5日/日线）
 - 新浪 vip.stock.finance.sina.com.cn ✅ 涨幅榜/成交额
 - 东财 push2.eastmoney.com ❌ 被封
+
+### 2026-04-14 晚间 - 第三轮迭代完成总结
+- [学到] 举重理论量化应用：3日振幅收敛→主力控盘→安全；低位起(<10元)=安全垫厚
+- [学到] 跟风原理：机构信号=成交额前30+涨幅5%+非涨停
+- [修复] morning_scan_v2: 指数解析pct字段错误(parts[32]→parts[5])
+- [修复] buy_point_analyzer: yesterday_pct计算bug
+- [配置] evening_pipeline.sh: 整合6步骤晚盘链路
+- [配置] market_sentiment.py V2: 机构主导识别(2只非涨停强势+成交>200亿)
+- [待跟进] 明日9:00验证早盘链路是否正常运行
