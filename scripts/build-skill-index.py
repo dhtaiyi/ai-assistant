@@ -10,7 +10,7 @@ import hashlib
 from datetime import datetime
 
 SKILLS_DIR = os.path.expanduser('~/.openclaw/skills')
-OUTPUT_FILE = '/root/.openclaw/workspace/memory/clawhub-skills-index.json'
+OUTPUT_FILE = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-skills-index.json'
 
 def extract_skill_info(skill_path):
     """提取 skill 信息"""

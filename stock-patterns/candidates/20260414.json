@@ -1,0 +1,47 @@
+{
+  "sz301696": {
+    "name": "C三瑞",
+    "close_y": 120.19,
+    "close_today": 120.19,
+    "pct_today": 1.43,
+    "circ_mv": 480.77,
+    "reason": "",
+    "prev_close_y": 0
+  },
+  "sz301526": {
+    "name": "国际复材",
+    "close_y": 14.86,
+    "close_today": 14.86,
+    "pct_today": 0.2,
+    "circ_mv": 560.35,
+    "reason": "",
+    "prev_close_y": 0
+  },
+  "sz002240": {
+    "name": "盛新锂能",
+    "close_y": 48.48,
+    "close_today": 48.48,
+    "pct_today": 8.07,
+    "circ_mv": 443.73,
+    "reason": "",
+    "prev_close_y": 0
+  },
+  "sh603459": {
+    "name": "C红板",
+    "close_y": 62.18,
+    "close_today": 62.18,
+    "pct_today": -1.02,
+    "circ_mv": 468.68,
+    "reason": "",
+    "prev_close_y": 0
+  },
+  "sh600166": {
+    "name": "福田汽车",
+    "close_y": 3.48,
+    "close_today": 3.48,
+    "pct_today": -5.18,
+    "circ_mv": 275.53,
+    "reason": "",
+    "prev_close_y": 0
+  }
+}

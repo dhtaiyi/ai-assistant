@@ -35,7 +35,7 @@ echo "标题: $TITLE"
 echo "内容长度: ${#CONTENT} 字符"
 
 # 执行发布
-python3 /root/.openclaw/workspace/skills/wechat-mp-publisher/wechat_mp_publisher.py \
+python3 /home/dhtaiyi/.openclaw/workspace/skills/wechat-mp-publisher/wechat_mp_publisher.py \
     --title "$TITLE" \
     --content "$CONTENT"
 

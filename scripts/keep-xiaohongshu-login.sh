@@ -1,7 +1,7 @@
 #!/bin/bash
 # 小红书保持登录状态脚本
 
-LOG_FILE="/root/.openclaw/workspace/logs/xiaohongshu-keepalive.log"
+LOG_FILE="/home/dhtaiyi/.openclaw/workspace/logs/xiaohongshu-keepalive.log"
 
 log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> $LOG_FILE
@@ -22,7 +22,7 @@ if echo $STATUS | grep -q '"is_logged_in":true'; then
     log "登录状态正常"
     
     # 备份 Cookie
-    docker cp xiaohongshu-mcp:/tmp/cookies.json /root/.openclaw/workspace/xiaohongshu-mcp/cookies/cookies.json 2>/dev/null
+    docker cp xiaohongshu-mcp:/tmp/cookies.json /home/dhtaiyi/.openclaw/workspace/xiaohongshu-mcp/cookies/cookies.json 2>/dev/null
     log "Cookie 已备份"
 else
     log "警告：登录状态异常"

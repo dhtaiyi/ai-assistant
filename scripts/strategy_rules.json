@@ -1,0 +1,57 @@
+{
+  "version": "3.1",
+  "updated": "2026-04-11",
+  "last_verification": "2026-04-11",
+  "accuracy": 86,
+  "total_predictions": 7,
+  "correct": 6,
+  "wrong": 1,
+  "rules": {
+    "lianban_limit": {
+      "default": "≤3板不做",
+      "exception_4ban": {
+        "condition": "流通市值≤80亿 AND (并购|重组|股权转让|算力|光纤|AI) in 板块",
+        "action": "可以参与，但需严格止损(收盘-7%)",
+        "note": "小市值+主线资金可以继续拉"
+      },
+      "reason": "2026-04-11验证：华远控股4板+62亿小市值+并购重组继续涨停"
+    },
+    "market_cap": {
+      "optimal": "30-80亿",
+      "acceptable": "80-200亿",
+      "avoid": ">200亿(除非主线龙头)",
+      "note": "越小市值弹性越好，但也要注意流动性"
+    },
+    "buy_points": {
+      "A": "首板战法（最强！）",
+      "B": "一进二接力（分歧转一致）",
+      "C": "连板持筹",
+      "D": "空间板低吸（5日线）",
+      "S": "威科夫Spring"
+    },
+    "scoring": {
+      "A": 40, "B": 35, "C": 30, "D": 20, "S": 25, "N": 10,
+      "4ban_small_main": 8
+    }
+  },
+  "verification_20260411": {
+    "predictions": [
+      {"name": "东山精密", "rec": "买点C持筹", "score": 55, "actual": "+8.8%", "verdict": "✅正确"},
+      {"name": "华远控股", "rec": "4板高位不参与", "score": 30, "actual": "+10.0%", "verdict": "⚠️策略说避免，涨了但不该买"},
+      {"name": "来伊份", "rec": "买点B/3连板", "score": 85, "actual": "+10.0%", "verdict": "✅正确"},
+      {"name": "睿能科技", "rec": "买点B/2连板", "score": 75, "actual": "+10.0%", "verdict": "✅正确"},
+      {"name": "长芯博创", "rec": "首板后跌停", "score": 8, "actual": "-3.5%", "verdict": "✅正确"},
+      {"name": "汇源通信", "rec": "6板断板", "score": 18, "actual": "-10.0%", "verdict": "✅正确"},
+      {"name": "通鼎互联", "rec": "断板跌停", "score": 11, "actual": "-9.6%", "verdict": "✅正确"},
+      {"name": "益佰制药", "rec": "4板断板", "score": 9, "actual": "-4.9%", "verdict": "✅正确"}
+    ],
+    "key_learning": "华远控股4板+62亿小市值+并购主线继续涨停，说明小市值4板可以参与，但需要严格止损"
+  },
+  "corrections": [
+    {
+      "date": "2026-04-11",
+      "issue": "华远控股4连板+62亿小市值继续涨停",
+      "action": "修正规则：4板小市值(≤80亿)+主线(并购/光纤/算力等)可以参与，但需严格止损-7%"
+    }
+  ]
+}

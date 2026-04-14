@@ -12,7 +12,7 @@ from datetime import datetime
 
 CLAWHUB_API = "https://clawhub.ai/api/v1/skills"
 LOCAL_SKILLS_DIR = os.path.expanduser('~/.openclaw/skills')
-SYNC_INDEX_FILE = '/root/.openclaw/workspace/memory/clawhub-sync-index.json'
+SYNC_INDEX_FILE = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-sync-index.json'
 
 def fetch_skills(cursor=None):
     """从 ClawHub API 获取 skill 列表"""

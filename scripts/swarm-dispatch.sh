@@ -35,6 +35,6 @@ echo "时间：$(date '+%Y-%m-%d %H:%M:%S')"
 echo ""
 
 # 记录到日志
-echo "- [$(date '+%Y-%m-%d %H:%M:%S')] [$TYPE] $TASK → $AGENT" >> /root/.openclaw/workspace/memory/swarm-task-log.md
+echo "- [$(date '+%Y-%m-%d %H:%M:%S')] [$TYPE] $TASK → $AGENT" >> /home/dhtaiyi/.openclaw/workspace/memory/swarm-task-log.md
 
 echo "✅ 任务已分发"

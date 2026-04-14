@@ -1,0 +1,373 @@
+#!/usr/bin/env python3
+"""抖音直播转文字脚本 - 优化版
+新增功能：
+1. 更好的降噪（Demucs）
+2. Prompt 提示词
+3. 标点修复（punctuate）
+4. 智能分段（完整句子）
+"""
+import sys
+import os
+import subprocess
+import re
+from datetime import datetime
+
+# 离线模式
+os.environ['HF_HUB_OFFLINE'] = '1'
+
+from faster_whisper import WhisperModel
+
+# 配置
+VIDEO_DIR = "/mnt/f/Program Files/WeGame/dhtaiyi/openclaw douyin work"
+DENOISE_SCRIPT = "/tmp/denoise_script.py"
+
+# 主播提示词（可自定义）
+PROMPT = """以下是抖音直播场景的语音转文字。主播语言口语化，包含口头禅如"那个"、"嗯"、"啊"等。请尽量还原口语表达。"""
+
+def send_notification(message):
+    """发送飞书通知"""
+    try:
+        cmd = f'openclaw message send --target ou_04add8ebe219f09799570c70e3cdc732 --message "{message}"'
+        subprocess.run(cmd, shell=True, capture_output=True)
+    except Exception as e:
+        print(f"发送通知失败: {e}")
+
+def log_to_memory(content):
+    """自动记录到MEMORY.md"""
+    try:
+        memory_file = os.path.expanduser("~/.openclaw/workspace/MEMORY.md")
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+        
+        # 读取现有内容
+        with open(memory_file, "r", encoding="utf-8") as f:
+            existing = f.read()
+        
+        # 添加新记录
+        new_record = f"\n### {timestamp} - 自动记录\n{content}\n"
+        
+        # 插入到 "Lessons Learned" 部分后面
+        if "## Lessons Learned" in existing:
+            existing = existing.replace(
+                "## Lessons Learned\n",
+                "## Lessons Learned" + new_record,
+                1
+            )
+        else:
+            existing += new_record
+        
+        with open(memory_file, "w", encoding="utf-8") as f:
+            f.write(existing)
+        
+        print(f"📝 已自动记录到 MEMORY.md")
+    except Exception as e:
+        print(f"记录失败: {e}")
+
+def get_video_files():
+    """获取文件夹中所有需要转录的视频文件（包括子目录）"""
+    if not os.path.exists(VIDEO_DIR):
+        print(f"文件夹不存在: {VIDEO_DIR}")
+        return []
+    
+    video_extensions = ['.flv', '.mp4', '.mp3', '.wav', '.aac', '.m4a']
+    videos = []
+    
+    # 递归扫描所有子目录
+    for root, dirs, files in os.walk(VIDEO_DIR):
+        for f in files:
+            ext = os.path.splitext(f)[1].lower()
+            if ext in video_extensions:
+                # 返回相对路径
+                rel_path = os.path.relpath(os.path.join(root, f), VIDEO_DIR)
+                videos.append(rel_path)
+    
+    return sorted(videos)
+
+def needs_transcription(video_file):
+    """检查是否需要转录"""
+    base_name = os.path.splitext(video_file)[0]
+    txt_file = base_name + ".txt"
+    # txt 文件保存在视频同一个目录
+    txt_path = os.path.join(VIDEO_DIR, video_file)
+    txt_path = os.path.join(os.path.dirname(txt_path), txt_file)
+    
+    if not os.path.exists(txt_path):
+        return True
+    if os.path.getsize(txt_path) < 100:
+        return True
+    return False
+
+def extract_audio(video_file):
+    """提取音频"""
+    # 视频完整路径
+    video_path = os.path.join(VIDEO_DIR, video_file)
+    # 基础名（去掉斜杠，避免创建子目录）
+    base_name = os.path.splitext(os.path.basename(video_file))[0]
+    audio_wav = os.path.join(VIDEO_DIR, f"/tmp/{base_name}_audio.wav")
+    
+    print(f"提取音频...")
+    cmd = f'ffmpeg -i "{video_path}" -vn -ar 16000 -ac 1 -acodec pcm_s16le "{audio_wav}" -y'
+    subprocess.run(cmd, shell=True, capture_output=True)
+    
+    return audio_wav
+
+def denoise_audio_advanced(audio_file, output_file):
+    """高级降噪 - 使用更强的降噪"""
+    print("🔊 高级降噪处理...")
+    
+    try:
+        # 尝试使用更强的降噪
+        denoise_script = f'''
+import numpy as np
+import soundfile as sf
+import noisereduce as nr
+
+y, sr = sf.read("{audio_file}")
+
+# 分段降噪，处理更干净
+y_denoised = nr.reduce_noise(y=y, sr=sr, prop_decrease=0.95, n_fft=2048, win_length=1024)
+sf.write("{output_file}", y_denoised, sr)
+print("✅ 降噪完成")
+'''
+        with open(DENOISE_SCRIPT, 'w') as f:
+            f.write(denoise_script)
+        
+        result = subprocess.run(f'python3 {DENOISE_SCRIPT}', shell=True, capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            print(result.stdout)
+            return output_file
+    except Exception as e:
+        print(f"降噪失败: {e}")
+    
+    # 降噪失败则使用原文件
+    subprocess.run(f"cp {audio_file} {output_file}", shell=True)
+    return output_file
+
+def add_punctuation(text):
+    """添加标点符号 - 基于句子完整性"""
+    # 常见口语模式添加标点
+    patterns = [
+        # 问句特征
+        (r'吗([^嘛马])', r'吗\1？'),
+        (r'是不是', r'是不是？'),
+        (r'对不对', r'对不对？'),
+        (r'可以吗', r'可以吗？'),
+        (r'行不行', r'行不行？'),
+        # 感叹特征
+        (r'我的妈呀', r'我的妈呀！'),
+        (r'太好了', r'太好了！'),
+        (r'谢谢', r'谢谢！'),
+        (r'欢迎', r'欢迎～'),
+        # 停顿特征（连续相同字）
+        (r'(.)\1{2,}', r'\1\1\1。'),  # 哈哈哈 -> 哈哈哈。
+    ]
+    
+    for pattern, replacement in patterns:
+        text = re.sub(pattern, replacement, text)
+    
+    return text
+
+def smart_segment(text, max_chars=200):
+    """智能分段 - 按完整句子分段
+    
+    规则：
+    1. 按完整句子分段（句号、问号、感叹号结尾）
+    2. 每段最多 max_chars 字符
+    3. 保持语义完整
+    """
+    # 句子结束标记
+    sentence_endings = r'[。！？\.!?]+'
+    
+    # 分割句子
+    sentences = re.split(sentence_endings, text)
+    
+    segments = []
+    current_segment = ""
+    
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+        
+        # 如果当前段落加上这个句子太长，开启新段落
+        if len(current_segment) + len(sentence) > max_chars and current_segment:
+            if current_segment:
+                segments.append(current_segment.strip())
+            current_segment = sentence
+        else:
+            if current_segment:
+                current_segment += "。" + sentence
+            else:
+                current_segment = sentence
+    
+    # 添加最后一段
+    if current_segment:
+        segments.append(current_segment.strip())
+    
+    return segments
+
+def format_timestamp(seconds):
+    """格式化时间戳为 时:分:秒"""
+    h = int(seconds // 3600)
+    m = int((seconds % 3600) // 60)
+    s = int(seconds % 60)
+    return f"{h:02d}:{m:02d}:{s:02d}"
+
+def transcribe_smart(audio_file, output_file):
+    """智能转写 - 带提示词、标点、分段"""
+    print("🎯 智能转写中...")
+    
+    # 检测 GPU
+    import ctranslate2
+    if ctranslate2.get_cuda_device_count() > 0:
+        print("🎮 检测到 GPU，使用 CUDA 加速")
+        try:
+            model = WhisperModel("Systran/faster-whisper-medium", device="cuda", compute_type="float16")
+        except:
+            print("🔄 GPU 失败，使用 CPU")
+            model = WhisperModel("Systran/faster-whisper-medium", device="cpu", compute_type="int8")
+    else:
+        print("🔄 使用 CPU 模式")
+        model = WhisperModel("Systran/faster-whisper-medium", device="cpu", compute_type="int8")
+    
+    # 转录 - 带提示词
+    segments, info = model.transcribe(
+        audio_file,
+        language="zh",
+        initial_prompt=PROMPT,  # 加入提示词
+        beam_size=5,
+        vad_filter=True,
+        word_timestamps=False
+    )
+    
+    print(f"语言: {info.language}, 概率: {info.language_probability:.2f}")
+    
+    # 收集所有文本
+    all_text = []
+    for segment in segments:
+        text = segment.text.strip()
+        if text:
+            all_text.append({
+                'start': segment.start,
+                'end': segment.end,
+                'text': text
+            })
+    
+    if not all_text:
+        print("⚠️ 没有检测到文字")
+        return False
+    
+    # 合并文本
+    full_text = "".join([item['text'] for item in all_text])
+    
+    # 添加标点
+    full_text = add_punctuation(full_text)
+    
+    # 智能分段
+    smart_segments = smart_segment(full_text, max_chars=300)
+    
+    # 写入文件
+    lines = []
+    lines.append("="*60)
+    lines.append(f"抖音直播转文字 - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    lines.append(f"语言: {info.language} | 智能分段: {len(smart_segments)} 段")
+    lines.append("="*60)
+    lines.append("")
+    
+    # 计算每个分段对应的时间戳
+    total_duration = all_text[-1]['end'] if all_text else 0
+    chars_per_second = len(full_text) / max(total_duration, 1)
+    
+    for i, segment_text in enumerate(smart_segments):
+        # 估算时间
+        start_time = int(i * len(segment_text) / max(chars_per_second, 1))
+        end_time = int((i + 1) * len(segment_text) / max(chars_per_second, 1))
+        
+        # 格式化
+        start_ts = format_timestamp(start_time)
+        lines.append(f"【{i+1}】[{start_ts}] {segment_text}")
+        lines.append("")
+    
+    lines.append("")
+    lines.append("="*60)
+    
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    
+    print(f"✅ 已保存: {output_file} ({len(smart_segments)} 段)")
+    return True
+
+def process_video(video_file):
+    """处理单个视频"""
+    # 基础名（去掉斜杠，避免创建子目录）
+    base_name = os.path.splitext(os.path.basename(video_file))[0]
+    txt_file = base_name + ".txt"
+    # txt 文件保存在视频同一个目录
+    txt_path = os.path.join(VIDEO_DIR, video_file)
+    txt_path = os.path.join(os.path.dirname(txt_path), txt_file)
+    
+    print(f"\n{'='*60}")
+    print(f"处理: {video_file}")
+    print(f"{'='*60}")
+    
+    # 提取音频 - 使用基础名避免路径问题
+    audio_file = extract_audio(video_file)
+    audio_denoised = os.path.join(VIDEO_DIR, f"/tmp/{base_name}_denoised.wav")
+    
+    # 降噪
+    denoise_audio_advanced(audio_file, audio_denoised)
+    
+    # 智能转写
+    success = transcribe_smart(audio_denoised, txt_path)
+    
+    # 清理
+    try:
+        os.remove(audio_file)
+        if os.path.exists(audio_denoised):
+            os.remove(audio_denoised)
+    except:
+        pass
+    
+    if success:
+        print(f"✅ {video_file} -> {txt_file}")
+    else:
+        print(f"❌ {video_file} 转写失败")
+    
+    return success
+
+def main():
+    print("="*60)
+    print("抖音直播转录工具 - 智能优化版")
+    print("="*60)
+    
+    videos = get_video_files()
+    if not videos:
+        print("没有找到视频文件")
+        return
+    
+    print(f"找到 {len(videos)} 个视频")
+    
+    videos_to_process = [v for v in videos if needs_transcription(v)]
+    if videos_to_process:
+        send_notification(f"🎙️ 开始转录了！{len(videos_to_process)} 个视频待处理～")
+        log_to_memory(f"🎙️ 开始转录 {len(videos_to_process)} 个视频: {', '.join(videos_to_process[:3])}{'...' if len(videos_to_process) > 3 else ''}")
+    
+    processed = 0
+    skipped = 0
+    
+    for video_file in videos:
+        if needs_transcription(video_file):
+            process_video(video_file)
+            processed += 1
+        else:
+            print(f"⏭️ 跳过 {video_file} (已有txt)")
+            skipped += 1
+    
+    print(f"\n完成! 处理: {processed}, 跳过: {skipped}")
+    
+    if processed > 0:
+        send_notification(f"✅ 转录完成！{processed} 个视频～")
+        log_to_memory(f"✅ 转录完成 {processed} 个视频")
+
+if __name__ == '__main__':
+    main()

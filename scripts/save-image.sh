@@ -6,7 +6,7 @@
 set -e
 
 # 配置
-IMAGE_DIR="/root/.openclaw/workspace/images"
+IMAGE_DIR="/home/dhtaiyi/.openclaw/workspace/images"
 ZHIPU_DIR="$IMAGE_DIR/zhipu"
 
 # 帮助

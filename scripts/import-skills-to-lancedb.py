@@ -9,7 +9,7 @@ import json
 import sys
 
 # 添加 skill 文本到记忆
-INDEX_FILE = '/root/.openclaw/workspace/memory/clawhub-skills-index.json'
+INDEX_FILE = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-skills-index.json'
 
 def main():
     print("📚 导入 Skill 到 LanceDB...")
@@ -55,7 +55,7 @@ def main():
         print(f"  - {cat}: {len(skills_list)} 个")
     
     # 保存为可导入格式
-    output_file = '/root/.openclaw/workspace/memory/clawhub-skills-for-lancedb.json'
+    output_file = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-skills-for-lancedb.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump({'memories': memories}, f, indent=2, ensure_ascii=False)
     

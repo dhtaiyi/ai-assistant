@@ -1,0 +1,840 @@
+{
+  "date": "2026-04-13",
+  "weekday": "Monday",
+  "total_zt": 77,
+  "stocks": [
+    {
+      "name": "N创达",
+      "code": "bj920012",
+      "symbol": "bj920012",
+      "pct": 163.892,
+      "price": 51.67,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "C三瑞",
+      "code": "301696",
+      "symbol": "sz301696",
+      "pct": 28.804,
+      "price": 118.5,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "利扬芯片",
+      "code": "688135",
+      "symbol": "sh688135",
+      "pct": 20.007,
+      "price": 35.63,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "纳百川",
+      "code": "301667",
+      "symbol": "sz301667",
+      "pct": 20.004,
+      "price": 108.52,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "兴图新科",
+      "code": "688081",
+      "symbol": "sh688081",
+      "pct": 20.0,
+      "price": 49.92,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "泰金新能",
+      "code": "688813",
+      "symbol": "sh688813",
+      "pct": 20.0,
+      "price": 57.6,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "菱电电控",
+      "code": "688667",
+      "symbol": "sh688667",
+      "pct": 19.998,
+      "price": 134.35,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "*ST汇科",
+      "code": "300561",
+      "symbol": "sz300561",
+      "pct": 19.971,
+      "price": 16.28,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "天华新能",
+      "code": "300390",
+      "symbol": "sz300390",
+      "pct": 17.423,
+      "price": 80.2,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "张小泉",
+      "code": "301055",
+      "symbol": "sz301055",
+      "pct": 17.002,
+      "price": 30.28,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "埃科光电",
+      "code": "688610",
+      "symbol": "sh688610",
+      "pct": 16.256,
+      "price": 110.49,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "国际复材",
+      "code": "301526",
+      "symbol": "sz301526",
+      "pct": 16.041,
+      "price": 14.83,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "*ST金泰",
+      "code": "300225",
+      "symbol": "sz300225",
+      "pct": 15.06,
+      "price": 5.73,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "凌玮科技",
+      "code": "301373",
+      "symbol": "sz301373",
+      "pct": 14.265,
+      "price": 94.36,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "C红板",
+      "code": "603459",
+      "symbol": "sh603459",
+      "pct": 14.052,
+      "price": 62.82,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "优迅股份",
+      "code": "688807",
+      "symbol": "sh688807",
+      "pct": 13.962,
+      "price": 293.02,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "腾亚精工",
+      "code": "301125",
+      "symbol": "sz301125",
+      "pct": 12.531,
+      "price": 22.63,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "蘅东光",
+      "code": "bj920045",
+      "symbol": "bj920045",
+      "pct": 11.307,
+      "price": 443.0,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "生益电子",
+      "code": "688183",
+      "symbol": "sh688183",
+      "pct": 11.259,
+      "price": 106.03,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "聚杰微纤",
+      "code": "300819",
+      "symbol": "sz300819",
+      "pct": 11.156,
+      "price": 51.71,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "必创科技",
+      "code": "300667",
+      "symbol": "sz300667",
+      "pct": 10.879,
+      "price": 18.55,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "杰恩设计",
+      "code": "300668",
+      "symbol": "sz300668",
+      "pct": 10.828,
+      "price": 56.5,
+      "lianban": 0,
+      "sector": "基建"
+    },
+    {
+      "name": "富满微",
+      "code": "300671",
+      "symbol": "sz300671",
+      "pct": 10.259,
+      "price": 46.86,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "天邦食品",
+      "code": "002124",
+      "symbol": "sz002124",
+      "pct": 10.213,
+      "price": 2.59,
+      "lianban": 0,
+      "sector": "消费"
+    },
+    {
+      "name": "江南高纤",
+      "code": "600527",
+      "symbol": "sh600527",
+      "pct": 10.196,
+      "price": 2.81,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "华英农业",
+      "code": "002321",
+      "symbol": "sz002321",
+      "pct": 10.194,
+      "price": 2.27,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "华远控股",
+      "code": "600743",
+      "symbol": "sh600743",
+      "pct": 10.189,
+      "price": 2.92,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "仕佳光子",
+      "code": "688313",
+      "symbol": "sh688313",
+      "pct": 10.189,
+      "price": 116.8,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "美丽生态",
+      "code": "000010",
+      "symbol": "sz000010",
+      "pct": 10.133,
+      "price": 4.13,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "京运通",
+      "code": "601908",
+      "symbol": "sh601908",
+      "pct": 10.12,
+      "price": 4.57,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "宁波能源",
+      "code": "600982",
+      "symbol": "sh600982",
+      "pct": 10.076,
+      "price": 5.79,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "金 融 街",
+      "code": "000402",
+      "symbol": "sz000402",
+      "pct": 10.072,
+      "price": 3.06,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "二六三",
+      "code": "002467",
+      "symbol": "sz002467",
+      "pct": 10.07,
+      "price": 7.87,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "珠江钢琴",
+      "code": "002678",
+      "symbol": "sz002678",
+      "pct": 10.057,
+      "price": 5.8,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "蓝焰控股",
+      "code": "000968",
+      "symbol": "sz000968",
+      "pct": 10.054,
+      "price": 10.18,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "金字火腿",
+      "code": "002515",
+      "symbol": "sz002515",
+      "pct": 10.053,
+      "price": 6.24,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "中安科",
+      "code": "600654",
+      "symbol": "sh600654",
+      "pct": 10.049,
+      "price": 4.49,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "甘肃能源",
+      "code": "000791",
+      "symbol": "sz000791",
+      "pct": 10.041,
+      "price": 8.0,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "启明星辰",
+      "code": "002439",
+      "symbol": "sz002439",
+      "pct": 10.031,
+      "price": 14.26,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "瑞斯康达",
+      "code": "603803",
+      "symbol": "sh603803",
+      "pct": 10.022,
+      "price": 15.26,
+      "lianban": 0,
+      "sector": "医药"
+    },
+    {
+      "name": "博云新材",
+      "code": "002297",
+      "symbol": "sz002297",
+      "pct": 10.018,
+      "price": 12.08,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "康盛股份",
+      "code": "002418",
+      "symbol": "sz002418",
+      "pct": 10.018,
+      "price": 6.26,
+      "lianban": 0,
+      "sector": "医药"
+    },
+    {
+      "name": "焦作万方",
+      "code": "000612",
+      "symbol": "sz000612",
+      "pct": 10.016,
+      "price": 13.51,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "金富科技",
+      "code": "003018",
+      "symbol": "sz003018",
+      "pct": 10.016,
+      "price": 35.48,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "长城科技",
+      "code": "603897",
+      "symbol": "sh603897",
+      "pct": 10.013,
+      "price": 40.87,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "圣阳股份",
+      "code": "002580",
+      "symbol": "sz002580",
+      "pct": 10.011,
+      "price": 20.88,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "铭普光磁",
+      "code": "002902",
+      "symbol": "sz002902",
+      "pct": 10.011,
+      "price": 30.88,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "安乃达",
+      "code": "603350",
+      "symbol": "sh603350",
+      "pct": 10.009,
+      "price": 38.14,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "泰晶科技",
+      "code": "603738",
+      "symbol": "sh603738",
+      "pct": 10.008,
+      "price": 28.14,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "琏升科技",
+      "code": "300051",
+      "symbol": "sz300051",
+      "pct": 10.008,
+      "price": 13.63,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "长源东谷",
+      "code": "603950",
+      "symbol": "sh603950",
+      "pct": 10.006,
+      "price": 54.31,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "盛新锂能",
+      "code": "002240",
+      "symbol": "sz002240",
+      "pct": 10.005,
+      "price": 44.86,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "中材科技",
+      "code": "002080",
+      "symbol": "sz002080",
+      "pct": 10.004,
+      "price": 50.14,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "中国巨石",
+      "code": "600176",
+      "symbol": "sh600176",
+      "pct": 10.003,
+      "price": 32.11,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "大中矿业",
+      "code": "001203",
+      "symbol": "sz001203",
+      "pct": 10.003,
+      "price": 42.67,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "宏和科技",
+      "code": "603256",
+      "symbol": "sh603256",
+      "pct": 10.002,
+      "price": 89.3,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "浙江新能",
+      "code": "600032",
+      "symbol": "sh600032",
+      "pct": 10.0,
+      "price": 9.79,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "安迪苏",
+      "code": "600299",
+      "symbol": "sh600299",
+      "pct": 10.0,
+      "price": 15.18,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "西藏城投",
+      "code": "600773",
+      "symbol": "sh600773",
+      "pct": 10.0,
+      "price": 19.36,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "德创环保",
+      "code": "603177",
+      "symbol": "sh603177",
+      "pct": 10.0,
+      "price": 12.1,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "润建股份",
+      "code": "002929",
+      "symbol": "sz002929",
+      "pct": 10.0,
+      "price": 56.98,
+      "lianban": 0,
+      "sector": "基建"
+    },
+    {
+      "name": "宇晶股份",
+      "code": "002943",
+      "symbol": "sz002943",
+      "pct": 10.0,
+      "price": 51.26,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "科瑞技术",
+      "code": "002957",
+      "symbol": "sz002957",
+      "pct": 10.0,
+      "price": 41.36,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "天普股份",
+      "code": "605255",
+      "symbol": "sh605255",
+      "pct": 9.999,
+      "price": 115.84,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "赛腾股份",
+      "code": "603283",
+      "symbol": "sh603283",
+      "pct": 9.998,
+      "price": 50.5,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "洪田股份",
+      "code": "603800",
+      "symbol": "sh603800",
+      "pct": 9.998,
+      "price": 47.97,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "华盛昌",
+      "code": "002980",
+      "symbol": "sz002980",
+      "pct": 9.998,
+      "price": 58.31,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "中恒电气",
+      "code": "002364",
+      "symbol": "sz002364",
+      "pct": 9.994,
+      "price": 38.63,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "国城矿业",
+      "code": "000688",
+      "symbol": "sz000688",
+      "pct": 9.993,
+      "price": 45.13,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "三利谱",
+      "code": "002876",
+      "symbol": "sz002876",
+      "pct": 9.993,
+      "price": 30.6,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "飞亚达",
+      "code": "000026",
+      "symbol": "sz000026",
+      "pct": 9.987,
+      "price": 16.41,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "美能能源",
+      "code": "001299",
+      "symbol": "sz001299",
+      "pct": 9.987,
+      "price": 16.85,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "锦和商管",
+      "code": "603682",
+      "symbol": "sh603682",
+      "pct": 9.984,
+      "price": 6.94,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "兴森科技",
+      "code": "002436",
+      "symbol": "sz002436",
+      "pct": 9.983,
+      "price": 25.23,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "厦工股份",
+      "code": "600815",
+      "symbol": "sh600815",
+      "pct": 9.973,
+      "price": 4.08,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "维科技术",
+      "code": "600152",
+      "symbol": "sh600152",
+      "pct": 9.969,
+      "price": 10.81,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "华电辽能",
+      "code": "600396",
+      "symbol": "sh600396",
+      "pct": 9.94,
+      "price": 7.3,
+      "lianban": 0,
+      "sector": "其他"
+    }
+  ],
+  "sectors": [
+    {
+      "sector": "其他",
+      "count": 29,
+      "stocks": [
+        "N创达(0板)",
+        "纳百川(0板)",
+        "张小泉(0板)",
+        "国际复材(0板)",
+        "C红板(0板)",
+        "腾亚精工(0板)",
+        "江南高纤(0板)",
+        "华远控股(0板)",
+        "美丽生态(0板)",
+        "京运通(0板)",
+        "金 融 街(0板)",
+        "蓝焰控股(0板)",
+        "中安科(0板)",
+        "焦作万方(0板)",
+        "安乃达(0板)",
+        "长源东谷(0板)",
+        "中国巨石(0板)",
+        "大中矿业(0板)",
+        "安迪苏(0板)",
+        "西藏城投(0板)",
+        "德创环保(0板)",
+        "天普股份(0板)",
+        "赛腾股份(0板)",
+        "洪田股份(0板)",
+        "国城矿业(0板)",
+        "飞亚达(0板)",
+        "锦和商管(0板)",
+        "厦工股份(0板)",
+        "华电辽能(0板)"
+      ]
+    },
+    {
+      "sector": "科技",
+      "count": 20,
+      "stocks": [
+        "C三瑞(0板)",
+        "利扬芯片(0板)",
+        "埃科光电(0板)",
+        "凌玮科技(0板)",
+        "蘅东光(0板)",
+        "生益电子(0板)",
+        "聚杰微纤(0板)",
+        "必创科技(0板)",
+        "富满微(0板)",
+        "仕佳光子(0板)",
+        "金富科技(0板)",
+        "长城科技(0板)",
+        "铭普光磁(0板)",
+        "泰晶科技(0板)",
+        "琏升科技(0板)",
+        "中材科技(0板)",
+        "宏和科技(0板)",
+        "科瑞技术(0板)",
+        "兴森科技(0板)",
+        "维科技术(0板)"
+      ]
+    },
+    {
+      "sector": "中小板",
+      "count": 10,
+      "stocks": [
+        "华英农业(0板)",
+        "二六三(0板)",
+        "珠江钢琴(0板)",
+        "金字火腿(0板)",
+        "启明星辰(0板)",
+        "博云新材(0板)",
+        "圣阳股份(0板)",
+        "宇晶股份(0板)",
+        "华盛昌(0板)",
+        "三利谱(0板)"
+      ]
+    },
+    {
+      "sector": "新能源",
+      "count": 8,
+      "stocks": [
+        "泰金新能(0板)",
+        "天华新能(0板)",
+        "宁波能源(0板)",
+        "甘肃能源(0板)",
+        "盛新锂能(0板)",
+        "浙江新能(0板)",
+        "中恒电气(0板)",
+        "美能能源(0板)"
+      ]
+    },
+    {
+      "sector": "科创",
+      "count": 3,
+      "stocks": [
+        "兴图新科(0板)",
+        "菱电电控(0板)",
+        "优迅股份(0板)"
+      ]
+    },
+    {
+      "sector": "创业板",
+      "count": 2,
+      "stocks": [
+        "*ST汇科(0板)",
+        "*ST金泰(0板)"
+      ]
+    },
+    {
+      "sector": "基建",
+      "count": 2,
+      "stocks": [
+        "杰恩设计(0板)",
+        "润建股份(0板)"
+      ]
+    },
+    {
+      "sector": "医药",
+      "count": 2,
+      "stocks": [
+        "瑞斯康达(0板)",
+        "康盛股份(0板)"
+      ]
+    },
+    {
+      "sector": "消费",
+      "count": 1,
+      "stocks": [
+        "天邦食品(0板)"
+      ]
+    }
+  ],
+  "space_board": {
+    "name": "N创达",
+    "code": "bj920012",
+    "lianban": 0,
+    "pct": 163.892,
+    "sector": "其他"
+  }
+}

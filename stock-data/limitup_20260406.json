@@ -1,0 +1,467 @@
+{
+  "date": "2026-04-06",
+  "weekday": "Monday",
+  "total_zt": 51,
+  "stocks": [
+    {
+      "name": "莱美药业",
+      "code": "300006",
+      "symbol": "sz300006",
+      "pct": 20.074,
+      "price": 6.52,
+      "lianban": 0,
+      "sector": "医药"
+    },
+    {
+      "name": "九州一轨",
+      "code": "688485",
+      "symbol": "sh688485",
+      "pct": 20.015,
+      "price": 31.3,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "华瑞股份",
+      "code": "300626",
+      "symbol": "sz300626",
+      "pct": 20.01,
+      "price": 24.59,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "中船特气",
+      "code": "688146",
+      "symbol": "sh688146",
+      "pct": 20.009,
+      "price": 51.22,
+      "lianban": 0,
+      "sector": "军工"
+    },
+    {
+      "name": "威腾电气",
+      "code": "688226",
+      "symbol": "sh688226",
+      "pct": 20.0,
+      "price": 50.28,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "思特奇",
+      "code": "300608",
+      "symbol": "sz300608",
+      "pct": 20.0,
+      "price": 12.9,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "易天股份",
+      "code": "300812",
+      "symbol": "sz300812",
+      "pct": 20.0,
+      "price": 40.5,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "德科立",
+      "code": "688205",
+      "symbol": "sh688205",
+      "pct": 19.999,
+      "price": 247.21,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "腾景科技",
+      "code": "688195",
+      "symbol": "sh688195",
+      "pct": 19.224,
+      "price": 338.93,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "劲拓股份",
+      "code": "300400",
+      "symbol": "sz300400",
+      "pct": 13.638,
+      "price": 28.08,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "中润光学",
+      "code": "688307",
+      "symbol": "sh688307",
+      "pct": 13.033,
+      "price": 86.99,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "优利德",
+      "code": "688628",
+      "symbol": "sh688628",
+      "pct": 12.981,
+      "price": 51.7,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "海泰新光",
+      "code": "688677",
+      "symbol": "sh688677",
+      "pct": 12.823,
+      "price": 69.86,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "美迪凯",
+      "code": "688079",
+      "symbol": "sh688079",
+      "pct": 11.482,
+      "price": 13.69,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "光库科技",
+      "code": "300620",
+      "symbol": "sz300620",
+      "pct": 11.441,
+      "price": 222.96,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "光莆股份",
+      "code": "300632",
+      "symbol": "sz300632",
+      "pct": 11.253,
+      "price": 16.61,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "罗博特科",
+      "code": "300757",
+      "symbol": "sz300757",
+      "pct": 11.14,
+      "price": 434.0,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "智立方",
+      "code": "301312",
+      "symbol": "sz301312",
+      "pct": 10.948,
+      "price": 114.62,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "锐科激光",
+      "code": "300747",
+      "symbol": "sz300747",
+      "pct": 10.843,
+      "price": 29.85,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "森远股份",
+      "code": "300210",
+      "symbol": "sz300210",
+      "pct": 10.602,
+      "price": 9.18,
+      "lianban": 0,
+      "sector": "创业板"
+    },
+    {
+      "name": "博力威",
+      "code": "688345",
+      "symbol": "sh688345",
+      "pct": 10.597,
+      "price": 43.0,
+      "lianban": 0,
+      "sector": "科创"
+    },
+    {
+      "name": "江丰电子",
+      "code": "300666",
+      "symbol": "sz300666",
+      "pct": 10.066,
+      "price": 149.14,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "标准股份",
+      "code": "600302",
+      "symbol": "sh600302",
+      "pct": 10.045,
+      "price": 12.27,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "园林股份",
+      "code": "605303",
+      "symbol": "sh605303",
+      "pct": 10.031,
+      "price": 17.77,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "汇源通信",
+      "code": "000586",
+      "symbol": "sz000586",
+      "pct": 10.029,
+      "price": 18.87,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "翠微股份",
+      "code": "603123",
+      "symbol": "sh603123",
+      "pct": 10.028,
+      "price": 11.96,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "重药控股",
+      "code": "000950",
+      "symbol": "sz000950",
+      "pct": 10.015,
+      "price": 7.14,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "云赛智联",
+      "code": "600602",
+      "symbol": "sh600602",
+      "pct": 10.014,
+      "price": 24.39,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "直真科技",
+      "code": "003007",
+      "symbol": "sz003007",
+      "pct": 10.012,
+      "price": 44.06,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "苏利股份",
+      "code": "603585",
+      "symbol": "sh603585",
+      "pct": 10.009,
+      "price": 24.51,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "远东股份",
+      "code": "600869",
+      "symbol": "sh600869",
+      "pct": 10.007,
+      "price": 15.61,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "圣泉集团",
+      "code": "605589",
+      "symbol": "sh605589",
+      "pct": 10.007,
+      "price": 32.43,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "网达软件",
+      "code": "603189",
+      "symbol": "sh603189",
+      "pct": 10.006,
+      "price": 18.03,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "裕同科技",
+      "code": "002831",
+      "symbol": "sz002831",
+      "pct": 10.006,
+      "price": 35.29,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "亚世光电",
+      "code": "002952",
+      "symbol": "sz002952",
+      "pct": 10.004,
+      "price": 25.18,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "世嘉科技",
+      "code": "002796",
+      "symbol": "sz002796",
+      "pct": 10.002,
+      "price": 50.59,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "三维股份",
+      "code": "603033",
+      "symbol": "sh603033",
+      "pct": 10.0,
+      "price": 10.78,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "嵘泰股份",
+      "code": "605133",
+      "symbol": "sh605133",
+      "pct": 10.0,
+      "price": 28.49,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "新能泰山",
+      "code": "000720",
+      "symbol": "sz000720",
+      "pct": 10.0,
+      "price": 5.94,
+      "lianban": 0,
+      "sector": "新能源"
+    },
+    {
+      "name": "福晶科技",
+      "code": "002222",
+      "symbol": "sz002222",
+      "pct": 10.0,
+      "price": 75.46,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "华盛昌",
+      "code": "002980",
+      "symbol": "sz002980",
+      "pct": 10.0,
+      "price": 46.09,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "中瓷电子",
+      "code": "003031",
+      "symbol": "sz003031",
+      "pct": 9.998,
+      "price": 88.57,
+      "lianban": 0,
+      "sector": "科技"
+    },
+    {
+      "name": "通宇通讯",
+      "code": "002792",
+      "symbol": "sz002792",
+      "pct": 9.995,
+      "price": 45.34,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "振华股份",
+      "code": "603067",
+      "symbol": "sh603067",
+      "pct": 9.99,
+      "price": 34.68,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "中安科",
+      "code": "600654",
+      "symbol": "sh600654",
+      "pct": 9.97,
+      "price": 3.64,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "华特气体",
+      "code": "688268",
+      "symbol": "sh688268",
+      "pct": 9.969,
+      "price": 105.02,
+      "lianban": 0,
+      "sector": "军工"
+    },
+    {
+      "name": "法兰泰克",
+      "code": "603966",
+      "symbol": "sh603966",
+      "pct": 9.968,
+      "price": 13.68,
+      "lianban": 0,
+      "sector": "其他"
+    },
+    {
+      "name": "珠江钢琴",
+      "code": "002678",
+      "symbol": "sz002678",
+      "pct": 9.964,
+      "price": 6.07,
+      "lianban": 0,
+      "sector": "中小板"
+    },
+    {
+      "name": "中国医药",
+      "code": "600056",
+      "symbol": "sh600056",
+      "pct": 9.962,
+      "price": 11.59,
+      "lianban": 0,
+      "sector": "医药"
+    },
+    {
+      "name": "津药药业",
+      "code": "600488",
+      "symbol": "sh600488",
+      "pct": 9.937,
+      "price": 6.97,
+      "lianban": 0,
+      "sector": "医药"
+    },
+    {
+      "name": "重庆路桥",
+      "code": "600106",
+      "symbol": "sh600106",
+      "pct": 9.925,
+      "price": 5.87,
+      "lianban": 0,
+      "sector": "其他"
+    }
+  ],
+  "note": "手动补录（连板数未验证）"
+}

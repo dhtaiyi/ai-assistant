@@ -8,7 +8,7 @@ import json
 import argparse
 import sys
 
-INDEX_FILE = '/root/.openclaw/workspace/memory/clawhub-skills-index.json'
+INDEX_FILE = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-skills-index.json'
 
 def load_index():
     with open(INDEX_FILE, 'r', encoding='utf-8') as f:

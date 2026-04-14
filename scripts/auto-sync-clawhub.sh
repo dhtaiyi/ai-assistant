@@ -1,6 +1,6 @@
 #!/bin/bash
 # ClawHub Skill 定时同步脚本
-# 添加到 crontab: 0 2 * * * /root/.openclaw/workspace/scripts/auto-sync-clawhub.sh
+# 添加到 crontab: 0 2 * * * /home/dhtaiyi/.openclaw/workspace/scripts/auto-sync-clawhub.sh
 
 set -e
 

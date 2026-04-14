@@ -9,7 +9,7 @@ import json
 import subprocess
 import argparse
 
-SYNC_INDEX_FILE = '/root/.openclaw/workspace/memory/clawhub-sync-index.json'
+SYNC_INDEX_FILE = '/home/dhtaiyi/.openclaw/workspace/memory/clawhub-sync-index.json'
 SKILLS_DIR = os.path.expanduser('~/.openclaw/skills')
 
 def load_index():

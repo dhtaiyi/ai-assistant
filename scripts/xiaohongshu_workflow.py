@@ -26,7 +26,7 @@ TABLE_ID = "tblpXYJMhW7IyZZm"
 
 # 图片服务配置
 IMAGE_SERVER = "http://10.0.0.15:18081"
-IMAGE_DIR = "/root/.openclaw/workspace/images"
+IMAGE_DIR = "/home/dhtaiyi/.openclaw/workspace/images"
 
 # 智谱AI配置
 ZHIPU_KEY = "bd1e2312f8bc4539ae2ae2645905576d.RISv3Rf49m3C3tCG"

@@ -1,0 +1,89 @@
+[
+  {
+    "code": "sz301526",
+    "name": "国际复材",
+    "total_score": 25,
+    "details": [
+      "成交额偏小(+0)",
+      "扩散警戒(+5)",
+      "中价安全(+10)",
+      "指数配合(+10)"
+    ],
+    "amplitude": 20.6,
+    "gain3d": 9.7,
+    "vol_ratio": 1.31,
+    "price": 0,
+    "pct": 0,
+    "amount_yi": 0
+  },
+  {
+    "code": "sz002240",
+    "name": "盛新锂能",
+    "total_score": 24,
+    "details": [
+      "成交额偏小(+0)",
+      "扩散警戒(+5)",
+      "中价安全(+10)",
+      "量比较好(+4)",
+      "指数配合(+10)",
+      "3日+17%偏热(-5)"
+    ],
+    "amplitude": 24.6,
+    "gain3d": 17.4,
+    "vol_ratio": 1.69,
+    "price": 0,
+    "pct": 0,
+    "amount_yi": 0
+  },
+  {
+    "code": "sh600166",
+    "name": "福田汽车",
+    "total_score": 24,
+    "details": [
+      "成交额偏小(+0)",
+      "扩散警戒(+5)",
+      "中价安全(+10)",
+      "量比较好(+4)",
+      "指数配合(+10)",
+      "3日+15%偏热(-5)"
+    ],
+    "amplitude": 17.6,
+    "gain3d": 15.4,
+    "vol_ratio": 1.71,
+    "price": 0,
+    "pct": 0,
+    "amount_yi": 0
+  },
+  {
+    "code": "sz301696",
+    "name": "C三瑞",
+    "total_score": 20,
+    "details": [
+      "成交额偏小(+0)",
+      "中价安全(+10)",
+      "指数配合(+10)"
+    ],
+    "amplitude": 0,
+    "gain3d": 0,
+    "vol_ratio": 0,
+    "price": 0,
+    "pct": 0,
+    "amount_yi": 0
+  },
+  {
+    "code": "sh603459",
+    "name": "C红板",
+    "total_score": 20,
+    "details": [
+      "成交额偏小(+0)",
+      "中价安全(+10)",
+      "指数配合(+10)"
+    ],
+    "amplitude": 0,
+    "gain3d": 0,
+    "vol_ratio": 0,
+    "price": 0,
+    "pct": 0,
+    "amount_yi": 0
+  }
+]
