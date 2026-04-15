@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-智能综合扫描器 V2 - 结合所有知识体系
+智能综合扫描器 V3 - 问财增强版
 ==============================================
 整合功能：
 1. 实时市场扫描（涨幅榜+成交额）
 2. 妖股潜力评分（成交额+涨幅+振幅+开板）
-3. 板块题材检测（主线识别）
+3. 板块题材检测（问财官方涨停原因）
 4. 连板晋级追踪（1板→2板→3板）
 5. 首板战法买点A量化
 6. 养家心法综合提示
@@ -15,14 +15,65 @@
 - 涨幅得分（25分）
 - 振幅得分（20分）
 - 连板/跟风得分（15分）
+
+V3新增：
+- 问财涨停原因替代SECTOR_MAP
+- 官方涨停原因自动识别主线板块
 ==============================================
 """
 import requests
 import json
 import re
 import os
-from datetime import datetime, time
+import subprocess
+import time
+from datetime import datetime
 from collections import defaultdict
+
+LOG_FILE = "/tmp/smart_scanner.log"
+
+# 问财配置
+IWENCAI_SKILL = os.path.expanduser("~/.openclaw/workspace/skills/问财选A股/scripts/cli.py")
+IWENCAI_API_KEY = os.environ.get(
+    "IWENCAI_API_KEY",
+    "sk-proj-01-NAItJumXGkKAe1Ha8v-rPenhNjrfud7CDgoY0DEAymigKrbbZSIwxhjOQG5RrqWytp8AZApOyf4RsS-q5d2FbyTbPZAYJC262Vbgthv9IizhxH3W-5a2kNpR3ifa0nAobbl6NQ"
+)
+
+# 问财涨停原因缓存
+_iwencai_reasons = {}
+_iwencai_cache_time = 0
+_REASON_TTL = 300  # 5分钟
+
+def get_iwencai_reasons() -> dict:
+    """获取问财涨停原因映射（带缓存）"""
+    global _iwencai_reasons, _iwencai_cache_time
+    now = time.time()
+    if _iwencai_reasons and (now - _iwencai_cache_time) < _REASON_TTL:
+        return _iwencai_reasons
+    try:
+        cmd = ["python3", IWENCAI_SKILL,
+               "--query", "今日涨停股票，按成交额排序",
+               "--limit", "100", "--api-key", IWENCAI_API_KEY]
+        env = os.environ.copy()
+        env["IWENCAI_BASE_URL"] = "https://openapi.iwencai.com"
+        env["IWENCAI_API_KEY"] = IWENCAI_API_KEY
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, env=env)
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            if data.get("success"):
+                _iwencai_reasons = {}
+                for s in data.get("datas", []):
+                    code_raw = s.get("股票代码", "")
+                    code = code_raw.upper().replace(".SZ", "").replace(".SH", "")
+                    prefix = "sz" if "SZ" in code_raw else "sh"
+                    norm = prefix + code
+                    reason = s.get("涨停原因[20260415]", "") or ""
+                    _iwencai_reasons[norm] = reason
+                _iwencai_cache_time = now
+                print(f"   [问财] 涨停原因缓存: {len(_iwencai_reasons)}只")
+    except Exception as e:
+        print(f"   [问财] 涨停原因获取失败: {e}")
+    return _iwencai_reasons
 
 LOG_FILE = "/tmp/smart_scanner.log"
 
@@ -80,7 +131,13 @@ def get_full_code(symbol):
     prefix = 'sz' if symbol.startswith('sz') else 'sh'
     return prefix + code
 
-def get_sector(name):
+def get_sector(name, code=None, reasons=None):
+    # 优先用问财官方涨停原因
+    if reasons and code:
+        reason = reasons.get(code.lower(), "")
+        if reason:
+            return reason.split("+")[0].split("(")[0].strip()
+    # 降级：SECTOR_MAP
     if name in SECTOR_MAP:
         return SECTOR_MAP[name]
     # 关键词匹配
@@ -99,6 +156,9 @@ def get_sector(name):
 
 
 def scan():
+    # 先获取问财涨停原因
+    reasons = get_iwencai_reasons()
+
     url = 'https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeDataSimple'
     
     # 获取涨幅TOP200
@@ -159,10 +219,10 @@ def scan():
     limit_up = [s for s in all_stocks if float(s.get('changepercent', 0)) >= 9.5 and is_clean_stock(s)]
     strong = [s for s in all_stocks if 5 <= float(s.get('changepercent', 0)) < 9.5 and is_clean_stock(s)]
 
-    return all_stocks, limit_up, strong, amount_dict, indices
+    return all_stocks, limit_up, strong, amount_dict, indices, reasons
 
 
-def analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices):
+def analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices, reasons=None):
     """综合评分所有候选股"""
     candidates = []
     
@@ -180,7 +240,8 @@ def analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices):
                 continue
             
             name = s.get('name', '')
-            sector = get_sector(name)
+            sym = s.get('symbol', '')
+            sector = get_sector(name, sym, reasons)
             
             # 振幅
             amplitude = (high - close_y) / close_y * 100 if close_y > 0 else 0
@@ -233,13 +294,13 @@ def analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices):
     return candidates
 
 
-def detect_sectors(limit_up, amount_dict):
+def detect_sectors(limit_up, amount_dict, reasons=None):
     """检测板块主题"""
     sector_count = defaultdict(list)
     for s in limit_up:
         name = s.get('name', '')
-        sector = get_sector(name)
         sym = s.get('symbol', '')
+        sector = get_sector(name, sym, reasons)
         amount = float(s.get("amount", 0)) / 1e8 if float(s.get("amount", 0)) > 0 else amount_dict.get(sym, 0)
         pct = float(s.get('changepercent', 0))
         sector_count[sector].append({
@@ -317,7 +378,7 @@ def main():
     print(f"🧠 智能综合扫描器 V2 | {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"{'='*70}")
     
-    all_stocks, limit_up, strong, amount_dict, indices = scan()
+    all_stocks, limit_up, strong, amount_dict, indices, reasons = scan()
     
     if not all_stocks:
         print("❌ 数据获取失败")
@@ -337,7 +398,7 @@ def main():
     candidates = analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices)
     
     # 板块检测
-    sector_strength = detect_sectors(limit_up, amount_dict)
+    sector_strength = detect_sectors(limit_up, amount_dict, reasons)
     sorted_sectors = sorted(sector_strength.items(), key=lambda x: x[1]['strength'], reverse=True)
     
     # ===== 1. 妖股潜力 TOP15 =====
