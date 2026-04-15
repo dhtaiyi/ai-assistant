@@ -13,8 +13,8 @@ from playwright.sync_api import sync_playwright
 import logging
 
 # 配置
-COOKIE_FILE = '/root/.openclaw/workspace/xiaohongshu-cookies.json'
-LOG_FILE = '/root/.openclaw/workspace/xiaohongshu-cookie.log'
+COOKIE_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json'
+LOG_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.log'
 REFRESH_INTERVAL = 6 * 3600  # 每6小时刷新一次
 EXPIRY_THRESHOLD = 24 * 3600  # 24小时过期阈值
 

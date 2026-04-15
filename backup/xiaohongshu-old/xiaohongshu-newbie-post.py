@@ -31,7 +31,7 @@ def post_newbie():
         # 加载Cookie
         print("\n📋 加载Cookie...")
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-cookies.json') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json') as f:
                 data = json.load(f)
                 cookies = data.get('cookies', {})
                 for name, value in cookies.items():
@@ -88,11 +88,11 @@ def post_newbie():
             print("-"*60)
             
             # 截图
-            page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-post-preview.png')
-            print("\n📸 截图已保存: /root/.openclaw/workspace/xiaohongshu-post-preview.png")
+            page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-post-preview.png')
+            print("\n📸 截图已保存: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-post-preview.png")
         else:
             print("\n❓ 发布按钮位置未知")
-            page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-permission-check.png')
+            page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-permission-check.png')
             print("📸 截图已保存")
 
 

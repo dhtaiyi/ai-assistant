@@ -15,7 +15,7 @@ if [ ! -f "$FILE_PATH" ]; then
 fi
 
 # 创建备份
-BACKUP_DIR="/root/.openclaw/backups/pre-edit"
+BACKUP_DIR="/home/dhtaiyi/.openclaw/backups/pre-edit"
 DATE=$(date +%Y%m%d)
 TIME=$(date +%H%M%S)
 BACKUP_FILE="$BACKUP_DIR/$(basename $FILE_PATH).$DATE.$TIME.bak"

@@ -41,12 +41,12 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-analyze.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-analyze.png',
         fullPage: false 
     });
     
     console.log('');
-    console.log('✅ 截图已保存: /root/.openclaw/workspace/xiaohongshu-analyze.png');
+    console.log('✅ 截图已保存: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-analyze.png');
     
     await new Promise(() => {});
 })();

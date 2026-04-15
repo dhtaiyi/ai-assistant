@@ -42,7 +42,7 @@ data = {
     'count': len(cookies)
 }
 
-with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
+with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
 print("="*60)
@@ -52,4 +52,4 @@ print(f"\n✅ 保存 {len(cookies)} 个Cookie")
 print(f"\n📋 Cookie列表:")
 for k, v in cookies.items():
     print(f"   • {k}: {v[:30]}...")
-print(f"\n📁 文件: /root/.openclaw/workspace/xiaohongshu-creator-cookies.json")
+print(f"\n📁 文件: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json")

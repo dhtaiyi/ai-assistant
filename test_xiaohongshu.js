@@ -17,6 +17,6 @@ console.log(`   Web Session: ${WEB_SESSION.substring(0, 20)}...`);
 console.log(`   代理: ${PROXY || '无'}\n`);
 
 console.log('✅ 测试脚本已创建');
-console.log('📁 路径: /root/.openclaw/workspace/test_xiaohongshu.py');
+console.log('📁 路径: /home/dhtaiyi/.openclaw/workspace/test_xiaohongshu.py');
 console.log('\n💡 使用方法:');
 console.log('   python3 test_xiaohongshu.py "web_session" "代理地址"');

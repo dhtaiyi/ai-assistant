@@ -22,7 +22,7 @@
 - 禁止重置指令
 
 ### 配置保护
-- 所有配置修改前自动备份到 `/root/.openclaw/backups/pre-edit/`
+- 所有配置修改前自动备份到 `/home/dhtaiyi/.openclaw/backups/pre-edit/`
 - 每日凌晨3点自动全量备份
 - 备份保留30天
 - 禁止重置配置
@@ -34,7 +34,7 @@
 
 ### 强制备份
 - 修改核心文件前必须执行 `safe-edit.sh`
-- 定时备份脚本：`/root/.openclaw/workspace/backup-system.sh`
+- 定时备份脚本：`/home/dhtaiyi/.openclaw/workspace/backup-system.sh`
 - 禁止绕过备份直接修改
 
 ---
@@ -127,18 +127,18 @@
 - Swap: 8G (未使用)
 
 ### 文件位置
-- 优化脚本: `/root/.openclaw/workspace/system-optimizer.sh`
-- 监控脚本: `/root/.openclaw/workspace/system-monitor.sh`
-- 文档: `/root/.openclaw/workspace/OPTIMIZATION.md`
-- 日志: `/root/.openclaw/workspace/logs/`
+- 优化脚本: `/home/dhtaiyi/.openclaw/workspace/system-optimizer.sh`
+- 监控脚本: `/home/dhtaiyi/.openclaw/workspace/system-monitor.sh`
+- 文档: `/home/dhtaiyi/.openclaw/workspace/OPTIMIZATION.md`
+- 日志: `/home/dhtaiyi/.openclaw/workspace/logs/`
 
 ### 手动命令
 ```bash
 # 系统优化
-/root/.openclaw/workspace/system-optimizer.sh
+/home/dhtaiyi/.openclaw/workspace/system-optimizer.sh
 
 # 系统监控
-/root/.openclaw/workspace/system-monitor.sh
+/home/dhtaiyi/.openclaw/workspace/system-monitor.sh
 
 # 查看状态
 openclaw status
@@ -193,12 +193,12 @@ openclaw status
 
 ### 文件清理
 - 删除40+个小红书测试文件
-- 备份到 `/root/.openclaw/workspace/backup/xiaohongshu-old/`
+- 备份到 `/home/dhtaiyi/.openclaw/workspace/backup/xiaohongshu-old/`
 - 保留8个核心文件
 
 ### 创建的文档
-- `/root/.openclaw/workspace/QUICK_COMMANDS.md` - 快捷命令手册
-- `/root/.openclaw/workspace/optimization-progress.md` - 优化进度跟踪
+- `/home/dhtaiyi/.openclaw/workspace/QUICK_COMMANDS.md` - 快捷命令手册
+- `/home/dhtaiyi/.openclaw/workspace/optimization-progress.md` - 优化进度跟踪
 
 ---
 

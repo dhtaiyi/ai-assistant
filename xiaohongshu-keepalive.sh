@@ -7,7 +7,7 @@ echo "🚀 启动小红书（恢复登录状态）..."
 echo ""
 
 # 检查 Cookie 文件
-if [ ! -f "/root/.openclaw/workspace/xiaohongshu-cookies.json" ]; then
+if [ ! -f "/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json" ]; then
     echo "❌ 未找到 Cookie 文件"
     echo "请先登录一次以保存 Cookie"
     exit 1
@@ -17,10 +17,10 @@ echo "📂 发现 Cookie 文件: xiaohongshu-cookies.json"
 echo ""
 
 # 启动 Node.js 脚本
-cd /root/.openclaw/workspace
+cd /home/dhtaiyi/.openclaw/workspace
 
 # 使用 nohup 在后台运行
-nohup node xiaohongshu-keepalive.js > /root/.openclaw/workspace/xiaohongshu-keepalive.log 2>&1 &
+nohup node xiaohongshu-keepalive.js > /home/dhtaiyi/.openclaw/workspace/xiaohongshu-keepalive.log 2>&1 &
 
 echo "✅ 后台进程已启动"
 echo "📄 日志文件: xiaohongshu-keepalive.log"

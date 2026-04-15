@@ -24,13 +24,13 @@ const { chromium } = require('playwright');
     // 截图二维码登录页面
     console.log('📸 截图二维码登录页面...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-qr-mode.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-mode.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 截图完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-qr-mode.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-mode.png');
     console.log('');
     console.log('💡 请标注红圈位置，我点击后重新截图');
     

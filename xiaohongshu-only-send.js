@@ -46,13 +46,13 @@ const { chromium } = require('playwright');
     
     // 3. 截图（不要点击登录）
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-just-send.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-just-send.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 只点击了发送验证码!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-just-send.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-just-send.png');
     console.log('');
     console.log('💡 请查看手机验证码');
     

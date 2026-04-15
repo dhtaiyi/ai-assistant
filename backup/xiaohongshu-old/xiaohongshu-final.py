@@ -81,7 +81,7 @@ def main():
                 print(f"   {i}. {note['title'][:40]}")
     
     # 保存
-    with open('/root/.openclaw/workspace/xiaohongshu-output.json', 'w') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-output.json', 'w') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     
     print(f"\n💾 已保存")

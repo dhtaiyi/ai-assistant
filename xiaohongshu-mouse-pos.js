@@ -44,13 +44,13 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-mouse.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-mouse.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 截图已保存!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-mouse.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-mouse.png');
     console.log('');
     console.log('💡 鼠标在输入手机号后停留在输入框内');
     

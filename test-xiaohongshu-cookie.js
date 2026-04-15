@@ -5,7 +5,7 @@ async function testWithCookie() {
   // 读取保存的 cookie
   let cookies = [];
   try {
-    const cookieData = fs.readFileSync('/root/.openclaw/workspace/xiaohongshu-cookies.json', 'utf-8');
+    const cookieData = fs.readFileSync('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', 'utf-8');
     const cookieObj = JSON.parse(cookieData);
     cookies = cookieObj.map(c => ({
       name: c.name,

@@ -64,15 +64,15 @@ def refresh_cookie():
             'note': '从浏览器导出的创作者Cookie'
         }
         
-        with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
+        with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
         
         print(f"\n✅ Cookie已保存!")
-        print(f"   文件: /root/.openclaw/workspace/xiaohongshu-creator-cookies.json")
+        print(f"   文件: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json")
         
         # 截图确认
-        page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-cookie-saved.png')
-        print(f"   截图: /root/.openclaw/workspace/xiaohongshu-cookie-saved.png")
+        page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-saved.png')
+        print(f"   截图: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-saved.png")
         
         browser.close()
         print("\n✅ 完成!")

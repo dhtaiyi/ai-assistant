@@ -4,7 +4,7 @@ const fs = require('fs');
 (async () => {
     console.log('🚀 恢复小红书登录状态...');
     
-    const cookieFile = '/root/.openclaw/workspace/xiaohongshu-cookies.json';
+    const cookieFile = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json';
     
     if (!fs.existsSync(cookieFile)) {
         console.log('❌ Cookie 文件不存在');
@@ -39,7 +39,7 @@ const fs = require('fs');
     
     // 截图确认
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-restored.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-restored.png',
         fullPage: true 
     });
     

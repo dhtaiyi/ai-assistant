@@ -23,13 +23,13 @@ const { chromium } = require('playwright');
     
     console.log('📸 截图完整页面...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-qrlogin.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qrlogin.png',
         fullPage: true 
     });
     
     console.log('');
     console.log('✅ 截图完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-qrlogin.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qrlogin.png');
     console.log('');
     console.log('💡 请用手机小红书扫描二维码登录');
     

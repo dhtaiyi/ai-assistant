@@ -7,11 +7,11 @@
 set -e
 
 # 配置
-LOG_DIR="/root/.openclaw/workspace/logs"
+LOG_DIR="/home/dhtaiyi/.openclaw/workspace/logs"
 LOG_FILE="$LOG_DIR/heartbeat-enhanced.log"
 ALERT_LOG="$LOG_DIR/heartbeat-alerts.log"
-PID_FILE="/root/.openclaw/workspace/logs/heartbeat-enhanced.pid"
-LAST_MSG_FILE="/root/.openclaw/workspace/logs/last-message-time.txt"
+PID_FILE="/home/dhtaiyi/.openclaw/workspace/logs/heartbeat-enhanced.pid"
+LAST_MSG_FILE="/home/dhtaiyi/.openclaw/workspace/logs/last-message-time.txt"
 
 # 告警配置（设置你的联系方式）
 ALERT_ENABLED=true
@@ -152,7 +152,7 @@ auto_recover() {
     sleep 2
     
     # 重新启动
-    cd /root/.openclaw/workspace
+    cd /home/dhtaiyi/.openclaw/workspace
     nohup npx openclaw gateway start >> "$LOG_FILE" 2>&1 &
     sleep 5
     

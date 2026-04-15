@@ -31,7 +31,7 @@ def try_post():
         # 加载创作者Cookie
         print("\n📋 加载创作者Cookie...")
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
                 data = json.load(f)
                 cookies = data.get('cookies', {})
                 
@@ -130,8 +130,8 @@ def try_post():
             print(f"   内容长度: {len(content)} 字符")
             
             # 截图
-            page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-creator-page.png')
-            print(f"\n📸 截图已保存: /root/.openclaw/workspace/xiaohongshu-creator-page.png")
+            page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-page.png')
+            print(f"\n📸 截图已保存: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-page.png")
             
             if publish_btn:
                 print("\n🚀 可以发布笔记了！")

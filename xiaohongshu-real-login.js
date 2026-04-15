@@ -51,12 +51,12 @@ const { chromium } = require('playwright');
     await page.waitForTimeout(5000);
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-real-btn.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-real-btn.png',
         fullPage: false 
     });
     
     console.log('✅ 完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-real-btn.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-real-btn.png');
     
     await new Promise(() => {});
 })();

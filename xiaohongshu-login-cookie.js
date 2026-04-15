@@ -41,13 +41,13 @@ const fs = require('fs');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-wait-code.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-wait-code.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 验证码已发送!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-wait-code.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-wait-code.png');
     console.log('');
     console.log('💡 请在微信告诉我6位验证码');
     console.log('');

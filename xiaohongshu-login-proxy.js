@@ -32,7 +32,7 @@ async function login() {
   
   // 保存到文件
   const fs = require('fs');
-  fs.writeFileSync('/root/.openclaw/workspace/xiaohongshu-cookies.json', JSON.stringify(cookies, null, 2));
+  fs.writeFileSync('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', JSON.stringify(cookies, null, 2));
   console.log('✅ Cookie 已保存到 xiaohongshu-cookies.json');
   
   await browser.close();

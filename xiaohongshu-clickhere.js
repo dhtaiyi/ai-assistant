@@ -35,7 +35,7 @@ const { chromium } = require('playwright');
     
     // 先截图标记点击位置
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-before-click.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-before-click.png',
         fullPage: false 
     });
     
@@ -56,13 +56,13 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-after-click.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-after-click.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-after-click.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-after-click.png');
     console.log('');
     console.log('💡 请查看截图');
     

@@ -50,13 +50,13 @@ const { chromium } = require('playwright');
     await page.waitForTimeout(2000);
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-sent.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-sent.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 验证码已发送!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-sent.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-sent.png');
     console.log('');
     console.log('💡 等待验证码...');
     

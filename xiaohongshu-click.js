@@ -50,13 +50,13 @@ const { chromium } = require('playwright');
     
     console.log('📸 截图完整二维码...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-qr-final.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-final.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 截图完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-qr-final.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-final.png');
     console.log('');
     console.log('💡 请扫码登录');
     

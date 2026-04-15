@@ -6,8 +6,8 @@ const path = require('path');
     console.log('🚀 启动浏览器（持久化模式）...');
     
     // 检查是否有保存的 Cookie
-    const cookieFile = '/root/.openclaw/workspace/xiaohongshu-cookies.json';
-    const userDataDir = '/root/.openclaw/workspace/xiaohongshu-user-data';
+    const cookieFile = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json';
+    const userDataDir = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-user-data';
     
     // 如果有保存的 Cookie，尝试恢复登录状态
     if (fs.existsSync(cookieFile)) {
@@ -38,7 +38,7 @@ const path = require('path');
         
         // 截图确认登录状态
         await page.screenshot({ 
-            path: '/root/.openclaw/workspace/xiaohongshu-persisted.png',
+            path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-persisted.png',
             fullPage: true 
         });
         

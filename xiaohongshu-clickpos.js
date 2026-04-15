@@ -23,7 +23,7 @@ const { chromium } = require('playwright');
     
     // 截图原始状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-orig.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-orig.png',
         fullPage: false 
     });
     

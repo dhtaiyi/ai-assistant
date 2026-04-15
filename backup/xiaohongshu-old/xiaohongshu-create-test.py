@@ -19,7 +19,7 @@ def test_creation():
         
         # 加载Cookie
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
                 data = json.load(f)
                 cookies = data.get('cookies', {})
                 for name, value in cookies.items():

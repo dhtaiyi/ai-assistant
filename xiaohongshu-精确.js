@@ -23,7 +23,7 @@ const { chromium } = require('playwright');
     
     // 获取当前页面截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-当前.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-当前.png',
         fullPage: false 
     });
     
@@ -38,7 +38,7 @@ const { chromium } = require('playwright');
     
     console.log('');
     console.log('✅ 当前页面已截图');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-当前.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-当前.png');
     console.log('标题:', element.title);
     
     await new Promise(() => {});

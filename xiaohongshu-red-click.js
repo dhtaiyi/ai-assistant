@@ -28,13 +28,13 @@ const { chromium } = require('playwright');
     
     console.log('📸 截图...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-red-click.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-red-click.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-red-click.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-red-click.png');
     
     await new Promise(() => {});
 })();

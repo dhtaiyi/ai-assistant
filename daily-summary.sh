@@ -3,13 +3,13 @@
 # 每日自动总结脚本
 # 功能：自动总结当天的对话，提取偏好、习惯、目标等
 
-SUMMARY_FILE="/root/.openclaw/workspace/memory/$(date +%Y-%m-%d).md"
-LOG_FILE="/root/.openclaw/workspace/logs/daily-summary.log"
+SUMMARY_FILE="/home/dhtaiyi/.openclaw/workspace/memory/$(date +%Y-%m-%d).md"
+LOG_FILE="/home/dhtaiyi/.openclaw/workspace/logs/daily-summary.log"
 
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始生成每日总结" >> "$LOG_FILE"
 
 # 检查今日是否有对话记录
-TODAY_DIR="/root/.openclaw/agents/main/sessions/$(date +%Y%m%d)*"
+TODAY_DIR="/home/dhtaiyi/.openclaw/agents/main/sessions/$(date +%Y%m%d)*"
 TEMP_COUNT=$(ls -d $TODAY_DIR 2>/dev/null | wc -l)
 
 if [ "$TEMP_COUNT" -eq 0 ]; then

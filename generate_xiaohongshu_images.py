@@ -59,7 +59,7 @@ def generate_image(prompt, filename):
             # 下载图片
             img_response = requests.get(image_url)
             
-            filepath = f"/root/.openclaw/workspace/{filename}"
+            filepath = f"/home/dhtaiyi/.openclaw/workspace/{filename}"
             with open(filepath, "wb") as f:
                 f.write(img_response.content)
             
@@ -100,7 +100,7 @@ def main():
         print("=" * 60)
         print()
         
-        with open("/root/.openclaw/workspace/download_images.sh", "w") as f:
+        with open("/home/dhtaiyi/.openclaw/workspace/download_images.sh", "w") as f:
             f.write("#!/bin/bash\n")
             f.write("# OpenClaw 图片下载脚本\n")
             f.write("# 生成时间: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n\n")
@@ -110,9 +110,9 @@ def main():
                 f.write(f"# 下载: {img['filename']}\n")
                 f.write(f"scp root@你的服务器IP:{img['filepath']} ./\n\n")
         
-        os.chmod("/root/.openclaw/workspace/download_images.sh", 0o755)
+        os.chmod("/home/dhtaiyi/.openclaw/workspace/download_images.sh", 0o755)
         
-        print("✅ 下载脚本已创建: /root/.openclaw/workspace/download_images.sh")
+        print("✅ 下载脚本已创建: /home/dhtaiyi/.openclaw/workspace/download_images.sh")
         print()
     
     # 输出总结
@@ -127,7 +127,7 @@ def main():
     
     print()
     print("🔗 下载所有图片:")
-    print(f"  bash {os.path.abspath('/root/.openclaw/workspace/download_images.sh')}")
+    print(f"  bash {os.path.abspath('/home/dhtaiyi/.openclaw/workspace/download_images.sh')}")
     print()
     
     print("=" * 60)

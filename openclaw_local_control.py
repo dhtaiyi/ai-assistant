@@ -26,7 +26,7 @@ from pathlib import Path
 # 配置
 GATEWAY_PORT = 18789
 GATEWAY_URL = f"http://localhost:{GATEWAY_PORT}"
-WORKSPACE = "/root/.openclaw/workspace"
+WORKSPACE = "/home/dhtaiyi/.openclaw/workspace"
 
 
 def run_command(cmd: str, shell: bool = True) -> tuple:

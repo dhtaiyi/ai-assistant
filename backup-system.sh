@@ -3,7 +3,7 @@
 # OpenClaw 备份脚本
 # 功能：备份所有核心数据和配置
 
-BACKUP_DIR="/root/.openclaw/backups"
+BACKUP_DIR="/home/dhtaiyi/.openclaw/backups"
 DATE=$(date +%Y%m%d)
 TIME=$(date +%H%M%S)
 BACKUP_PATH="$BACKUP_DIR/$DATE/$TIME"
@@ -15,21 +15,21 @@ mkdir -p "$BACKUP_PATH"
 echo "🔄 开始备份..."
 
 # 1. 核心配置
-cp /root/.openclaw/openclaw.json "$BACKUP_PATH/openclaw.json" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/openclaw.json "$BACKUP_PATH/openclaw.json" 2>/dev/null
 
 # 2. 工作空间数据
-cp -r /root/.openclaw/workspace/MEMORY.md "$BACKUP_PATH/" 2>/dev/null
-cp -r /root/.openclaw/workspace/AGENTS.md "$BACKUP_PATH/" 2>/dev/null
-cp -r /root/.openclaw/workspace/SOUL.md "$BACKUP_PATH/" 2>/dev/null
-cp -r /root/.openclaw/workspace/TOOLS.md "$BACKUP_PATH/" 2>/dev/null
-cp -r /root/.openclaw/workspace/USER.md "$BACKUP_PATH/" 2>/dev/null
-cp -r /root/.openclaw/workspace/IDENTITY.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/MEMORY.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/AGENTS.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/SOUL.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/TOOLS.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/USER.md "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/IDENTITY.md "$BACKUP_PATH/" 2>/dev/null
 
 # 3. 记忆数据
-cp -r /root/.openclaw/workspace/memory "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/memory "$BACKUP_PATH/" 2>/dev/null
 
 # 4. 技能配置
-cp -r /root/.openclaw/workspace/skills "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/skills "$BACKUP_PATH/" 2>/dev/null
 
 # 5. 系统服务配置
 cp /etc/systemd/system/openclaw.service "$BACKUP_PATH/" 2>/dev/null

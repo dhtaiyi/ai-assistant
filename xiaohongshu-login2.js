@@ -62,7 +62,7 @@ const { chromium } = require('playwright');
     
     // 截图确认
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-layout.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-layout.png',
         fullPage: false 
     });
     
@@ -81,13 +81,13 @@ const { chromium } = require('playwright');
     await page.waitForTimeout(2000);
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-code-sent.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-code-sent.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 验证码已发送!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-code-sent.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-code-sent.png');
     console.log('');
     console.log('💡 请告诉我收到的验证码');
     

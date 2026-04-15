@@ -35,12 +35,12 @@ const { chromium } = require('playwright');
     await page.waitForTimeout(3000);
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-up10.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-up10.png',
         fullPage: false 
     });
     
     console.log('✅ 完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-up10.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-up10.png');
     
     await new Promise(() => {});
 })();

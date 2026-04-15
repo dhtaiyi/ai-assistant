@@ -57,12 +57,12 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-triangle.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-triangle.png',
         fullPage: false 
     });
     
     console.log('');
-    console.log('✅ 截图: /root/.openclaw/workspace/xiaohongshu-triangle.png');
+    console.log('✅ 截图: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-triangle.png');
     
     await new Promise(() => {});
 })();

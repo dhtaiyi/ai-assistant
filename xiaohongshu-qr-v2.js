@@ -77,14 +77,14 @@ const { chromium } = require('playwright');
     
     if (loginForm) {
         await loginForm.screenshot({ 
-            path: '/root/.openclaw/workspace/xiaohongshu-login-area.png' 
+            path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-login-area.png' 
         });
         console.log('✅ 已截取登录区域');
     }
     
     // 截取页面中间区域 (二维码通常在这里)
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-center.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-center.png',
         clip: { x: 600, y: 100, width: 720, height: 700 }
     });
     console.log('✅ 已截取页面中央区域 (600, 100, 720, 700)');
@@ -95,7 +95,7 @@ const { chromium } = require('playwright');
         if (img) {
             try {
                 await img.screenshot({ 
-                    path: `/root/.openclaw/workspace/xiaohongshu-img-${i+1}.png` 
+                    path: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-img-${i+1}.png` 
                 });
                 console.log(`✅ 已截取图片 ${i+1}`);
             } catch (e) {}
@@ -103,11 +103,11 @@ const { chromium } = require('playwright');
     }
     
     console.log('\n📁 生成的文件:');
-    console.log('1. /root/.openclaw/workspace/xiaohongshu-full.png - 完整页面');
+    console.log('1. /home/dhtaiyi/.openclaw/workspace/xiaohongshu-full.png - 完整页面');
     if (loginForm) {
-        console.log('2. /root/.openclaw/workspace/xiaohongshu-login-area.png - 登录区域');
+        console.log('2. /home/dhtaiyi/.openclaw/workspace/xiaohongshu-login-area.png - 登录区域');
     }
-    console.log('3. /root/.openclaw/workspace/xiaohongshu-center.png - 中央区域');
+    console.log('3. /home/dhtaiyi/.openclaw/workspace/xiaohongshu-center.png - 中央区域');
     
     await browser.close();
 })();

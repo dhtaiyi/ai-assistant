@@ -9,7 +9,7 @@ import sys
 import json
 
 # 添加xiaohongshutools路径
-sys.path.insert(0, '/root/.openclaw/workspace/skills/xiaohongshutools/scripts')
+sys.path.insert(0, '/home/dhtaiyi/.openclaw/workspace/skills/xiaohongshutools/scripts')
 
 from request.web.xhs_session import create_xhs_session
 

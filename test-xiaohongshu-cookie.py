@@ -13,7 +13,7 @@ print()
 print("1️⃣ Cookie文件检查")
 print("-"*60)
 try:
-    with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
         data = json.load(f)
     
     cookies = data.get('cookies', {})

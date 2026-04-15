@@ -23,7 +23,7 @@ const { chromium } = require('playwright');
     
     // 截图原始状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-phone-orig.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-phone-orig.png',
         fullPage: false 
     });
     
@@ -46,13 +46,13 @@ const { chromium } = require('playwright');
     
     // 截图切换后状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-phone-mode.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-phone-mode.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 切换完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-phone-mode.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-phone-mode.png');
     
     await new Promise(() => {});
 })();

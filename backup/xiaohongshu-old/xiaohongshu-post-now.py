@@ -14,7 +14,7 @@ with sync_playwright() as p:
     
     # 加载Cookie
     print("\n📋 加载Cookie...")
-    with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
         data = json.load(f)
         for k, v in data['cookies'].items():
             domain = '.creator.xiaohongshu.com' if 'creator' in k else '.xiaohongshu.com'
@@ -35,7 +35,7 @@ with sync_playwright() as p:
         print("\n✅ 已登录!")
         
         # 截图
-        page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-logged-in.png')
+        page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-logged-in.png')
         print("\n📸 截图已保存")
         
         # 查找发布按钮

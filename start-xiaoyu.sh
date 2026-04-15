@@ -8,7 +8,7 @@ echo ""
 echo "📚 加载跨会话记忆..."
 python3 -c "
 import sys
-sys.path.insert(0, '/root/.openclaw/workspace')
+sys.path.insert(0, '/home/dhtaiyi/.openclaw/workspace')
 from memory.session_manager import SessionMemoryManager
 
 mgr = SessionMemoryManager()
@@ -26,7 +26,7 @@ echo "📋 今日摘要:"
 echo "-----------"
 
 # 检查今日任务
-if [ -f "/root/.openclaw/workspace/memory/$(date +%Y-%m-%d).md" ]; then
+if [ -f "/home/dhtaiyi/.openclaw/workspace/memory/$(date +%Y-%m-%d).md" ]; then
     echo "✅ 已创建今日日志"
 else
     echo "📝 今日日志未创建"

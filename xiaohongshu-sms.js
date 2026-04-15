@@ -48,13 +48,13 @@ const { chromium } = require('playwright');
     
     // 3. 截图当前状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-sms.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-sms.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 完成! 请查看截图');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-sms.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-sms.png');
     
     await new Promise(() => {});
 })();

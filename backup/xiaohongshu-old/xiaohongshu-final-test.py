@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import sys
-sys.path.insert(0, '/root/.openclaw/workspace/skills/xiaohongshutools/scripts')
+sys.path.insert(0, '/home/dhtaiyi/.openclaw/workspace/skills/xiaohongshutools/scripts')
 from request.web.xhs_session import create_xhs_session
 
 async def test():

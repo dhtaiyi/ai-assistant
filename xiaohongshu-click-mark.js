@@ -39,7 +39,7 @@ const { chromium } = require('playwright');
     
     // 截图（不做任何标记）
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-raw.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-raw.png',
         fullPage: false 
     });
     

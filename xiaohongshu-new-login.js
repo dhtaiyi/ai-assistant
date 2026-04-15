@@ -40,13 +40,13 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-new-login.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-new-login.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 验证码已发送!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-new-login.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-new-login.png');
     console.log('');
     console.log('💡 请在微信告诉我6位验证码');
     

@@ -72,9 +72,9 @@ if __name__ == "__main__":
     ]
     
     filenames = [
-        "/root/.openclaw/workspace/image_worker.png",
-        "/root/.openclaw/workspace/image_creator.png",
-        "/root/.openclaw/workspace/image_tech.png"
+        "/home/dhtaiyi/.openclaw/workspace/image_worker.png",
+        "/home/dhtaiyi/.openclaw/workspace/image_creator.png",
+        "/home/dhtaiyi/.openclaw/workspace/image_tech.png"
     ]
     
     for i, (prompt, filename) in enumerate(zip(prompts, filenames), 1):

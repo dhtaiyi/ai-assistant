@@ -4,8 +4,8 @@
 # OpenClaw 系统全面优化脚本
 # ===========================================
 
-LOG_DIR="/root/.openclaw/workspace/logs"
-BACKUP_DIR="/root/.openclaw/backups"
+LOG_DIR="/home/dhtaiyi/.openclaw/workspace/logs"
+BACKUP_DIR="/home/dhtaiyi/.openclaw/backups"
 MAX_LOG_DAYS=7
 MAX_BACKUP_DAYS=30
 DISK_WARNING=80
@@ -57,8 +57,8 @@ manage_logs() {
     
     # 清理日志文件
     find "$LOG_DIR" -name "*.log" -mtime +$MAX_LOG_DAYS -delete 2>/dev/null
-    find /root/.openclaw/workspace -name "*.pyc" -delete 2>/dev/null
-    find /root/.openclaw/workspace -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null
+    find /home/dhtaiyi/.openclaw/workspace -name "*.pyc" -delete 2>/dev/null
+    find /home/dhtaiyi/.openclaw/workspace -name "__pycache__" -type d -exec rm -rf {} + 2>/dev/null
     
     # 清理Docker（如果有）
     docker system prune -f 2>/dev/null || warn "Docker清理失败"

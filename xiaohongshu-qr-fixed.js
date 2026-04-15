@@ -24,7 +24,7 @@ const { chromium } = require('playwright');
     
     console.log('📸 截图完整页面...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-full.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-full.png',
         fullPage: true 
     });
     
@@ -59,7 +59,7 @@ const { chromium } = require('playwright');
     if (qrEl) {
         console.log('✅ 找到二维码元素');
         await qrEl.screenshot({ 
-            path: '/root/.openclaw/workspace/xiaohongshu-qr-only.png' 
+            path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-only.png' 
         });
     } else {
         console.log('⚠️ 未找到二维码，保存完整页面');
@@ -67,9 +67,9 @@ const { chromium } = require('playwright');
     
     console.log('');
     console.log('✅ 完成!');
-    console.log('📁 完整页面: /root/.openclaw/workspace/xiaohongshu-full.png');
+    console.log('📁 完整页面: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-full.png');
     if (qrEl) {
-        console.log('📁 二维码: /root/.openclaw/workspace/xiaohongshu-qr-only.png');
+        console.log('📁 二维码: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-only.png');
     }
     
     await browser.close();

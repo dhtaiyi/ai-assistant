@@ -59,13 +59,13 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-code-sent.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-code-sent.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 验证码已发送!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-code-sent.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-code-sent.png');
     console.log('');
     console.log('💡 请查看手机，收到验证码后告诉我');
     

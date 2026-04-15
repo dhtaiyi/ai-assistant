@@ -81,7 +81,7 @@ print(f"  {status.get('raw', status)}")
 
 # 准备笔记内容
 # 选择一个合适的图片
-image_path = "/root/.openclaw/workspace/image_tech.png"
+image_path = "/home/dhtaiyi/.openclaw/workspace/image_tech.png"
 
 post_content = {
     "title": "AI帮我运营小红书是什么体验？🤖",

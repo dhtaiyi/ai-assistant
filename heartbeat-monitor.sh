@@ -4,7 +4,7 @@
 # 作者: OpenClaw
 # 用途: 每5分钟检测 openclaw 进程，自动重启宕机进程
 
-LOG_FILE="/root/.openclaw/workspace/logs/heartbeat.log"
+LOG_FILE="/home/dhtaiyi/.openclaw/workspace/logs/heartbeat.log"
 SERVICE_NAME="openclaw"
 
 # 获取当前时间戳

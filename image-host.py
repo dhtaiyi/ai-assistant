@@ -14,7 +14,7 @@ import mimetypes
 
 # 配置
 PORT = 18081
-UPLOAD_FOLDER = '/root/.openclaw/workspace/images'
+UPLOAD_FOLDER = '/home/dhtaiyi/.openclaw/workspace/images'
 BASE_URL = 'http://10.0.0.15:18081'
 
 # 确保目录存在

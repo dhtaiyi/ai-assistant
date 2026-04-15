@@ -58,7 +58,7 @@ const fs = require('fs');
     console.log('💾 保存 Cookie...');
     const cookies = await context.cookies();
     fs.writeFileSync(
-        '/root/.openclaw/workspace/xiaohongshu-cookies.json',
+        '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json',
         JSON.stringify(cookies, null, 2)
     );
     console.log('✅ Cookie 已保存');
@@ -68,13 +68,13 @@ const fs = require('fs');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-login-success.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-login-success.png',
         fullPage: true 
     });
     
     console.log('');
     console.log('✅ 完成! 登录成功!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-login-success.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-login-success.png');
     
     await new Promise(() => {});
 })();

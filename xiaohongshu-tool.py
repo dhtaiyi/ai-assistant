@@ -13,8 +13,8 @@ from datetime import datetime, timedelta
 from playwright.sync_api import sync_playwright
 
 # 配置
-COOKIE_FILE = '/root/.openclaw/workspace/xiaohongshu-cookies.json'
-RESULT_FILE = '/root/.openclaw/workspace/xiaohongshu-results.json'
+COOKIE_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json'
+RESULT_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-results.json'
 
 class XiaoHongShuTool:
     """小红书工具箱"""

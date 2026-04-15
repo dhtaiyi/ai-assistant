@@ -66,11 +66,11 @@ const { chromium } = require('playwright');
     console.log('');
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-xy.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-xy.png',
         fullPage: false 
     });
     
-    console.log('✅ 截图: /root/.openclaw/workspace/xiaohongshu-xy.png');
+    console.log('✅ 截图: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-xy.png');
     
     await new Promise(() => {});
 })();

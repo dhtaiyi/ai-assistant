@@ -76,12 +76,12 @@ const { chromium } = require('playwright');
     const loginForm = await page.$('.login, form, [class*="login"], [class*="auth"]');
     if (loginForm) {
         await loginForm.screenshot({ 
-            path: '/root/.openclaw/workspace/xiaohongshu-qr-click.png' 
+            path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-click.png' 
         });
         console.log('✅ 已截取登录区域');
     } else {
         await page.screenshot({ 
-            path: '/root/.openclaw/workspace/xiaohongshu-qr-click.png',
+            path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-click.png',
             fullPage: false 
         });
         console.log('✅ 已截图');
@@ -89,7 +89,7 @@ const { chromium } = require('playwright');
     
     console.log('');
     console.log('✅ 完成!');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-qr-click.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-click.png');
     
     await new Promise(() => {});
 })();

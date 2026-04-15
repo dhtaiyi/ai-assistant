@@ -57,14 +57,14 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-done.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-done.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 完成! 登录中...');
     console.log('验证码: 417084');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-done.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-done.png');
     
     await new Promise(() => {});
 })();

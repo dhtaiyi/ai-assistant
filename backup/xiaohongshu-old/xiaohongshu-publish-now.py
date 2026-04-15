@@ -14,7 +14,7 @@ with sync_playwright() as p:
     
     # 加载Cookie
     print("\n📋 加载Cookie...")
-    with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
         data = json.load(f)
         for k, v in data['cookies'].items():
             domain = '.creator.xiaohongshu.com' if 'creator' in k else '.xiaohongshu.com'
@@ -51,7 +51,7 @@ with sync_playwright() as p:
     page.wait_for_timeout(2000)
     
     # 截图
-    page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-ready-to-post.png')
+    page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-ready-to-post.png')
     print("\n📸 截图已保存")
     
     # 检查页面
@@ -114,11 +114,11 @@ with sync_playwright() as p:
         print("   ⚠️ 未找到发布按钮")
     
     # 最终截图
-    page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-filled-form.png')
+    page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-filled-form.png')
     print("\n📸 最终截图已保存")
     
     b.close()
     print("\n✅ 完成!")
     print("\n📁 截图文件:")
-    print("   - /root/.openclaw/workspace/xiaohongshu-ready-to-post.png")
-    print("   - /root/.openclaw/workspace/xiaohongshu-filled-form.png")
+    print("   - /home/dhtaiyi/.openclaw/workspace/xiaohongshu-ready-to-post.png")
+    print("   - /home/dhtaiyi/.openclaw/workspace/xiaohongshu-filled-form.png")

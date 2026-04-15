@@ -38,7 +38,7 @@ const { chromium } = require('playwright');
     }
     
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-try.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-try.png',
         fullPage: false 
     });
     

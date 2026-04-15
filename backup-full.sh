@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BACKUP_DIR="/root/.openclaw/backups"
+BACKUP_DIR="/home/dhtaiyi/.openclaw/backups"
 DATE=$(date +%Y%m%d)
 TIME=$(date +%H%M%S)
 BACKUP_NAME="full-$DATE-$TIME"
@@ -18,48 +18,48 @@ echo ""
 echo "📦 开始备份..."
 
 # 1. 核心配置
-cp /root/.openclaw/openclaw.json "$BACKUP_PATH/"
+cp /home/dhtaiyi/.openclaw/openclaw.json "$BACKUP_PATH/"
 
 # 2. 工作空间核心文件
-cp /root/.openclaw/workspace/*.md "$BACKUP_PATH/" 2>/dev/null
-cp /root/.openclaw/workspace/*.json "$BACKUP_PATH/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/workspace/*.md "$BACKUP_PATH/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/workspace/*.json "$BACKUP_PATH/" 2>/dev/null
 
 # 3. 记忆数据
-cp -r /root/.openclaw/workspace/memory "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/memory "$BACKUP_PATH/" 2>/dev/null
 
 # 4. 技能配置
-cp -r /root/.openclaw/workspace/skills "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/skills "$BACKUP_PATH/" 2>/dev/null
 
 # 5. 笔记
-cp -r /root/.openclaw/workspace/notes "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/notes "$BACKUP_PATH/" 2>/dev/null
 
 # 6. 脚本
-cp -r /root/.openclaw/workspace/scripts "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/scripts "$BACKUP_PATH/" 2>/dev/null
 
 # 7. 备份记录
-cp -r /root/.openclaw/workspace/backup "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/backup "$BACKUP_PATH/" 2>/dev/null
 
 # 8. 数据
-cp -r /root/.openclaw/workspace/data "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/workspace/data "$BACKUP_PATH/" 2>/dev/null
 
 # 9. 会话记录
 mkdir -p "$BACKUP_PATH/sessions"
-cp /root/.openclaw/agents/main/sessions/*.jsonl "$BACKUP_PATH/sessions/" 2>/dev/null
-cp /root/.openclaw/agents/main/sessions/sessions.json "$BACKUP_PATH/sessions/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/agents/main/sessions/*.jsonl "$BACKUP_PATH/sessions/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/agents/main/sessions/sessions.json "$BACKUP_PATH/sessions/" 2>/dev/null
 
 # 10. 代理配置
 mkdir -p "$BACKUP_PATH/agents"
-cp -r /root/.openclaw/agents/main "$BACKUP_PATH/agents/" 2>/dev/null
-cp -r /root/.openclaw/agents/xiaoyu "$BACKUP_PATH/agents/" 2>/dev/null
-cp -r /root/.openclaw/agents/shishi "$BACKUP_PATH/agents/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/agents/main "$BACKUP_PATH/agents/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/agents/xiaoyu "$BACKUP_PATH/agents/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/agents/shishi "$BACKUP_PATH/agents/" 2>/dev/null
 
 # 11. 日志文件
 mkdir -p "$BACKUP_PATH/logs"
-cp /root/.openclaw/logs/*.log "$BACKUP_PATH/logs/" 2>/dev/null
-cp /root/.openclaw/workspace/logs/*.log "$BACKUP_PATH/logs/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/logs/*.log "$BACKUP_PATH/logs/" 2>/dev/null
+cp /home/dhtaiyi/.openclaw/workspace/logs/*.log "$BACKUP_PATH/logs/" 2>/dev/null
 
 # 12. OpenClaw 配置
-cp -r /root/.openclaw/.claw* "$BACKUP_PATH/" 2>/dev/null
+cp -r /home/dhtaiyi/.openclaw/.claw* "$BACKUP_PATH/" 2>/dev/null
 
 # 13. 清单
 cat > "$BACKUP_PATH/manifest.txt" << EOF

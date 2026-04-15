@@ -9,8 +9,8 @@ import json
 import subprocess
 import datetime
 
-WORKSPACE = "/root/.openclaw/workspace"
-CREDENTIALS = "/root/.openclaw/credentials"
+WORKSPACE = "/home/dhtaiyi/.openclaw/workspace"
+CREDENTIALS = "/home/dhtaiyi/.openclaw/credentials"
 BACKUP_DIR = "/tmp/openclaw-backup"
 
 GITHUB_REPO = "your-github-repo"  # 需要配置
@@ -30,14 +30,14 @@ def backup():
     
     # 备份文件
     files_to_backup = [
-        "/root/.openclaw/openclaw.json",
-        "/root/.openclaw/workspace/MEMORY.md",
-        "/root/.openclaw/workspace/IDENTITY.md",
-        "/root/.openclaw/workspace/SOUL.md",
+        "/home/dhtaiyi/.openclaw/openclaw.json",
+        "/home/dhtaiyi/.openclaw/workspace/MEMORY.md",
+        "/home/dhtaiyi/.openclaw/workspace/IDENTITY.md",
+        "/home/dhtaiyi/.openclaw/workspace/SOUL.md",
     ]
     
     # 备份skills
-    for root, dirs, files in os.walk("/root/.openclaw/workspace/skills"):
+    for root, dirs, files in os.walk("/home/dhtaiyi/.openclaw/workspace/skills"):
         for f in files:
             if f == "SKILL.md":
                 files_to_backup.append(os.path.join(root, f))
@@ -45,7 +45,7 @@ def backup():
     # 复制文件
     for f in files_to_backup:
         if os.path.exists(f):
-            dest = f.replace("/root/.openclaw/", BACKUP_DIR + "/")
+            dest = f.replace("/home/dhtaiyi/.openclaw/", BACKUP_DIR + "/")
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             os.system(f"cp -r {f} {dest}")
             print(f"  ✅ {f}")
@@ -95,7 +95,7 @@ def restore(github_token=None, repo=None):
     for root, dirs, files in os.walk(BACKUP_DIR):
         for f in files:
             src = os.path.join(root, f)
-            dest = src.replace(BACKUP_DIR, "/root/.openclaw")
+            dest = src.replace(BACKUP_DIR, "/home/dhtaiyi/.openclaw")
             os.makedirs(os.path.dirname(dest), exist_ok=True)
             os.system(f"cp -r {src} {dest}")
             print(f"  ✅ {dest}")

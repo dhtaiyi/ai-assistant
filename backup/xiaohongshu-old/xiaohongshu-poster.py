@@ -17,9 +17,9 @@ from playwright.sync_api import sync_playwright
 import logging
 
 # 配置
-POSTS_DIR = '/root/.openclaw/workspace/xiaohongshu-posts'
-CONFIG_FILE = '/root/.openclaw/workspace/xiaohongshu-poster-config.json'
-LOG_FILE = '/root/.openclaw/workspace/xiaohongshu-poster.log'
+POSTS_DIR = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-posts'
+CONFIG_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster-config.json'
+LOG_FILE = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.log'
 
 # 日志
 logging.basicConfig(
@@ -44,7 +44,7 @@ class XiaoHongShuPoster:
     def load_cookies(self):
         """加载Cookie"""
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
                 data = json.load(f)
                 return data.get('cookies', {})
         except:

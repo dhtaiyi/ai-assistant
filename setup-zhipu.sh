@@ -35,7 +35,7 @@ if [ -n "$ZHIPU_API_KEY" ]; then
     echo "✅ 配置成功!"
     echo ""
     echo "🚀 可以使用了:"
-    echo "   /root/.openclaw/workspace/analyze-image-zhipu.sh 图片路径"
+    echo "   /home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh 图片路径"
 else
     echo "❌ 配置失败"
 fi

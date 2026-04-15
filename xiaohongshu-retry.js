@@ -23,7 +23,7 @@ const { chromium } = require('playwright');
     
     // 截图当前状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-status.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-status.png',
         fullPage: false 
     });
     
@@ -53,7 +53,7 @@ const { chromium } = require('playwright');
         console.log(`- ${i.type}: ${i.placeholder || i.name || 'unknown'}`);
     });
     
-    console.log('\n✅ 截图已保存: /root/.openclaw/workspace/xiaohongshu-status.png');
+    console.log('\n✅ 截图已保存: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-status.png');
     
     await new Promise(() => {});
 })();

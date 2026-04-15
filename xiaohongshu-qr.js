@@ -24,7 +24,7 @@ const { chromium } = require('playwright');
     
     console.log('📸 截图完整页面...');
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-qrcode.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qrcode.png',
         fullPage: false 
     });
     
@@ -43,7 +43,7 @@ const { chromium } = require('playwright');
         if (el) {
             console.log(`✅ 找到: ${sel}`);
             await el.screenshot({ 
-                path: '/root/.openclaw/workspace/xiaohongshu-qr-only.png' 
+                path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-only.png' 
             });
             break;
         }
@@ -51,8 +51,8 @@ const { chromium } = require('playwright');
     
     console.log('');
     console.log('✅ 截图完成!');
-    console.log('📁 完整页面: /root/.openclaw/workspace/xiaohongshu-qrcode.png');
-    console.log('📁 二维码: /root/.openclaw/workspace/xiaohongshu-qr-only.png (如果有)');
+    console.log('📁 完整页面: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qrcode.png');
+    console.log('📁 二维码: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-qr-only.png (如果有)');
     
     await browser.close();
 })();

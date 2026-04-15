@@ -60,12 +60,12 @@ const { chromium } = require('playwright');
     
     // 截图
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-coords.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-coords.png',
         fullPage: false 
     });
     
     console.log('');
-    console.log('✅ 截图: /root/.openclaw/workspace/xiaohongshu-coords.png');
+    console.log('✅ 截图: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-coords.png');
     
     await new Promise(() => {});
 })();

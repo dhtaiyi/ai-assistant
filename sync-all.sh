@@ -3,7 +3,7 @@
 
 echo "🔄 正在同步全部文件到GitHub..."
 
-cd /root/.openclaw/workspace
+cd /home/dhtaiyi/.openclaw/workspace
 
 # 添加所有重要文件（跳过pycache和敏感文件）
 git add \

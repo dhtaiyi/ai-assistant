@@ -22,7 +22,7 @@ def test_posting():
         
         # 加载Cookie
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
                 data = json.load(f)
                 cookies = data.get('cookies', {})
                 for name, value in cookies.items():
@@ -96,7 +96,7 @@ def check_user_info():
         
         # 加载Cookie
         try:
-            with open('/root/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
+            with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json', 'r') as f:
                 data = json.load(f)
                 cookies = data.get('cookies', {})
                 for name, value in cookies.items():

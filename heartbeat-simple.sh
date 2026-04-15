@@ -5,9 +5,9 @@
 # 频率：每5分钟
 
 # 配置
-LOG_FILE="/root/.openclaw/workspace/logs/heartbeat-simple.log"
-ALERT_LOG="/root/.openclaw/workspace/logs/heartbeat-alerts.log"
-PID_FILE="/root/.openclaw/workspace/logs/heartbeat-simple.pid"
+LOG_FILE="/home/dhtaiyi/.openclaw/workspace/logs/heartbeat-simple.log"
+ALERT_LOG="/home/dhtaiyi/.openclaw/workspace/logs/heartbeat-alerts.log"
+PID_FILE="/home/dhtaiyi/.openclaw/workspace/logs/heartbeat-simple.pid"
 
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
 
@@ -90,7 +90,7 @@ auto_recover() {
     sleep 2
     
     # 重启
-    cd /root/.openclaw/workspace
+    cd /home/dhtaiyi/.openclaw/workspace
     nohup npx openclaw gateway start >> "$LOG_FILE" 2>&1 &
     sleep 5
     

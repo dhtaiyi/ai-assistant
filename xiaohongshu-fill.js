@@ -52,12 +52,12 @@ const { chromium } = require('playwright');
     
     // 截图确认
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-filled.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-filled.png',
         fullPage: false 
     });
     
     console.log('');
-    console.log('✅ 截图已保存: /root/.openclaw/workspace/xiaohongshu-filled.png');
+    console.log('✅ 截图已保存: /home/dhtaiyi/.openclaw/workspace/xiaohongshu-filled.png');
     console.log('');
     console.log('💡 请查看截图，确认手机号是否正确填写');
     

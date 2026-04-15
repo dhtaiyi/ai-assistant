@@ -109,7 +109,7 @@ def main():
                     print(f"      🔗 {note['url'][:60]}...")
     
     # 保存结果
-    output = '/root/.openclaw/workspace/xiaohongshu-results.json'
+    output = '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-results.json'
     with open(output, 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
     

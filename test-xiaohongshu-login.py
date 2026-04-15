@@ -20,7 +20,7 @@ with sync_playwright() as p:
     
     # 加载Cookie
     print("1️⃣ 加载Cookie...")
-    with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json') as f:
         data = json.load(f)
         for k, v in data['cookies'].items():
             domain = '.creator.xiaohongshu.com' if 'creator' in k else '.xiaohongshu.com'
@@ -39,7 +39,7 @@ with sync_playwright() as p:
     time.sleep(3)
     
     # 截图
-    page.screenshot(path='/root/.openclaw/workspace/xiaohongshu-cookie-test.png')
+    page.screenshot(path='/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-test.png')
     print("   📸 截图已保存")
     
     # 检查登录状态
@@ -48,7 +48,7 @@ with sync_playwright() as p:
     text = page.inner_text('body')[:3000]
     
     # 保存页面内容用于分析
-    with open('/root/.openclaw/workspace/xiaohongshu-login-test.html', 'w') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-login-test.html', 'w') as f:
         f.write(f"<html><body><pre>{text}</pre></body></html>")
     
     # 检查关键词

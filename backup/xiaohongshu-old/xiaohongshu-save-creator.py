@@ -23,7 +23,7 @@ def save_cookie(cookie_str):
         'note': '手动保存的创作者Cookie'
     }
     
-    with open('/root/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
+    with open('/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json', 'w') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
     return len(cookies)

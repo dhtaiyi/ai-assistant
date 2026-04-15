@@ -23,13 +23,13 @@ const { chromium } = require('playwright');
     
     // 截图当前状态
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-home.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-home.png',
         fullPage: true 
     });
     
     console.log('');
     console.log('✅ 已打开首页');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-home.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-home.png');
     console.log('');
     console.log('💡 请查看截图，告诉我"发布笔记"按钮的位置');
     

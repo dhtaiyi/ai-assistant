@@ -23,13 +23,13 @@ const { chromium } = require('playwright');
     
     // 截图原始页面
     await page.screenshot({ 
-        path: '/root/.openclaw/workspace/xiaohongshu-original.png',
+        path: '/home/dhtaiyi/.openclaw/workspace/xiaohongshu-original.png',
         fullPage: false 
     });
     
     console.log('');
     console.log('✅ 原始页面已截图');
-    console.log('📁 /root/.openclaw/workspace/xiaohongshu-original.png');
+    console.log('📁 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-original.png');
     
     await new Promise(() => {});
 })();

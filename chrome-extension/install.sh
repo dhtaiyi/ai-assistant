@@ -23,7 +23,7 @@ EXTENSION_PATH="$EXTENSION_DIR/$VERSION"
 
 # 复制文件
 echo "📦 正在安装插件..."
-cp -r /root/.openclaw/workspace/chrome-extension/* "$EXTENSION_PATH/"
+cp -r /home/dhtaiyi/.openclaw/workspace/chrome-extension/* "$EXTENSION_PATH/"
 
 echo "✅ 安装完成！"
 echo ""

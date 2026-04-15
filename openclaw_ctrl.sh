@@ -3,7 +3,7 @@
 
 # 配置
 GATEWAY_PORT=18789
-WORKSPACE=/root/.openclaw/workspace
+WORKSPACE=/home/dhtaiyi/.openclaw/workspace
 
 # 颜色
 RED='\033[0;31m'
