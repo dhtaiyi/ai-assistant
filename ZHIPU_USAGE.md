@@ -10,10 +10,10 @@ API Key: `bd1e2312f8bc4539ae2ae2645905576d.RISv3Rf49m3C3tCG`
 
 ```bash
 # 基本用法
-python3 /root/.openclaw/workspace/analyze-image-zhipu.py photo.jpg
+python3 /home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.py photo.jpg
 
 # 自定义提示词
-python3 /root/.openclaw/workspace/analyze-image-zhipu.py photo.jpg "详细分析这张图片"
+python3 /home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.py photo.jpg "详细分析这张图片"
 ```
 
 ### 方式2: 在线测试
@@ -25,8 +25,8 @@ python3 /root/.openclaw/workspace/analyze-image-zhipu.py photo.jpg "详细分析
 
 ## 📁 脚本位置
 
-- `/root/.openclaw/workspace/analyze-image-zhipu.py` - 图片分析脚本
-- `/root/.openclaw/workspace/analyze-image-zhipu.sh` - Bash版本
+- `/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.py` - 图片分析脚本
+- `/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh` - Bash版本
 
 ## 💡 提示
 
@@ -36,4 +36,4 @@ python3 /root/.openclaw/workspace/analyze-image-zhipu.py photo.jpg "详细分析
 
 ## 📖 详细配置
 
-查看: `/root/.openclaw/workspace/ZHIPU_AI_SETUP.md`
+查看: `/home/dhtaiyi/.openclaw/workspace/ZHIPU_AI_SETUP.md`

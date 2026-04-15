@@ -46,17 +46,17 @@ echo ${ZHIPU_API_KEY:0:10}...
 
 ### 基本用法
 ```bash
-/root/.openclaw/workspace/analyze-image-zhipu.sh photo.jpg
+/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh photo.jpg
 ```
 
 ### 自定义提示词
 ```bash
-/root/.openclaw/workspace/analyze-image-zhipu.sh screenshot.png "详细分析这张图片的内容"
+/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh screenshot.png "详细分析这张图片的内容"
 ```
 
 ### 英文分析
 ```bash
-/root/.openclaw/workspace/analyze-image-zhipu.sh image.png "Describe this image in detail"
+/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh image.png "Describe this image in detail"
 ```
 
 ## 📊 功能特性
@@ -71,8 +71,8 @@ echo ${ZHIPU_API_KEY:0:10}...
 
 ## 📁 相关脚本
 
-- `/root/.openclaw/workspace/analyze-image-zhipu.sh` - 智谱AI版本
-- `/root/.openclaw/workspace/analyze-image.sh` - OpenAI版本（如有API Key）
+- `/home/dhtaiyi/.openclaw/workspace/analyze-image-zhipu.sh` - 智谱AI版本
+- `/home/dhtaiyi/.openclaw/workspace/analyze-image.sh` - OpenAI版本（如有API Key）
 
 ## 💡 提示
 

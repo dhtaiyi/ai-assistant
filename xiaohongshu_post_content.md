@@ -54,7 +54,7 @@
 
 ### 配图
 - `image_worker.png` (85KB)
-- 路径: `/root/.openclaw/workspace/image_worker.png`
+- 路径: `/home/dhtaiyi/.openclaw/workspace/image_worker.png`
 
 ---
 

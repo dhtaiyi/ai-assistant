@@ -22,7 +22,7 @@
 ### 2. 系统清理 (10分钟)
 
 - ✅ 删除40+个小红书测试文件
-- ✅ 备份到 `/root/.openclaw/workspace/backup/xiaohongshu-old/`
+- ✅ 备份到 `/home/dhtaiyi/.openclaw/workspace/backup/xiaohongshu-old/`
 - ✅ 保留8个核心文件
 
 ### 3. 文档创建 (15分钟)
@@ -70,14 +70,14 @@
 
 ### 新增文件
 ```
-/root/.openclaw/workspace/
+/home/dhtaiyi/.openclaw/workspace/
 ├── QUICK_COMMANDS.md              # 快捷命令手册（新）
 ├── optimization-progress.md        # 进度跟踪（新）
 └── OPTIMIZATION_REPORT_2026-02-13.md  # 本报告（新）
 ```
 
 ### 清理的文件
-- 40+个小红书测试文件 → `/root/.openclaw/workspace/backup/xiaohongshu-old/`
+- 40+个小红书测试文件 → `/home/dhtaiyi/.openclaw/workspace/backup/xiaohongshu-old/`
 
 ### 保留的核心文件
 ```

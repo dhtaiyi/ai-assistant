@@ -53,7 +53,7 @@ dnf search tesseract-langpack
 - 自然语言描述
 
 **使用方法**：
-查看技能文件：`/root/.openclaw/workspace/skills/image2prompt/SKILL.md`
+查看技能文件：`/home/dhtaiyi/.openclaw/workspace/skills/image2prompt/SKILL.md`
 
 ---
 
@@ -80,15 +80,15 @@ image-ocr document.jpg --lang eng
 ### 图片分析
 ```bash
 # 查看image2prompt使用方法
-cat /root/.openclaw/workspace/skills/image2prompt/SKILL.md
+cat /home/dhtaiyi/.openclaw/workspace/skills/image2prompt/SKILL.md
 ```
 
 ---
 
 ## 📚 相关文档
 
-- OpenClaw技能指南: `/root/.openclaw/workspace/SKILLS_GUIDE.md`
-- 系统优化文档: `/root/.openclaw/workspace/OPTIMIZATION.md`
+- OpenClaw技能指南: `/home/dhtaiyi/.openclaw/workspace/SKILLS_GUIDE.md`
+- 系统优化文档: `/home/dhtaiyi/.openclaw/workspace/OPTIMIZATION.md`
 
 ---
 

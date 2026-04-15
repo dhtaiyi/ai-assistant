@@ -3,7 +3,7 @@
 ## 📁 常用脚本位置
 
 ```
-/root/.openclaw/workspace/
+/home/dhtaiyi/.openclaw/workspace/
 ├── 小红书工具
 │   ├── xiaohongshu-tool.py          # 主工具箱（搜索+发贴）
 │   ├── xiaohongshu-publish-now.py   # 发贴脚本
@@ -30,13 +30,13 @@
 ### 小红书操作
 ```bash
 # 保存Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-save-now.py "粘贴的Cookie"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-save-now.py "粘贴的Cookie"
 
 # 发贴（需要有效Cookie）
-python3 /root/.openclaw/workspace/xiaohongshu-publish-now.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-publish-now.py
 
 # 搜索内容
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search "关键词"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search "关键词"
 ```
 
 ### 系统状态
@@ -45,10 +45,10 @@ python3 /root/.openclaw/workspace/xiaohongshu-tool.py search "关键词"
 openclaw status
 
 # 查看系统监控
-cat /root/.openclaw/workspace/logs/monitor.log | tail -20
+cat /home/dhtaiyi/.openclaw/workspace/logs/monitor.log | tail -20
 
 # 查看心跳
-cat /root/.openclaw/workspace/logs/heartbeat.log | tail -10
+cat /home/dhtaiyi/.openclaw/workspace/logs/heartbeat.log | tail -10
 ```
 
 ### 模型切换
@@ -82,7 +82,7 @@ curl -X POST "https://coding.dashscope.aliyuncs.com/v1/chat/completions" \
   -d '{"model": "qwen3-max-2026-01-23", "messages": [{"role": "user", "content": "Hi"}]}'
 
 # 测试QVeris
-cd /root/.openclaw/workspace/skills/qveris
+cd /home/dhtaiyi/.openclaw/workspace/skills/qveris
 python3 scripts/qveris_tool.py search "天气"
 ```
 
@@ -93,28 +93,28 @@ python3 scripts/qveris_tool.py search "天气"
 ### 查看日志
 ```bash
 # 实时监控日志
-tail -f /root/.openclaw/workspace/logs/monitor.log
+tail -f /home/dhtaiyi/.openclaw/workspace/logs/monitor.log
 
 # 查看错误
-grep -i error /root/.openclaw/workspace/logs/*.log | tail -20
+grep -i error /home/dhtaiyi/.openclaw/workspace/logs/*.log | tail -20
 
 # 查看今天的活动
-grep "2026-02-13" /root/.openclaw/workspace/logs/*.log | tail -30
+grep "2026-02-13" /home/dhtaiyi/.openclaw/workspace/logs/*.log | tail -30
 ```
 
 ### 手动执行任务
 ```bash
 # 手动系统监控
-bash /root/.openclaw/workspace/system-monitor.sh
+bash /home/dhtaiyi/.openclaw/workspace/system-monitor.sh
 
 # 手动备份
-bash /root/.openclaw/workspace/backup-system.sh
+bash /home/dhtaiyi/.openclaw/workspace/backup-system.sh
 
 # 手动优化
-bash /root/.openclaw/workspace/system-optimizer.sh
+bash /home/dhtaiyi/.openclaw/workspace/system-optimizer.sh
 
 # 刷新小红书Cookie
-bash /root/.openclaw/workspace/xiaohongshu-cron-refresh.sh
+bash /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cron-refresh.sh
 ```
 
 ---
@@ -124,19 +124,19 @@ bash /root/.openclaw/workspace/xiaohongshu-cron-refresh.sh
 ### 快速搜索
 ```bash
 # 在日志中搜索
-grep "关键词" /root/.openclaw/workspace/logs/*.log
+grep "关键词" /home/dhtaiyi/.openclaw/workspace/logs/*.log
 
 # 在配置中搜索
-grep -r "keyword" /root/.openclaw/openclaw.json
+grep -r "keyword" /home/dhtaiyi/.openclaw/openclaw.json
 ```
 
 ### 文件管理
 ```bash
 # 安全编辑（带备份）
-bash /root/.openclaw/workspace/safe-edit.sh <文件路径>
+bash /home/dhtaiyi/.openclaw/workspace/safe-edit.sh <文件路径>
 
 # 查看大文件
-ls -lh /root/.openclaw/workspace/*.py | sort -k5 -h | tail -10
+ls -lh /home/dhtaiyi/.openclaw/workspace/*.py | sort -k5 -h | tail -10
 ```
 
 ### 进程管理

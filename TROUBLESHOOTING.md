@@ -61,7 +61,7 @@
 4. **更新配置**
    ```bash
    # 使用OpenClaw Switch查看
-   cd /root/.openclaw/workspace/openclaw-switch
+   cd /home/dhtaiyi/.openclaw/workspace/openclaw-switch
    bash scripts/openclaw-switch.sh list
    ```
 
@@ -93,6 +93,6 @@
 
 ## 📁 相关文件
 
-- 排查报告: `/root/.openclaw/workspace/TROUBLESHOOTING.md`
-- 配置文件: `/root/.openclaw/openclaw.json`
-- 模型切换: `/root/.openclaw/workspace/openclaw-switch/`
+- 排查报告: `/home/dhtaiyi/.openclaw/workspace/TROUBLESHOOTING.md`
+- 配置文件: `/home/dhtaiyi/.openclaw/openclaw.json`
+- 模型切换: `/home/dhtaiyi/.openclaw/workspace/openclaw-switch/`

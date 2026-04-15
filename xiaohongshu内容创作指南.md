@@ -3,12 +3,12 @@
 ## 工具列表
 
 ### 1. 内容生成器
-**位置**: `/root/.openclaw/workspace/xiaohongshu_content_generator.py`
+**位置**: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu_content_generator.py`
 
 **功能**: 基于模板生成各种类型的内容
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu_content_generator.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu_content_generator.py
 ```
 
 **生成内容类型**:
@@ -20,12 +20,12 @@ python3 /root/.openclaw/workspace/xiaohongshu_content_generator.py
 ---
 
 ### 2. 热门内容创作器
-**位置**: `/root/.openclaw/workspace/xiaohongshu_trending_content.py`
+**位置**: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu_trending_content.py`
 
 **功能**: 基于当前热门趋势生成内容
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu_trending_content.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu_trending_content.py
 ```
 
 **热门话题**:

@@ -3,7 +3,7 @@
 ## 🔀 OpenClaw Switch 已安装
 
 ### 安装位置
-- 目录: `/root/.openclaw/workspace/openclaw-switch/`
+- 目录: `/home/dhtaiyi/.openclaw/workspace/openclaw-switch/`
 - 脚本: `scripts/openclaw-switch.sh`
 
 ### 功能
@@ -57,7 +57,7 @@
 
 ### 查看状态
 ```bash
-cd /root/.openclaw/workspace/openclaw-switch
+cd /home/dhtaiyi/.openclaw/workspace/openclaw-switch
 bash scripts/openclaw-switch.sh status
 ```
 
@@ -88,6 +88,6 @@ bash scripts/openclaw-switch.sh fallback
 
 ## 📁 相关文件
 
-- 配置文件: `/root/.openclaw/openclaw.json`
-- 切换工具: `/root/.openclaw/workspace/openclaw-switch/`
-- 状态报告: `/root/.openclaw/workspace/API_STATUS.md`
+- 配置文件: `/home/dhtaiyi/.openclaw/openclaw.json`
+- 切换工具: `/home/dhtaiyi/.openclaw/workspace/openclaw-switch/`
+- 状态报告: `/home/dhtaiyi/.openclaw/workspace/API_STATUS.md`

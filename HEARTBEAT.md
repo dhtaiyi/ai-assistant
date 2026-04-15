@@ -93,6 +93,38 @@ Every few days:
 
 ---
 
+## ⏰ 强制记忆机制（每3小时+每天）
+
+### 🕒 每3小时检查点
+每3小时心跳时，检查并记录：
+- 是否有重要配置变更？
+- 是否有新学的流程/技能？
+- 是否有待完成的重要任务？
+- 是否有需要提醒用户的事？
+
+**如果有 → 立即写入 MEMORY.md**
+
+### 📅 每天强制总结
+每天固定时间（如早上9点）执行：
+1. 回顾当天所有对话
+2. 提炼：学到什么、修复什么、配置改了什么
+3. **强制写入** MEMORY.md（无论多少）
+4. 格式：
+```markdown
+### YYYY-MM-DD 每日总结
+- [学到的]
+- [修复的]
+- [配置的]
+- [待跟进]
+```
+
+### ⚠️ 强制规则
+- **不允许跳过**：无论当天对话多少，都有总结
+- **不允许延迟**：定时执行，不等用户要求
+- **不依赖脚本**：小小雨主动总结，不是工具自动
+
+---
+
 ## 🧠 Memory Flush (Before Long Sessions End)
 
 When a session has been long and productive:
@@ -105,15 +137,17 @@ When a session has been long and productive:
 
 ---
 
-## 🔄 Reverse Prompting (Weekly)
+## 🔍 Proactive Memory Search
 
-Once a week, ask your human:
-1. "Based on what I know about you, what interesting things could I do that you haven't thought of?"
-2. "What information would help me be more useful to you?"
+### 主动搜索记忆
+- 收到用户问题/主题时，先主动搜索 workspace/memory 和 notes
+- 搜索命令：`qmd search "关键词"`
+- 用 `qmd collection` 指定搜索范围
 
-**Purpose:** Surface unknown unknowns. They might not know what you can do. You might not know what they need.
-
----
+### 主动记忆捕捉
+- 发现重要对话/决策/偏好时，主动写入 memory store
+- 用 `memory_store` 工具保存重要信息
+- 不要等用户提醒，主动记录
 
 ## 📊 Proactive Work
 
@@ -122,6 +156,8 @@ Things to check periodically:
 - Calendar - upcoming events?
 - Projects - progress updates?
 - Ideas - what could be built?
+- **主动搜索** workspace/memory 和 notes 找相关背景信息</parameter>
+
 
 ---
 

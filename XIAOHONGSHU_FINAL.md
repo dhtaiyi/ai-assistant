@@ -17,7 +17,7 @@
 
 ### 单关键词测试
 ```bash
-$ python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭
+$ python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-succeed.py 穿搭
 
 🔍 搜索: 穿搭
    ✅ 获取 18 行内容
@@ -32,7 +32,7 @@ $ python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭
 
 ### 多关键词测试
 ```bash
-$ python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食
+$ python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食
 
 🔍 穿搭 ✅
 🔍 美妆 ✅  
@@ -58,16 +58,16 @@ $ python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食
 ### 基本用法
 ```bash
 # 搜索单个关键词
-python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-succeed.py 穿搭
 
 # 搜索多个关键词
-python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食 健身
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食 健身
 ```
 
 ### 获取完整内容
 ```python
 # 读取结果文件
-cat /root/.openclaw/workspace/xiaohongshu-final-results.json | python3 -m json.tool
+cat /home/dhtaiyi/.openclaw/workspace/xiaohongshu-final-results.json | python3 -m json.tool
 ```
 
 ---
@@ -134,17 +134,17 @@ lines = [l.strip() for l in text.split('\n') if l.strip()]
 
 ### 1. 快速测试
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-quick.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-quick.py
 ```
 
 ### 2. 完整搜索
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食 健身 旅行
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-succeed.py 穿搭 美妆 美食 健身 旅行
 ```
 
 ### 3. 查看结果
 ```bash
-cat /root/.openclaw/workspace/xiaohongshu-final-results.json
+cat /home/dhtaiyi/.openclaw/workspace/xiaohongshu-final-results.json
 ```
 
 ---

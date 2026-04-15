@@ -19,7 +19,7 @@
 
 ### 方法1：无头模式（自动）
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-playwright.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-playwright.py
 ```
 - 完全自动化
 - 无需人工干预
@@ -27,7 +27,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-playwright.py
 
 ### 方法2：交互模式（推荐）
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-auto.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-auto.py
 ```
 - 显示浏览器窗口
 - 需要手动登录一次
@@ -48,7 +48,7 @@ pip3 install playwright
 playwright install chromium
 
 # 运行脚本
-python3 /root/.openclaw/workspace/xiaohongshu-auto.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-auto.py
 ```
 
 #### 方案B：使用虚拟显示
@@ -57,7 +57,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-auto.py
 apt-get install xvfb
 
 # 使用虚拟显示运行
-xvfb-run python3 /root/.openclaw/workspace/xiaohongshu-auto.py
+xvfb-run python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-auto.py
 ```
 
 #### 方案C：使用远程浏览器服务
@@ -79,7 +79,7 @@ xvfb-run python3 /root/.openclaw/workspace/xiaohongshu-auto.py
 ## 🎯 下一步建议
 
 ### 如果你有图形界面
-1. 运行 `python3 /root/.openclaw/workspace/xiaohongshu-auto.py`
+1. 运行 `python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-auto.py`
 2. 浏览器窗口打开后登录小红书
 3. 脚本自动执行搜索
 4. 获取Cookie和搜索结果
@@ -131,8 +131,8 @@ Playwright自动化的工作流程：
 
 ## 📁 相关文件
 
-- `/root/.openclaw/workspace/xiaohongshu-playwright.py` - 简单版
-- `/root/.openclaw/workspace/xiaohongshu-auto.py` - 交互版
-- `/root/.openclaw/workspace/xiaohongshu-use-cookie.py` - Cookie版
-- `/root/.openclaw/workspace/xiaohongshu-cookie.txt` - Cookie文件
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-playwright.py` - 简单版
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-auto.py` - 交互版
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-use-cookie.py` - Cookie版
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.txt` - Cookie文件
 

@@ -22,12 +22,12 @@
 ### 方法1：使用脚本发贴（推荐）
 
 脚本已创建：
-- `/root/.openclaw/workspace/xiaohongshu-creator-post.py`
-- `/root/.openclaw/workspace/xiaohongshu-upload-text.py`
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-post.py`
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-upload-text.py`
 
 运行发贴：
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-creator-post.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-post.py
 ```
 
 ### 方法2：手动发贴（最可靠）
@@ -97,7 +97,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-creator-post.py
 
 创作者Cookie已保存到：
 ```
-/root/.openclaw/workspace/xiaohongshu-creator-cookies.json
+/home/dhtaiyi/.openclaw/workspace/xiaohongshu-creator-cookies.json
 ```
 
 ### Q3: 如何更新Cookie？
@@ -111,7 +111,7 @@ copy(document.cookie);
 ```
 4. 保存：
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py save "粘贴的Cookie"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py save "粘贴的Cookie"
 ```
 
 ---

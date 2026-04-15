@@ -23,7 +23,7 @@
 ## 📁 完整文件列表
 
 ```
-/root/.openclaw/workspace/
+/home/dhtaiyi/.openclaw/workspace/
 ├── xiaohongshu-tool.py              # 🎯 集成工具箱（推荐）
 ├── xiaohongshu-cookie-manager.py    # 🔧 Cookie管理器
 ├── xiaohongshu-save-cookies.py      # 💾 Cookie保存工具
@@ -49,7 +49,7 @@ copy(document.cookie);
 
 **方法2：书签脚本**
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-save-cookies.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-save-cookies.py
 # 按提示创建书签
 ```
 
@@ -57,23 +57,23 @@ python3 /root/.openclaw/workspace/xiaohongshu-save-cookies.py
 
 ```bash
 # 保存Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py save "粘贴的Cookie"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py save "粘贴的Cookie"
 
 # 查看状态
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py status
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py status
 ```
 
 ### 第三步：开始搜索
 
 ```bash
 # 搜索单个关键词
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
 
 # 搜索多个关键词
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search 穿搭 美妆 美食 健身
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search 穿搭 美妆 美食 健身
 
 # 查看结果
-cat /root/.openclaw/workspace/xiaohongshu-results.json
+cat /home/dhtaiyi/.openclaw/workspace/xiaohongshu-results.json
 ```
 
 ---
@@ -83,30 +83,30 @@ cat /root/.openclaw/workspace/xiaohongshu-results.json
 ### Cookie管理
 ```bash
 # 查看Cookie状态
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py status
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py status
 
 # 保存Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py save "Cookie字符串"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py save "Cookie字符串"
 
 # 刷新Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
 
 # 启动自动刷新
-python3 /root/.openclaw/workspace/xiaohongshu-cookie-manager.py monitor
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-manager.py monitor
 ```
 
 ### 搜索功能
 ```bash
 # 搜索
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
 
 # 搜索多个
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search 穿搭 美妆 美食
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search 穿搭 美妆 美食
 ```
 
 ### 帮助
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py help
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py help
 ```
 
 ---
@@ -119,7 +119,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-tool.py help
 crontab -e
 
 # 添加每6小时自动刷新
-0 */6 * * * /usr/bin/python3 /root/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
+0 */6 * * * /usr/bin/python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
 ```
 
 ### 验证设置
@@ -145,27 +145,27 @@ crontab -l
 ### 问题1：Cookie无效
 ```bash
 # 检查状态
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py status
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py status
 
 # 重新保存
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py save "新Cookie"
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py save "新Cookie"
 ```
 
 ### 问题2：搜索失败
 ```bash
 # 1. 检查Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py status
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py status
 
 # 2. 刷新Cookie
-python3 /root/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
 
 # 3. 重新搜索
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py search 穿搭
 ```
 
 ### 问题3：查看日志
 ```bash
-tail -f /root/.openclaw/workspace/xiaohongshu-cookie.log
+tail -f /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.log
 ```
 
 ---
@@ -180,10 +180,10 @@ tail -f /root/.openclaw/workspace/xiaohongshu-cookie.log
 ### 备份重要
 ```bash
 # 备份Cookie
-cp /root/.openclaw/workspace/xiaohongshu-cookies.json /backup/xiaohongshu-cookies.json
+cp /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json /backup/xiaohongshu-cookies.json
 
 # 恢复Cookie
-cp /backup/xiaohongshu-cookies.json /root/.openclaw/workspace/xiaohongshu-cookies.json
+cp /backup/xiaohongshu-cookies.json /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookies.json
 ```
 
 ---

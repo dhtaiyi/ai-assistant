@@ -1,0 +1,359 @@
+# OpenClaw 股票分析系统 — 完整技能清单
+
+## 一、系统概述
+
+OpenClaw 股票分析系统由以下部分组成：
+- Python 数据采集脚本（核心）
+- OpenClaw 内置功能（调度/推送/搜索）
+- 可选 OpenClaw 技能（增强能力）
+
+数据流向：免费数据源 → Python 脚本采集 → 数据分析 → 飞书推送
+
+---
+
+## 二、必须安装的 Python 依赖包
+
+### 2.1 核心包（必须安装）
+
+| 包名 | 安装命令 | 用途 |
+|------|---------|------|
+| mootdx | pip install mootdx | 通达信协议，K线/实时/分时数据 |
+| pandas | pip install pandas | 数据分析处理 |
+| numpy | pip install numpy | 数值计算 |
+| requests | pip install requests | HTTP 请求 |
+
+### 2.2 扩展包（可选）
+
+| 包名 | 安装命令 | 用途 |
+|------|---------|------|
+| akshare | pip install akshare | 东方财富/聚宽数据（基金/期货/宏观）|
+| tushare | pip install tushare | tushare Pro（需注册获取 token）|
+| baidu-aip | pip install baidu-aip | 百度 AI（新闻舆情/NLP）|
+
+### 2.3 安装命令
+
+```bash
+# 创建独立环境（推荐）
+conda create -n stock python=3.12 -y
+conda activate stock
+
+# 安装核心依赖
+pip install pandas numpy requests
+pip install mootdx
+
+# 如遇 httpx 冲突
+pip install httpx==0.25.2
+
+# 验证安装成功
+python -c "from mootdx.quotes import Quotes; print('mootdx OK')"
+python -c "import pandas; print('pandas', pandas.__version__)"
+```
+
+---
+
+## 三、OpenClaw 内置功能（无需安装，直接用）
+
+| 功能 | 用途 | 使用方式 |
+|------|------|---------|
+| 定时任务 cron | 每天9:24/12:00/17:00自动运行 | openclaw cron add |
+| 飞书消息推送 | 分析结果发送到飞书 | message tool |
+| 网页搜索 web_search | 搜索财经新闻/公告 | web_search tool |
+| 浏览器控制 browser | 抓取网页数据 | browser tool |
+| 文件读写 read/write | 保存报告/笔记 | read/write tool |
+| Python 执行 exec | 运行分析脚本 | exec tool |
+| 数学计算 | 数据分析计算 | 内置 |
+
+---
+
+## 四、需要安装的 OpenClaw 技能
+
+### 4.1 技能列表
+
+| 技能名称 | 安装命令 | 用途 | 必须 |
+|----------|---------|------|------|
+| bibigpt-skill | npx skills add JimmyLv/bibigpt-skill | B站/抖音视频教程学习 | 可选 |
+| news-aggregator-skill | npx skills add news-aggregator-skill | 财经新闻自动聚合 | 可选 |
+| douyin-video-viewer | npx skills add douyin-video-viewer | 抖音股票视频观看下载 | 可选 |
+
+### 4.2 安装命令
+
+```bash
+# B站/抖音视频教程学习（用于股票课程视频学习）
+npx skills add JimmyLv/bibigpt-skill
+
+# 财经新闻聚合（可选）
+npx skills add news-aggregator-skill
+```
+
+### 4.3 技能验证
+
+```bash
+# 查看已安装技能
+npx skills list
+
+# 查看某个技能详情
+npx skills info bibigpt-skill
+```
+
+---
+
+## 五、数据采集源（全部免费）
+
+### 5.1 腾讯行情 API
+
+- 地址：https://qt.gtimg.cn
+- 用途：实时价格/开盘价/成交量
+- 注册：无需
+- 示例：https://qt.gtimg.cn/q=sz000586,sh600654
+
+### 5.2 mootdx 通达信协议
+
+- 用途：K线历史/分时/实时行情
+- 注册：无需
+- Python 用法：
+```python
+from mootdx.quotes import Quotes
+client = Quotes.factory(market='std')
+bars = client.bars(symbol='000586', frequency=9, market=0, offset=40)
+client.close()
+# frequency=9 是日K，market=0深圳，market=1上海
+```
+
+### 5.3 东方财富 API
+
+- 地址：https://datacenter-web.eastmoney.com
+- 用途：龙虎榜数据
+- 注册：无需
+- 报表名：RPT_DAILYBILLBOARD_PROFILE
+
+### 5.4 天天基金 API
+
+- 地址：https://fundgz.1234567.com.cn
+- 用途：基金实时估值
+- 注册：无需
+
+### 5.5 akshare（扩展数据）
+
+- 用途：基金/期货/宏观数据
+- 注册：无需
+- Python 用法：
+```python
+import akshare as ak
+df = ak.stock_zh_a_spot_em()  # 获取A股实时行情
+```
+
+### 5.6 tushare（可选）
+
+- 地址：https://tushare.pro
+- 用途：最全A股数据（需注册获取token）
+- 注册：免费，但需申请积分权限
+
+---
+
+## 六、定时任务配置
+
+### 6.1 必须配置的定时任务
+
+| 任务名称 | 运行时间 | 用途 | 命令 |
+|---------|---------|------|------|
+| 集合竞价扫描 | 9:24 每个工作日 | 分析竞价强势股并推送飞书 | openclaw cron add（见下方）|
+| 午间学习 | 12:00 每个工作日 | 学习股票知识30分钟 | openclaw cron add |
+| 晚间总结 | 17:00 每个工作日 | 复盘今日市场推送总结 | openclaw cron add |
+
+### 6.2 Cron 命令
+
+```bash
+# 集合竞价扫描（每个工作日9:24）
+openclaw cron add \
+  --name "集合竞价扫描" \
+  --description "9:24分析集合竞价强势股并推送飞书" \
+  --cron "24 9 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 120
+
+# 午间学习（每个工作日12:00）
+openclaw cron add \
+  --name "股票知识午间学习" \
+  --description "午间学习股票知识" \
+  --cron "0 12 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 1800
+
+# 晚间总结（每个工作日17:00）
+openclaw cron add \
+  --name "股票知识晚间总结" \
+  --description "17:00复盘今日市场" \
+  --cron "0 17 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 300
+```
+
+### 6.3 查看/管理任务
+
+```bash
+# 查看所有定时任务
+openclaw cron list
+
+# 禁用某个任务
+openclaw cron disable <任务ID>
+
+# 删除某个任务
+openclaw cron rm <任务ID>
+```
+
+---
+
+## 七、飞书机器人配置（必须）
+
+### 7.1 为什么需要
+
+没有飞书机器人，分析结果无法发送到手机。
+
+### 7.2 配置步骤
+
+1. 打开 https://open.feishu.cn/app
+2. 创建企业自建应用
+3. 获取 App ID 和 App Secret
+4. 添加「机器人」应用能力
+5. 开通权限：im:message:send_as_bot
+6. 发布应用
+
+### 7.3 OpenClaw 配置
+
+在 openclaw.json 中配置飞书机器人：
+
+```json
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "bot": {
+        "app_id": "cli_xxxxxxxxxxxx",
+        "app_secret": "xxxxxxxxxxxx"
+      }
+    }
+  }
+}
+```
+
+---
+
+## 八、核心分析脚本
+
+| 脚本名 | 功能 | 数据源 |
+|--------|------|--------|
+| stock_auction_scanner.py | 集合竞价扫描+飞书推送 | 腾讯API |
+| stock_intraday_monitor.py | 盘中实时监控（盯涨停/炸板/突破）| mootdx |
+| stock_breakout_scanner.py | 全市场突破形态扫描 | mootdx |
+| stock_longhubang.py | 龙虎榜数据 | 东方财富API |
+| kline_pattern_analyzer.py | K线形态深度分析 | mootdx |
+| fund_analyzer.py | 基金分析 | 天天基金API |
+
+脚本路径：~/.openclaw/workspace/scripts/
+
+---
+
+## 九、验证清单
+
+安装配置完成后，依次验证：
+
+- [ ] python -c "from mootdx.quotes import Quotes" → 无报错
+- [ ] python -c "import pandas" → 无报错
+- [ ] 腾讯API能获取数据：curl "https://qt.gtimg.cn/q=sz000586"
+- [ ] mootdx能获取K线：python -c "from mootdx.quotes import Quotes; ..."
+- [ ] openclaw cron list → 能看到3个定时任务
+- [ ] 飞书机器人能收到测试消息
+- [ ] 明天9:24飞书收到集合竞价报告
+
+---
+
+## 十、快速安装脚本（一键运行）
+
+```bash
+#!/bin/bash
+# OpenClaw 股票分析系统 一键安装脚本
+
+set -e
+
+echo "开始安装 OpenClaw 股票分析系统..."
+
+# 1. 创建Python环境
+echo "1. 创建Python环境..."
+conda create -n stock python=3.12 -y 2>/dev/null || echo "conda已存在"
+conda activate stock
+
+# 2. 安装核心依赖
+echo "2. 安装核心依赖..."
+pip install -q pandas numpy requests
+pip install -q mootdx
+pip install -q httpx==0.25.2 2>/dev/null || true
+
+# 3. 验证安装
+echo "3. 验证安装..."
+python -c "from mootdx.quotes import Quotes; print('mootdx OK')"
+python -c "import pandas; print('pandas OK')"
+
+# 4. 安装OpenClaw技能
+echo "4. 安装OpenClaw技能..."
+npx skills add JimmyLv/bibigpt-skill 2>/dev/null || echo "技能安装完成"
+
+echo "安装完成！"
+echo "接下来配置："
+echo "1. 配置飞书机器人"
+echo "2. 设置定时任务：openclaw cron add ..."
+```
+
+---
+
+## 十一、注意事项
+
+1. 网络：确保能访问 qt.gtimg.cn 和 datacenter-web.eastmoney.com
+2. 时间：集合竞价数据仅9:15-9:25有效
+3. 延迟：腾讯1-3秒，东方财富3-5秒，不适合高频交易
+4. mootdx：如连接失败会自动切换服务器，重试即可
+5. 数据仅供参考，不构成投资建议
+
+---
+
+## 十二、完整依赖树
+
+```
+股票分析系统
+├── Python 环境 (conda/python3.12)
+│   ├── pandas（数据分析）
+│   ├── numpy（数值计算）
+│   ├── requests（HTTP请求）
+│   ├── mootdx（通达信数据）
+│   ├── akshare（扩展数据，可选）
+│   └── tushare（付费数据，可选）
+│
+├── OpenClaw 技能
+│   ├── bibigpt-skill（B站视频学习，可选）
+│   └── news-aggregator-skill（新闻聚合，可选）
+│
+├── OpenClaw 内置功能
+│   ├── cron（定时任务）
+│   ├── message（飞书推送）
+│   ├── web_search（网页搜索）
+│   ├── browser（浏览器控制）
+│   └── exec（Python执行）
+│
+└── 数据源（全部免费）
+    ├── 腾讯行情 API
+    ├── 东方财富 API
+    └── 天天基金 API
+```
+
+---
+
+## 十三、联系支持
+
+如有问题，请联系小小雨：
+- 飞书：困困（ou_04add8ebe219f09799570c70e3cdc732）
+- 技能版本：2026-04-09

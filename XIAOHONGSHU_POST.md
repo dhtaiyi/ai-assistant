@@ -21,7 +21,7 @@
 ### 第一步：检查权限
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py check
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py check
 ```
 
 这会检查：
@@ -46,26 +46,26 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py check
 #### 方式1：立即发布
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '我的标题' '笔记内容...'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '我的标题' '笔记内容...'
 ```
 
 #### 方式2：添加到队列
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py add '稍后发布' '内容...'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py add '稍后发布' '内容...'
 ```
 
 #### 方式3：使用模板
 
 ```bash
 # 创建模板
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py template
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py template
 
 # 编辑模板
-vim /root/.openclaw/workspace/xiaohongshu-posts/template.json
+vim /home/dhtaiyi/.openclaw/workspace/xiaohongshu-posts/template.json
 
 # 使用模板发布
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '模板标题' '模板内容...'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '模板标题' '模板内容...'
 ```
 
 ---
@@ -75,7 +75,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '模板标题' '模
 ### check - 检查权限
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py check
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py check
 ```
 
 输出示例：
@@ -88,7 +88,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py check
 ### post - 立即发布
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '标题' '内容'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '标题' '内容'
 ```
 
 参数：
@@ -97,7 +97,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '标题' '内容'
 
 示例：
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py post \
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post \
   '今日穿搭分享' \
   '今天穿了这套，超喜欢！✨'
 ```
@@ -105,7 +105,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py post \
 ### add - 添加到队列
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py add '标题' '内容'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py add '标题' '内容'
 ```
 
 与post类似，但添加到发布队列，稍后定时发布。
@@ -113,7 +113,7 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py add '标题' '内容'
 ### list - 查看队列
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py list
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py list
 ```
 
 输出示例：
@@ -125,10 +125,10 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py list
 ### template - 创建模板
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py template
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py template
 ```
 
-生成模板文件：`/root/.openclaw/workspace/xiaohongshu-posts/template.json`
+生成模板文件：`/home/dhtaiyi/.openclaw/workspace/xiaohongshu-posts/template.json`
 
 ---
 
@@ -168,19 +168,19 @@ python3 /root/.openclaw/workspace/xiaohongshu-poster.py template
 crontab -e
 
 # 添加定时发布（每天上午10点）
-0 10 * * * /usr/bin/python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '定时标题' '定时内容'
+0 10 * * * /usr/bin/python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '定时标题' '定时内容'
 ```
 
 ### 方案2：发布队列
 
 ```bash
 # 添加到队列
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py add '标题' '内容'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py add '标题' '内容'
 
 # 设置定时任务处理队列
 crontab -e
 # 每小时检查一次队列
-0 * * * * /usr/bin/python3 /root/.openclaw/workspace/xiaohongshu-poster.py process
+0 * * * * /usr/bin/python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py process
 ```
 
 ---
@@ -191,27 +191,27 @@ crontab -e
 
 ```bash
 # 创建批量发布脚本
-cat > /root/.openclaw/workspace/xiaohongshu-batch.sh << 'SCRIPT'
+cat > /home/dhtaiyi/.openclaw/workspace/xiaohongshu-batch.sh << 'SCRIPT'
 #!/bin/bash
 
 TOPICS=("穿搭" "美妆" "美食" "健身" "旅行")
 
 for topic in "${TOPICS[@]}"; do
-    python3 /root/.openclaw/workspace/xiaohongshu-poster.py post \
+    python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post \
       "关于${topic}的分享" \
       "今天分享关于${topic}的内容..." \
       --delay 3600  # 每条间隔1小时
 done
 SCRIPT
 
-chmod +x /root/.openclaw/workspace/xiaohongshu-batch.sh
+chmod +x /home/dhtaiyi/.openclaw/workspace/xiaohongshu-batch.sh
 ```
 
 ### 使用
 
 ```bash
 # 运行批量发布
-bash /root/.openclaw/workspace/xiaohongshu-batch.sh
+bash /home/dhtaiyi/.openclaw/workspace/xiaohongshu-batch.sh
 ```
 
 ---
@@ -246,7 +246,7 @@ A: 访问 https://creator.xiaohongshu.com 申请
 ### Q2: Cookie过期？
 A: 刷新Cookie：
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie-manager.py refresh
 ```
 
 ### Q3: 发布失败？
@@ -257,7 +257,7 @@ A: 按顺序排查：
 
 ### Q4: 如何查看日志？
 ```bash
-tail -f /root/.openclaw/workspace/xiaohongshu-poster.log
+tail -f /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.log
 ```
 
 ---
@@ -291,13 +291,13 @@ tail -f /root/.openclaw/workspace/xiaohongshu-poster.log
 
 ```bash
 # 1. 检查状态
-python3 /root/.openclaw/workspace/xiaohongshu-tool.py status
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-tool.py status
 
 # 2. 发布内容
-python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '标题' '内容'
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '标题' '内容'
 
 # 3. 查看日志
-tail -f /root/.openclaw/workspace/xiaohongshu-poster.log
+tail -f /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.log
 ```
 
 ### 定时发布
@@ -307,9 +307,9 @@ tail -f /root/.openclaw/workspace/xiaohongshu-poster.log
 crontab -e
 
 # 2. 添加定时任务
-0 10 * * * /usr/bin/python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '早安' '早上好！'
+0 10 * * * /usr/bin/python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '早安' '早上好！'
 
-0 20 * * * /usr/bin/python3 /root/.openclaw/workspace/xiaohongshu-poster.py post '晚安' '晚安，明天见！'
+0 20 * * * /usr/bin/python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-poster.py post '晚安' '晚安，明天见！'
 ```
 
 ---

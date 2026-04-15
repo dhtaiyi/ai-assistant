@@ -22,10 +22,10 @@ echo "粘贴Cookie:"
 read cookie
 
 # 保存Cookie
-echo "COOKIE=\"$cookie\"" > /root/.openclaw/workspace/xiaohongshu-cookie.txt
+echo "COOKIE=\"$cookie\"" > /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.txt
 
 # 测试搜索
-python3 /root/.openclaw/workspace/xiaohongshu-use-cookie.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-use-cookie.py
 ```
 
 ---

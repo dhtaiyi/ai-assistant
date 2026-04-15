@@ -144,6 +144,142 @@
     "tushare-finance": {
       "version": "2.0.6",
       "installedAt": 1771395087233
+    },
+    "qmd-markdown-search": {
+      "version": "1.0.0",
+      "installedAt": 1774599335178
+    },
+    "tushare-data": {
+      "version": "1.1.15",
+      "installedAt": 1775783734003
+    },
+    "财务数据查询": {
+      "version": "",
+      "installedAt": 1776255513774
+    },
+    "分钟级数据分析": {
+      "version": "",
+      "installedAt": 1776255833005
+    },
+    "多因子选股策略": {
+      "version": "",
+      "installedAt": 1776255862156
+    },
+    "基本资料查询": {
+      "version": "",
+      "installedAt": 1776255895364
+    },
+    "事件数据查询": {
+      "version": "",
+      "installedAt": 1776256087046
+    },
+    "行业数据查询": {
+      "version": "",
+      "installedAt": 1776256187707
+    },
+    "公司股东股本查询": {
+      "version": "",
+      "installedAt": 1776256223411
+    },
+    "财务分析": {
+      "version": "",
+      "installedAt": 1776256245603
+    },
+    "基础技术指标信号引擎": {
+      "version": "",
+      "installedAt": 1776256246817
+    },
+    "策略生成与优化": {
+      "version": "",
+      "installedAt": 1776256248904
+    },
+    "行情数据查询": {
+      "version": "",
+      "installedAt": 1776256323007
+    },
+    "指数数据查询": {
+      "version": "",
+      "installedAt": 1776256605832
+    },
+    "问财选板块": {
+      "version": "",
+      "installedAt": 1776256684667
+    },
+    "问财选A股": {
+      "version": "",
+      "installedAt": 1776256757531
+    },
+    "公司经营数据查询": {
+      "version": "",
+      "installedAt": 1776256778921
+    },
+    "研报搜索": {
+      "version": "",
+      "installedAt": 1776256799662
+    },
+    "公告搜索": {
+      "version": "",
+      "installedAt": 1776256826762
+    },
+    "模拟炒股": {
+      "version": "",
+      "installedAt": 1776256857312
+    },
+    "新闻搜索": {
+      "version": "",
+      "installedAt": 1776256877662
+    },
+    "机器学习策略": {
+      "version": "",
+      "installedAt": 1776256905401
+    },
+    "地缘政治风险分析": {
+      "version": "",
+      "installedAt": 1776256936019
+    },
+    "K线形态识别": {
+      "version": "",
+      "installedAt": 1776256957670
+    },
+    "行业轮动分析": {
+      "version": "",
+      "installedAt": 1776256979861
+    },
+    "市场情绪分析": {
+      "version": "",
+      "installedAt": 1776257002647
+    },
+    "金融监管知识库": {
+      "version": "",
+      "installedAt": 1776257026523
+    },
+    "Pine Script 转换与生成": {
+      "version": "",
+      "installedAt": 1776257049609
+    },
+    "爆仓热力图分析": {
+      "version": "",
+      "installedAt": 1776257078418
+    },
+    "事件驱动策略": {
+      "version": "",
+      "installedAt": 1776257099741
+    },
+    "缠论形态识别": {
+      "version": "",
+      "installedAt": 1776257449618
+    },
+    "《股票大作手》交易哲学": {
+      "version": "",
+      "installedAt": 1776257468281
+    },
+    "市场情绪偏离分析": {
+      "version": "",
+      "installedAt": 1776257707027
+    },
+    "监管内幕交易追踪": {
+      "version": "",
+      "installedAt": 1776257760822
     }
   }
 }

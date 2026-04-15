@@ -750,3 +750,47 @@ uvx minimax-mcp <功能名> [参数]
 - [配置] evening_pipeline.sh: 整合6步骤晚盘链路
 - [配置] market_sentiment.py V2: 机构主导识别(2只非涨停强势+成交>200亿)
 - [待跟进] 明日9:00验证早盘链路是否正常运行
+
+### 2026-04-15 早间 - Cron健康检查 + 第三轮迭代补充
+
+**Cron超时问题（需优化）：**
+- 09:30 开盘快报：连续3次 timeout（market_scanner.py + buy_sell.py）
+- 11:30 午间策略：连续3次 timeout（market_scanner.py）
+- 12:00 午间学习：1次 timeout（stock-learning/daily_learn.py）
+- 根因分析：timeoutSeconds=120-180s 仍超时 → 脚本本身执行慢或模型调用问题
+- **建议**：检查 market_scanner.py 执行效率，或将这些 agentTurn cron 改为 systemEvent 直接调脚本
+
+**今日早盘链路已触发（待验证）：**
+- 09:00 → market_sentiment.py + morning_scan_v2.sh 并行运行中
+- 验证结果待盘中确认
+
+**候选股关注：**
+- 沪电股份：买点A信号（首板战法）
+- 力诺药包(301188)：控股股东增持9000万+中硼硅概念
+
+### 2026-04-15 全天 - 问财Iwencai集成 + 股票系统第四轮完成
+- [学到的]
+  - 问财SkillHub CLI安装：手动python3 zipfile解压（系统无unzip）+ 安装到~/.local/bin/
+  - 问财API：sk-proj-01-NAItJumXGkKAe1Ha8v-rPenhNjrfud7CDgoY0DEAymigKrbbZSIwxhjOQG5RrqWytp8AZApOyf4RsS-q5d2FbyTbPZAYJC262Vbgthv9IizhxH3W-5a2kNpR3ifa0nAobbl6NQ
+  - 32个问财技能全部安装成功（选股/财务/板块/形态/缠论/研报等）
+  - 腾讯接口字段：涨跌幅在parts[5]（批量接口）vs parts[32]（完整接口）
+  - 腾讯接口返回格式`="内容"`（=后直接引号），正则要用`"([^"]+)"`而非`="([^"]+)"`
+  - Cron任务注册后需用`openclaw cron add`命令才能被守护进程加载
+  - 午间休市判断：优先判断11:30-13:00为午休
+- [修复的]
+  - market_sentiment.py: 腾讯指数字段+正则+午休处理+收盘后分析
+  - realtime_top_scanner.py: 正则匹配bug
+  - smart_scoring.py: 正则匹配修复
+  - smart_scanner_v2.py: 语法错误（中文冒号）+ time vs datetime冲突
+  - 收盘后"closed"状态不再跳过（market_sentiment）
+- [配置的]
+  - 问财CLI：~/.local/bin/iwencai-skillhub-cli
+  - 问财环境变量：IWENCAI_BASE_URL + IWENCAI_API_KEY（写入~/.bashrc）
+  - 6个脚本全部升级v3.0：tomorrow_picker/breakeven_tracker/realtime_top_scanner/market_sentiment/smart_scanner_v2/auction_monitor
+  - Cron新增：9:30智能扫描/13:00午盘观察/盘中实时扫描(13:30/14:00/14:30)
+  - 完整每日链路：09:00情绪→09:01早盘→09:30盘中→13:00午盘→13:30-14:30盘中→15:10晚盘
+- [待跟进]
+  - 验证明日9:30/13:00等cron是否正常（今日刚加）
+  - 把更多自研脚本接入问财（缠论/K线形态/事件驱动）
+  - 观察神剑股份(002361)/利通电子(603629)/协创数据(301856)明日竞价
+  - 混沌期验证：昨日涨停71只→掉队44只(62%)，今日新首板52只

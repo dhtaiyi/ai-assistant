@@ -2,12 +2,12 @@
 
 ## 查询脚本
 
-**位置**: `/root/.openclaw/workspace/xiaohongshu_query.py`
+**位置**: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu_query.py`
 
 ## 使用方法
 
 ```bash
-python3 /root/.openclaw/workspace/xiaohongshu_query.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu_query.py
 ```
 
 ## API 端点
@@ -31,5 +31,5 @@ python3 /root/.openclaw/workspace/xiaohongshu_query.py
 
 ## 相关文件
 
-- `/root/.openclaw/workspace/xiaohongshu_query.py` - 查询脚本
-- `/root/.openclaw/workspace/use_mcp.md` - MCP使用说明
+- `/home/dhtaiyi/.openclaw/workspace/xiaohongshu_query.py` - 查询脚本
+- `/home/dhtaiyi/.openclaw/workspace/use_mcp.md` - MCP使用说明

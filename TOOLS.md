@@ -6,7 +6,7 @@
 
 ## 🤖 默认模型配置
 
-### 小雨 (主代理)
+### 小小雨 (主代理)
 - **模型**: MiniMax-M2.5
 - **API Key**: sk-cp-…MBnnNU
 - **上下文**: 200K
@@ -23,12 +23,12 @@
 ## 🤖 小 uu (Kimi 代码助手)
 
 ### 小 uu (Kimi 代码助手)
-- **位置**: `/root/.openclaw/agents/xiaouu/`
+- **位置**: `/home/dhtaiyi/.openclaw/agents/xiaouu/`
 - **CLI**: `@jacksontian/kimi-cli` v1.2.0
-- **命令路径**: `/root/.nvm/versions/node/v22.22.0/bin/kimi`
+- **命令路径**: `/home/dhtaiyi/.openclaw/openclaw`
 - **默认模型**: `moonshot-v1-8k`
 - **API Key**: 首次运行 `kimi` 命令时设置
-- **配置指南**: `/root/.openclaw/agents/xiaouu/agent/KIMI_SETUP.md`
+- **配置指南**: `/home/dhtaiyi/.openclaw/agents/xiaouu/agent/KIMI_SETUP.md`
 
 ---
 
@@ -103,3 +103,81 @@ Skills define *how* tools work. This file is for *your* specifics — the stuff 
 ---
 
 *Add whatever helps you do your job. This is your cheat sheet.*
+
+## 🤖 Whisper GPU 转录
+
+**conda 环境**: `/home/dhtaiyi/.conda/envs/whisper-stt`
+**GPU**: NVIDIA RTX 5070 (CUDA 可用)
+**使用命令**:
+```bash
+/home/dhtaiyi/.conda/envs/whisper-stt/bin/python transcribe_stock_ch2.py
+```
+
+**脚本位置**: `~/.openclaw/workspace/scripts/transcribe_stock_ch2.py`
+
+---
+
+## 🤖 Kimi CLI 工具
+
+**配置位置**: `~/.openclaw/agents/main/agent/KIMI_CLI_TOOL.json`
+
+**使用方法**:
+```bash
+# 直接调用 Kimi CLI
+kimi
+
+# 带工作目录调用
+kimi -w /path/to/project
+```
+
+**功能**:
+- 代码生成与补全
+- 代码审查与优化
+- 调试与错误排查
+- 文件操作
+- Git 操作
+- 终端命令执行
+
+**注意**: Kimi CLI 使用独立的 OAuth 认证，与 OpenClaw 模型配置分开。
+
+---
+
+## 🖼️ 飞书发送图片（正确方式）
+
+**注意**: message 工具的 mediaUrl 参数发的是链接，不是图片！要用正确的 API 方式。
+
+**正确流程**:
+
+```bash
+# 1. 获取 token
+APP_ID="cli_a92923c6a2f99bc0"
+APP_SECRET="H4CdLHf1NwM1iv3JWzBsfdFFUY8bO4At"
+
+TOKEN=$(curl -s 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal' \
+  -H 'Content-Type: application/json' \
+  -d '{"app_id":"'"$APP_ID"'","app_secret":"'"$APP_SECRET"'"}' | jq -r .tenant_access_token)
+
+# 2. 上传图片获取 image_key
+IMG_KEY=$(curl -s "https://open.feishu.cn/open-apis/im/v1/images" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: multipart/form-data" \
+  -F "image_type=message" \
+  -F "image=@/图片路径.png" | jq -r .data.image_key)
+
+# 3. 发送图片消息
+curl -s "https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=open_id" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "receive_id": "ou_用户ID",
+    "msg_type": "image",
+    "content": "{\"image_key\": \"'"$IMG_KEY"'\"}"
+  }'
+```
+
+**参数**:
+- APP_ID: cli_a92923c6a2f99bc0
+- APP_SECRET: H4CdLHf1NwM1iv3JWzBsfdFFUY8bO4At
+- 用户 ID: ou_04add8ebe219f09799570c70e3cdc732
+
+**脚本位置**: `~/.openclaw/skills/feishu-send-image/send.sh`

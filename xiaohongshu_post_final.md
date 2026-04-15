@@ -60,7 +60,7 @@
 
 ### 步骤1：下载配图
 ```bash
-scp root@你的服务器IP:/root/.openclaw/workspace/image_worker.png ./
+scp root@你的服务器IP:/home/dhtaiyi/.openclaw/workspace/image_worker.png ./
 ```
 
 ### 步骤2：打开小红书APP

@@ -17,7 +17,7 @@
 **建议**: 删除 analyst，保留 data-analysis
 
 ```bash
-rm -rf /root/.openclaw/workspace/skills/analyst
+rm -rf /home/dhtaiyi/.openclaw/workspace/skills/analyst
 ```
 
 ### 2. search vs baidu-search
@@ -115,7 +115,7 @@ rm -rf /root/.openclaw/workspace/skills/analyst
 
 ```bash
 # 删除重复的 analyst 技能
-rm -rf /root/.openclaw/workspace/skills/analyst
+rm -rf /home/dhtaiyi/.openclaw/workspace/skills/analyst
 ```
 
 ### 谨慎删除 (0个)
@@ -132,13 +132,13 @@ rm -rf /root/.openclaw/workspace/skills/analyst
 
 ```bash
 # 检查 analyst 技能
-ls -la /root/.openclaw/workspace/skills/analyst/
+ls -la /home/dhtaiyi/.openclaw/workspace/skills/analyst/
 
 # 删除
-rm -rf /root/.openclaw/workspace/skills/analyst
+rm -rf /home/dhtaiyi/.openclaw/workspace/skills/analyst
 
 # 验证
-ls /root/.openclaw/workspace/skills/ | grep analyst
+ls /home/dhtaiyi/.openclaw/workspace/skills/ | grep analyst
 ```
 
 ### 方案B: 暂时保留

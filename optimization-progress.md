@@ -19,7 +19,7 @@
 #### 2. 系统清理 (10分钟)
 - [x] 清理临时测试文件 - 2026-02-13 08:40
   - 删除了40+个测试文件
-  - 备份到 /root/.openclaw/workspace/backup/xiaohongshu-old/
+  - 备份到 /home/dhtaiyi/.openclaw/workspace/backup/xiaohongshu-old/
   - 保留8个核心文件
 
 #### 3. 文档创建 (15分钟)

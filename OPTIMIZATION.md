@@ -5,14 +5,14 @@
 ### 1. 系统优化器 (system-optimizer.sh)
 - **功能**: 性能优化、日志清理、备份管理、健康检查
 - **自动执行**: 每天凌晨4点
-- **手动运行**: `/root/.openclaw/workspace/system-optimizer.sh`
-- **日志**: `/root/.openclaw/workspace/logs/optimizer.log`
+- **手动运行**: `/home/dhtaiyi/.openclaw/workspace/system-optimizer.sh`
+- **日志**: `/home/dhtaiyi/.openclaw/workspace/logs/optimizer.log`
 
 ### 2. 系统监控器 (system-monitor.sh)
 - **功能**: 磁盘、内存、CPU、负载、服务、网络监控
 - **自动执行**: 每小时
-- **手动运行**: `/root/.openclaw/workspace/system-monitor.sh`
-- **日志**: `/root/.openclaw/workspace/logs/monitor.log`
+- **手动运行**: `/home/dhtaiyi/.openclaw/workspace/system-monitor.sh`
+- **日志**: `/home/dhtaiyi/.openclaw/workspace/logs/monitor.log`
 
 ## ⚙️ 告警配置 (可选)
 
@@ -48,27 +48,27 @@ export EMAIL_ALERT="your@email.com"
 crontab -l
 
 # 任务列表
-0 4 * * * /root/.openclaw/workspace/system-optimizer.sh    # 每天优化
-0 * * * * /root/.openclaw/workspace/system-monitor.sh       # 每小时监控
-*/5 * * * * /root/.openclaw/workspace/heartbeat-monitor.sh # 心跳监控
-0 3 * * * /root/.openclaw/workspace/backup-system.sh       # 自动备份
-0 23 * * * /root/.openclaw/workspace/daily-summary.sh      # 日报总结
+0 4 * * * /home/dhtaiyi/.openclaw/workspace/system-optimizer.sh    # 每天优化
+0 * * * * /home/dhtaiyi/.openclaw/workspace/system-monitor.sh       # 每小时监控
+*/5 * * * * /home/dhtaiyi/.openclaw/workspace/heartbeat-monitor.sh # 心跳监控
+0 3 * * * /home/dhtaiyi/.openclaw/workspace/backup-system.sh       # 自动备份
+0 23 * * * /home/dhtaiyi/.openclaw/workspace/daily-summary.sh      # 日报总结
 ```
 
 ## 🔧 手动优化
 
 ```bash
 # 立即优化
-/root/.openclaw/workspace/system-optimizer.sh
+/home/dhtaiyi/.openclaw/workspace/system-optimizer.sh
 
 # 立即监控
-/root/.openclaw/workspace/system-monitor.sh
+/home/dhtaiyi/.openclaw/workspace/system-monitor.sh
 
 # 查看系统状态
 openclaw status
 
 # 查看日志
-tail -f /root/.openclaw/workspace/logs/heartbeat.log
+tail -f /home/dhtaiyi/.openclaw/workspace/logs/heartbeat.log
 ```
 
 ## 📈 性能优化项
@@ -91,7 +91,7 @@ tail -f /root/.openclaw/workspace/logs/heartbeat.log
 ### 磁盘空间不足
 ```bash
 # 查找大文件
-du -sh /root/.openclaw/workspace/* | sort -hr | head -10
+du -sh /home/dhtaiyi/.openclaw/workspace/* | sort -hr | head -10
 
 # 清理Docker
 docker system prune -a -f

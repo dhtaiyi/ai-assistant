@@ -42,7 +42,7 @@
 3. 测试通过后更新配置
 
 ## 🔧 配置位置
-- 文件: /root/.openclaw/openclaw.json
+- 文件: /home/dhtaiyi/.openclaw/openclaw.json
 - 格式: JSON
 - 需要重启: 是 (openclaw restart)
 

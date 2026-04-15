@@ -30,10 +30,10 @@ javascript:(function(){const%20cookies=document.cookie.split('%3B').map(c=>c.tri
 3. **发送到服务器**
    ```bash
    # 在服务器终端粘贴Cookie
-   echo 'COOKIE="粘贴"' > /root/.openclaw/workspace/xiaohongshu-cookie.txt
+   echo 'COOKIE="粘贴"' > /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.txt
    
    # 测试搜索
-   python3 /root/.openclaw/workspace/xiaohongshu-use-cookie.py
+   python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-use-cookie.py
    ```
 
 ---
@@ -121,10 +121,10 @@ console.log('Cookie已复制:', document.cookie);
 #    书签/油猴/Console任选一种
 
 # 2. 保存到服务器
-echo 'COOKIE="粘贴的Cookie"' > /root/.openclaw/workspace/xiaohongshu-cookie.txt
+echo 'COOKIE="粘贴的Cookie"' > /home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.txt
 
 # 3. 运行测试
-python3 /root/.openclaw/workspace/xiaohongshu-use-cookie.py
+python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-use-cookie.py
 ```
 
 ---
@@ -133,10 +133,10 @@ python3 /root/.openclaw/workspace/xiaohongshu-use-cookie.py
 
 | 文件 | 功能 |
 |------|------|
-| `/root/.openclaw/workspace/xiaohongshu-use-cookie.py` | Cookie版搜索脚本 |
-| `/root/.openclaw/workspace/xiaohongshu-cookie.txt` | Cookie保存文件 |
-| `/root/.openclaw/workspace/xiaohongshu-bookmark.md` | 书签脚本说明 |
-| `/root/.openclaw/workspace/XIAOHONGSHU_AUTO.md` | 本文档 |
+| `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-use-cookie.py` | Cookie版搜索脚本 |
+| `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-cookie.txt` | Cookie保存文件 |
+| `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-bookmark.md` | 书签脚本说明 |
+| `/home/dhtaiyi/.openclaw/workspace/XIAOHONGSHU_AUTO.md` | 本文档 |
 
 ---
 

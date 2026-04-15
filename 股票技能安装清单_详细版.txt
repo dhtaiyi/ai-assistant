@@ -1,0 +1,483 @@
+# OpenClaw 股票技能 完整安装指南
+
+---
+
+## 一、核心技术架构
+
+### 1.1 数据流向
+```
+腾讯/东方财富/通达信  →  Python脚本采集  →  数据分析处理  →  飞书推送
+         ↑                                    ↓
+    免费数据源（实时)              股票知识判断（AI分析）
+```
+
+### 1.2 三大核心能力
+1. **集合竞价分析**（9:24）- 判断主力开盘意图
+2. **盘中实时监控**（9:30-15:00）- 盯住异动信号
+3. **突破形态扫描**（随时/盘后）- 全市场找机会
+
+---
+
+## 二、环境安装
+
+### 2.1 Python 环境
+
+推荐使用 conda（比 pip 更稳定）：
+
+```bash
+# 安装 conda（如果没有）
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+
+# 创建股票分析专用环境
+conda create -n stock python=3.12 -y
+conda activate stock
+
+# 安装核心依赖（按顺序）
+pip install pandas numpy requests
+pip install mootdx
+
+# 验证是否安装成功
+python -c "from mootdx.quotes import Quotes; print('mootdx 安装成功')"
+python -c "import pandas; print('pandas 版本:', pandas.__version__)"
+```
+
+**mootdx 安装注意事项**：
+- 如果遇到 httpx 版本冲突，用 `pip install httpx==0.25.2` 降级
+- mootdx 会自动选择最佳通达信服务器，不需要手动配置
+- 无需注册账号，直接使用
+
+---
+
+## 三、飞书机器人配置（必须）
+
+### 3.1 为什么需要飞书机器人？
+飞书机器人是推送通知的通道。没有机器人，分析结果无法发送到手机。
+
+### 3.2 创建飞书机器人的步骤
+
+**第一步：创建应用**
+1. 打开 https://open.feishu.cn/app
+2. 点击「创建企业自建应用」
+3. 填写应用名称（如「股票小助手」）和描述
+4. 点击创建
+
+**第二步：获取凭证**
+1. 进入应用后，点击「凭证与基础信息」
+2. 找到 App ID 和 App Secret
+3. 记录下来，后面配置会用到
+
+**第三步：添加机器人能力**
+1. 点击「添加应用能力」
+2. 选择「机器人」
+3. 确认添加
+
+**第四步：开通权限**
+1. 点击「权限管理」
+2. 在「权限配置」中搜索并开通以下权限：
+   - `im:message:send_as_bot`（发送消息）
+   - `im:message`（读取消息）
+3. 点击申请权限
+
+**第五步：发布应用**
+1. 点击「版本管理与发布」
+2. 创建新版本
+3. 申请发布（企业管理员审批）
+
+**第六步：获取用户 ID**
+1. 打开飞书，搜索你的机器人
+2. 给机器人发一条消息
+3. 在 OpenClaw 的日志中可以找到你的 open_id
+4. 或者在 https://open.feishu.cn/user 在搜索框搜索你的名字，用户ID就是 open_id
+
+### 3.3 OpenClaw 配置文件
+
+在 `openclaw.json` 中的 channels 配置：
+
+```json
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "bot": {
+        "app_id": "cli_a92923c6a2f99bc0",
+        "app_secret": "你的AppSecret"
+      }
+    }
+  }
+}
+```
+
+**获取用户 open_id 的方法**：
+飞书用户 open_id 格式是 `ou_` 开头，可以在 OpenClaw 收到消息时从元数据中获取。
+
+---
+
+## 四、数据源详解（免费）
+
+### 4.1 腾讯行情 API（主力用）
+
+**接口地址**：`https://qt.gtimg.cn`
+
+**请求格式**：
+```
+https://qt.gtimg.cn/q=sz000586,sh600654
+```
+
+**返回数据**（用 `~` 分隔，88个字段）：
+- 字段3：当前价格
+- 字段4：昨日收盘价
+- 字段5：今日开盘价（集合竞价价格）
+- 字段6：成交量
+- 字段33：最高价
+- 字段34：最低价
+- 字段37：腾讯内部股票代码
+
+**Python 请求示例**：
+```python
+import requests
+
+headers = {'User-Agent': 'Mozilla/5.0', 'Referer': 'https://finance.qq.com'}
+url = 'https://qt.gtimg.cn/q=sz000586'
+r = requests.get(url, timeout=5, headers=headers)
+r.encoding = 'gbk'
+# 返回格式: v_sz000586="51~汇源通信~000586~22.84~20.76~22.84~..."
+parts = r.text.split('="')[1].rstrip('";').split('~')
+# parts[3] = 当前价格, parts[4] = 昨收, parts[5] = 开盘价
+```
+
+**优点**：免费、无需注册、延迟低（1-3秒）
+**缺点**：不提供历史数据，仅实时
+
+---
+
+### 4.2 mootdx 通达信协议（K线和历史数据）
+
+**安装**：`pip install mootdx`
+
+**功能**：
+- 获取历史K线（日线/周线/月线）
+- 获取分时数据
+- 批量查询多只股票
+- 查询大盘指数
+
+**Python 示例**：
+```python
+from mootdx.quotes import Quotes
+
+# 获取K线数据
+client = Quotes.factory(market='std')
+bars = client.bars(symbol='000586', frequency=9, market=0, offset=40)
+# frequency=9 是日K线，market=0是深圳，market=1是上海
+client.close()
+
+# bars 是一个 pandas DataFrame，包含：date, open, high, low, close, volume
+print(bars.tail())  # 打印最近几天的数据
+```
+
+**股票代码规则**：
+- 00/30开头 → 深圳 → market=0
+- 60/68开头 → 上海 → market=1
+- 指数：000开头 → 深圳，999开头 → 上海
+
+**常用 frequency 代码**：
+- 9：日K线
+- 8：周K线
+- 7：月K线
+- 5：5分钟K线
+- 15：15分钟K线
+- 60：60分钟K线
+
+---
+
+### 4.3 东方财富 API（龙虎榜数据）
+
+**龙虎榜接口**（免费，不需要注册）：
+```
+POST https://datacenter-web.eastmoney.com/api/data/v1/get
+```
+
+**请求参数**：
+```python
+params = {
+    'sortColumns': 'TRADE_DATE',
+    'sortTypes': -1,
+    'pageSize': 10,
+    'pageNumber': 1,
+    'reportName': 'RPT_DAILYBILLBOARD_PROFILE',  # 这个报表名可用
+    'columns': 'ALL',
+    'quoteColumns': '',
+    'filter': f'(TRADE_DATE>=\'{start_date}\')(TRADE_DATE<=\'{end_date}\')',
+}
+```
+
+**返回数据**：
+- 股票代码、名称
+- 营业部/机构买卖金额
+- 龙虎榜原因（涨跌幅偏离值达7%等）
+- 上榜日期
+
+**Python 示例**：
+```python
+import requests
+
+url = 'https://datacenter-web.eastmoney.com/api/data/v1/get'
+params = {
+    'reportName': 'RPT_DAILYBILLBOARD_PROFILE',
+    'columns': 'ALL',
+    'pageSize': 5,
+    'pageNumber': 1,
+    'sortColumns': 'TRADE_DATE',
+    'sortTypes': -1,
+    'filter': f"(TRADE_DATE>='2026-04-08')",
+}
+r = requests.get(url, params=params, timeout=10)
+data = r.json()
+print(data['result']['data'])
+```
+
+---
+
+### 4.4 天天基金 API（基金数据）
+
+**实时估值接口**：`https://fundgz.1234567.com.cn/js/110022.js?rt=1700000000`
+
+**返回格式**（JSON）：
+```json
+{
+  "fundcode": "110022",
+  "name": "易方达消费行业",
+  "jztime": "2026-04-08 15:00",
+  "dwjz": "4.1234",       # 单位净值
+  "gsz": "4.1500",        # 估算净值
+  "gszzl": "0.65",        # 估算增长率(%)
+  "gztime": "2026-04-08 15:00"
+}
+```
+
+**Python 示例**：
+```python
+import requests
+import json
+
+code = '110022'
+url = f'https://fundgz.1234567.com.cn/js/{code}.js'
+r = requests.get(url, timeout=5)
+# 返回格式: jsonpgz({"fundcode":"110022"...});
+text = r.text.replace('jsonpgz(', '').rstrip(');')
+data = json.loads(text)
+print(f"基金: {data['name']}, 估算净值: {data['gsz']}, 估算涨幅: {data['gszzl']}%")
+```
+
+---
+
+## 五、定时任务配置（Cron）
+
+### 5.1 集合竞价扫描（每个交易日9:24）
+
+**为什么是9:24不是9:30**？
+- 9:15-9:25是集合竞价时间
+- 9:24运行能获取到完整的竞价数据
+- 9:30开盘价格已经形成
+
+**设置命令**：
+```bash
+openclaw cron add \
+  --name "集合竞价扫描" \
+  --description "9:24分析集合竞价强势股并推送飞书" \
+  --cron "24 9 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 120
+```
+
+### 5.2 午间学习（每个交易日12:00）
+```bash
+openclaw cron add \
+  --name "股票知识午间学习" \
+  --description "午间学习股票知识30分钟" \
+  --cron "0 12 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 1800
+```
+
+### 5.3 晚间总结（每个交易日17:00）
+```bash
+openclaw cron add \
+  --name "股票知识晚间总结" \
+  --description "17:00复盘今日市场并推送总结" \
+  --cron "0 17 * * 1-5" \
+  --tz "Asia/Shanghai" \
+  --session isolated \
+  --agent main \
+  --timeout-seconds 300
+```
+
+### 5.4 查看定时任务
+```bash
+openclaw cron list
+```
+
+---
+
+## 六、分析逻辑说明（股票知识应用）
+
+### 6.1 集合竞价分析逻辑
+
+**什么是集合竞价**？
+- 9:15-9:25，投资者申报买卖价格
+- 9:25计算开盘价（成交量最大的价格）
+- 反映主力当天意图
+
+**分析维度**：
+
+| 竞价涨幅 | 信号含义 |
+|---------|---------|
+| 0-2% | 平开，观望 |
+| 2-5% | 温和高开，可能有戏 |
+| 5-10% | 强势高开，主力进攻信号 |
+| >10% | 可能涨停开盘，极强或诱多 |
+
+**量比分析**：
+- 量比 = 今日成交量 / 5日平均成交量
+- 量比 > 3：极度放量，积极换手
+- 量比 1.5-3：温和放量
+- 量比 < 0.5：缩量，筹码稳定
+
+### 6.2 K线形态判断
+
+**均线多头排列**（强势信号）：
+```
+股价 > MA5 > MA10 > MA20
+```
+表示短期、中期、长期都在上涨趋势中
+
+**MACD 金叉**（买入信号）：
+- DIF > DEA 且两者都在0轴上方
+- 红柱放大表示上涨动能增强
+
+**突破压力位**：
+- 股价突破20日高点
+- 缩量回踩不破支撑 = 买入机会
+
+### 6.3 突破形态分类
+
+| 形态 | 特征 | 含义 |
+|------|------|------|
+| 横盘突破 | 股价在箱体震荡，突然放量向上 | 整理结束，新趋势开始 |
+| 旗型突破 | 上涨中继，小幅回调后继续涨 | 中线持有 |
+| 收敛三角 | 越来越窄，即将选择方向 | 突破前夜 |
+| 均线粘合 | MA5/10/20交织后发散 | 爆发力最强 |
+
+### 6.4 综合评分体系（0-100分）
+
+```
+竞价涨幅得分（30分）：5-10%高开 = 30分
+量比得分（20分）：量比>3 = 20分
+K线形态得分（30分）：多头排列+MACD金叉 = 30分
+距离压力位得分（20分）：<1% = 20分
+```
+
+| 评分 | 评级 | 操作建议 |
+|------|------|---------|
+| 75+ | ⭐⭐⭐⭐⭐ 强烈关注 | 可轻仓试探 |
+| 55-74 | ⭐⭐⭐⭐ 重点关注 | 观察等待确认 |
+| 35-54 | ⭐⭐⭐ 可观察 | 谨慎观望 |
+| <35 | ⭐⭐ 观望 | 不参与 |
+
+---
+
+## 七、盘中监控逻辑
+
+### 7.1 监控什么信号
+
+| 信号 | 触发条件 | 含义 |
+|------|---------|------|
+| 涨停 | 涨幅 > 9.5% | 强势，但要注意炸板 |
+| 炸板 | 涨停后涨幅 < 9% | 抛压增大，谨慎 |
+| 突破压力 | 股价 > 压力位 | 买入/加仓信号 |
+| 跌破支撑 | 股价 < 支撑位 | 止损信号 |
+| 快速拉升 | 5分钟内涨 > 3% | 可能有消息 |
+
+### 7.2 盯盘白名单
+
+建议关注 5-10 只股票，不要太多：
+- 主线龙头（1-2只）
+- 跟风强势股（2-3只）
+- 自己的持仓股（2-3只）
+
+---
+
+## 八、注意事项
+
+### 8.1 网络要求
+- WSL2/Linux 确保能访问 `qt.gtimg.cn` 和 `datacenter-web.eastmoney.com`
+- Windows 可用 PowerShell 直接运行 Python
+
+### 8.2 数据延迟
+- 腾讯行情：1-3秒延迟
+- 东方财富：3-5秒延迟
+- mootdx：实盘数据可能有5-10秒延迟
+- **不适合炒超短线（秒级交易）**
+
+### 8.3 风险提示
+- 所有数据仅供参考，不构成投资建议
+- 股票有风险，入市需谨慎
+- 建议设置止损位（一般 -5% 到 -7%）
+
+### 8.4 mootdx 常见问题
+
+**连接失败**：
+```bash
+# 重试几次，mootdx会自动切换服务器
+# 或者手动指定服务器
+client = Quotes.factory(market='std', cache=True)
+```
+
+**数据为空**：
+- 检查股票代码是否正确（6位数字）
+- 检查 market 参数（深圳=0，上海=1）
+
+---
+
+## 九、验证清单
+
+安装配置完成后，逐一验证：
+
+- [ ] `python -c "from mootdx.quotes import Quotes; print('OK')"` → 输出OK
+- [ ] 腾讯行情API能获取到数据
+- [ ] mootdx 能获取K线数据
+- [ ] 飞书机器人能收到消息
+- [ ] `openclaw cron list` 能看到3个定时任务
+- [ ] 明天9:24飞书能收到集合竞价报告
+
+---
+
+## 十、快速问答
+
+**Q：需要多少钱？**
+A：全部免费，数据源、工具、OpenClaw都不要钱。
+
+**Q：需要股票账户吗？**
+A：不需要，只是分析工具，不涉及实际交易。
+
+**Q：数据准确吗？**
+A：来自腾讯/东方财富，有1-3秒延迟，适合短线参考，不适合高频交易。
+
+**Q：能在手机上运行吗？**
+A：不能，需要一台电脑/服务器24小时运行监控脚本。
+
+**Q：可以同时监控多少只股票？**
+A：理论上无限，但建议控制在10只以内。
+
+---
+
+## 十一、联系作者
+
+如需进一步帮助，请联系小小雨：
+- 飞书：困困（ou_04add8ebe219f09799570c70e3cdc732）
+- 技能版本：2026-04-08
+- 擅长：OpenClaw配置 / Python数据分析 / 飞书机器人

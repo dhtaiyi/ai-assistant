@@ -52,7 +52,7 @@
 ### 方案3: 更新扩展
 
 ```bash
-cd /root/.openclaw/extensions/wecom
+cd /home/dhtaiyi/.openclaw/extensions/wecom
 git pull
 npm install
 ```
@@ -89,5 +89,5 @@ pkill -HUP openclaw
 
 ## 📁 相关文件
 
-- 测试脚本: `/root/.openclaw/workspace/test-wecom.sh`
-- 诊断报告: `/root/.openclaw/workspace/WECHAT_ERROR_FIX.md`
+- 测试脚本: `/home/dhtaiyi/.openclaw/workspace/test-wecom.sh`
+- 诊断报告: `/home/dhtaiyi/.openclaw/workspace/WECHAT_ERROR_FIX.md`

@@ -16,7 +16,7 @@
 - 数据质量评估
 
 **技能文件**：
-- `/root/.openclaw/workspace/skills/analyst/SKILL.md`
+- `/home/dhtaiyi/.openclaw/workspace/skills/analyst/SKILL.md`
 
 ---
 
@@ -46,7 +46,7 @@
 ```
 
 **技能文件**：
-- `/root/.openclaw/workspace/skills/monitor/SKILL.md`
+- `/home/dhtaiyi/.openclaw/workspace/skills/monitor/SKILL.md`
 
 ---
 
@@ -67,7 +67,7 @@ web_search --query "你的搜索词"
 ```
 
 **技能文件**：
-- `/root/.openclaw/workspace/skills/search/SKILL.md`
+- `/home/dhtaiyi/.openclaw/workspace/skills/search/SKILL.md`
 
 ---
 
@@ -102,7 +102,7 @@ python3 skills/baidu-search/scripts/search.py '{"query":"人工智能"}'
 ```
 
 **技能文件**：
-- `/root/.openclaw/workspace/skills/baidu-search/SKILL.md`
+- `/home/dhtaiyi/.openclaw/workspace/skills/baidu-search/SKILL.md`
 
 ---
 
@@ -126,7 +126,7 @@ python3 skills/baidu-search/scripts/search.py '{"query":"人工智能"}'
 - CDP是异步的，需要等待响应
 
 **技能文件**：
-- `/root/.openclaw/workspace/skills/chrome/SKILL.md`
+- `/home/dhtaiyi/.openclaw/workspace/skills/chrome/SKILL.md`
 
 ---
 
@@ -167,7 +167,7 @@ python3 skills/baidu-search/scripts/search.py '{"query":"人工智能"}'
 
 ## 🔗 相关文档
 
-- OpenClaw文档: `/root/.nvm/versions/node/v22.22.0/lib/node_modules/openclaw/docs`
+- OpenClaw文档: `/home/dhtaiyi/.openclaw/docs`
 - 技能市场: https://clawhub.com
 
 ---

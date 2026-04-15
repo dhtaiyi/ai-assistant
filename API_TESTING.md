@@ -6,19 +6,19 @@
 
 ```bash
 # 测试OpenAI兼容API (Qwen, Kimi等)
-python3 /root/.openclaw/workspace/test-api-key.py Qwen \
+python3 /home/dhtaiyi/.openclaw/workspace/test-api-key.py Qwen \
   https://coding.dashscope.aliyuncs.com/v1 \
   sk-sp-645687cbbd854d2ab15251e5086e5ac5 \
   qwen3-max-2026-01-23
 
 # 测试Anthropic兼容API (MiniMax等)
-python3 /root/.openclaw/workspace/test-api-key.py MiniMax \
+python3 /home/dhtaiyi/.openclaw/workspace/test-api-key.py MiniMax \
   https://api.minimaxi.com/anthropic \
   sk-cp-xxx \
   MiniMax-M2.1
 
 # 测试简单GET API (QVeris等)
-python3 /root/.openclaw/workspace/test-api-key.py QVeris \
+python3 /home/dhtaiyi/.openclaw/workspace/test-api-key.py QVeris \
   https://api.qveris.ai/v1/tools \
   sk-P1hxxx
 ```

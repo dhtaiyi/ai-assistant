@@ -3,11 +3,11 @@
 ## 📋 已完成的优化
 
 ### 1. 配置文件优化
-- 位置: `/root/.openclaw/workspace/skills/xiaohongshutools/scripts/request/web/encrypt/web_encrypt_config.ini`
+- 位置: `/home/dhtaiyi/.openclaw/workspace/skills/xiaohongshutools/scripts/request/web/encrypt/web_encrypt_config.ini`
 - 优化项: 添加请求头
 
 ### 2. 创建优化版搜索脚本
-- 位置: `/root/.openclaw/workspace/xiaohongshu-optimized.py`
+- 位置: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-optimized.py`
 - 优化项:
   - 搜索前延迟 2秒
   - 请求间隔 3秒
@@ -89,7 +89,7 @@ HEADERS = {
 
 1. 尝试使用优化版脚本
    ```bash
-   python3 /root/.openclaw/workspace/xiaohongshu-optimized.py
+   python3 /home/dhtaiyi/.openclaw/workspace/xiaohongshu-optimized.py
    ```
 
 2. 降低请求频率
@@ -169,9 +169,9 @@ HEADERS = {
 
 ## 📁 相关文件
 
-- 优化版脚本: `/root/.openclaw/workspace/xiaohongshu-optimized.py`
-- 配置文件: `/root/.openclaw/workspace/skills/xiaohongshutools/scripts/request/web/encrypt/web_encrypt_config.ini`
-- 测试脚本: `/root/.openclaw/workspace/xiaohongshu_search.py`
+- 优化版脚本: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu-optimized.py`
+- 配置文件: `/home/dhtaiyi/.openclaw/workspace/skills/xiaohongshutools/scripts/request/web/encrypt/web_encrypt_config.ini`
+- 测试脚本: `/home/dhtaiyi/.openclaw/workspace/xiaohongshu_search.py`
 
 ---
 

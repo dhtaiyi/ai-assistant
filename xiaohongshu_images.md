@@ -3,7 +3,7 @@
 ## 已生成的配图
 
 ### 1. 打工人主题
-**文件**: `/root/.openclaw/workspace/image_worker.png`  
+**文件**: `/home/dhtaiyi/.openclaw/workspace/image_worker.png`  
 **大小**: 85KB  
 **描述**: 年轻职业女性开心下班，现代化明亮办公室，夕阳透过窗户，手拿咖啡，手机显示AI助手界面
 
@@ -15,7 +15,7 @@ A young professional woman happily leaving work, bright modern office background
 ---
 
 ### 2. 自媒体主题
-**文件**: `/root/.openclaw/workspace/image_creator.png`  
+**文件**: `/home/dhtaiyi/.openclaw/workspace/image_creator.png`  
 **大小**: 101KB  
 **描述**: 美丽的内容创作者在粉色书桌前工作，笔记本电脑显示AI助手和社交媒体数据分析界面
 
@@ -27,7 +27,7 @@ Beautiful content creator working at pink desk, AI assistant on laptop, social m
 ---
 
 ### 3. 多模型主题
-**文件**: `/root/.openclaw/workspace/image_tech.png`  
+**文件**: `/home/dhtaiyi/.openclaw/workspace/image_tech.png`  
 **大小**: 63KB  
 **描述**: 未来感AI界面，显示多个AI模型logo（MiniMax、Qwen、Kimi、Claude），智能匹配核心
 
@@ -52,7 +52,7 @@ Futuristic AI interface displaying multiple AI model logos, smart technology cor
 
 从服务器下载：
 ```bash
-scp user@server:/root/.openclaw/workspace/image_*.png ./
+scp user@server:/home/dhtaiyi/.openclaw/workspace/image_*.png ./
 ```
 
 ---
