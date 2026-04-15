@@ -173,7 +173,7 @@ def analyze_candidates(all_stocks, limit_up, strong, amount_dict, indices):
             trade = float(s.get('trade', 0))
             high = float(s.get('high', 0))
             open_p = float(s.get('open', 0))
-            amount = amount_dict.get(sym, 0)
+            amount = float(s.get("amount", 0)) / 1e8 if float(s.get("amount", 0)) > 0 else amount_dict.get(sym, 0)
             close_y = float(s.get('settlement', 0))
             
             if not trade or not close_y:
@@ -240,7 +240,7 @@ def detect_sectors(limit_up, amount_dict):
         name = s.get('name', '')
         sector = get_sector(name)
         sym = s.get('symbol', '')
-        amount = amount_dict.get(sym, 0)
+        amount = float(s.get("amount", 0)) / 1e8 if float(s.get("amount", 0)) > 0 else amount_dict.get(sym, 0)
         pct = float(s.get('changepercent', 0))
         sector_count[sector].append({
             'name': name, 'pct': pct, 'amount': amount,
