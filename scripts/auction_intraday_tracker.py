@@ -118,14 +118,18 @@ def track():
         else:
             status = "[震荡]"
 
+        pullback_pct_val = (high_p - cur_p) / high_p * 100 if high_p > 0 else 0
+
         gk_list.append({
             "name": s["name"], "code": nc,
             "prev_close": prev_c, "open": open_p, "current": cur_p,
             "high": high_p,
             "cur_pct": cur_pct, "open2cur": open2cur,
             "auction_amt": s.get("auction_amt", 0),
+            "gaokai_pct": s.get("gaokai_pct", 0),
             "status": status,
             "is_limit": is_limit, "zhaban": zhaban,
+            "pullback_pct": pullback_pct_val,
         })
 
     gk_list.sort(key=lambda x: (x["is_limit"], x["zhaban"], x["cur_pct"]), reverse=True)
@@ -161,15 +165,67 @@ def track():
     for s in c1_list[:20]:
         print(f"{s['name']:<10} {s['code']:<12} {s['prev_close']:>7.2f} {s['cur_pct']:>+7.2f}% {s['auction_amt']/1e8:>8.1f}亿")
 
-    # 盘中总结
-    limit_names = [s["name"] for s in gk_list if s["is_limit"]]
+    # 判断是否收盘后（>15:00）
+    now_h = int(now_hm.split(":")[0])
+    is_close = now_h >= 15
+
+    # 盘中/收盘总结
+    limit_names  = [s["name"] for s in gk_list if s["is_limit"]]
     zhaban_names = [s["name"] for s in gk_list if s["zhaban"]]
     strong_names = [s["name"] for s in gk_list if not s["is_limit"] and not s["zhaban"] and s["cur_pct"] > 5]
+    weak_names   = [s["name"] for s in gk_list if s["open2cur"] < -3]
 
-    print(f"\n--- {now_hm} 盘中总结 ---")
-    if limit_names: print(f"  封板: {', '.join(limit_names)}")
-    if zhaban_names: print(f"  炸板: {', '.join(zhaban_names)}")
-    if strong_names: print(f"  强势: {', '.join(strong_names[:5])}")
+    if is_close:
+        # ── 收盘复盘报告 ──
+        gk_winners = [s for s in gk_list if s["cur_pct"] > 0]
+        gk_losers  = [s for s in gk_list if s["cur_pct"] <= 0]
+        limit_win   = [s for s in gk_list if s["is_limit"]]
+        zhaban_win  = [s for s in gk_list if s["zhaban"]]
+
+        print(f"\n{'='*60}")
+        print(f"📊 【收盘复盘报告】高开接力股全天表现")
+        print(f"{'='*60}")
+
+        print(f"\n  📈 胜率: {len(gk_winners)}/{len(gk_list)} "
+              f"({len(gk_winners)*100//len(gk_list)}%)")
+        print(f"  🔴 封板: {len(limit_win)}只 | "
+              f"⚠️ 炸板: {len(zhaban_win)}只 | "
+              f"💀 收阴: {len(gk_losers)}只")
+
+        print(f"\n  【封板股】（高开→封住涨停）")
+        for s in limit_win:
+            print(f"    ✅ {s['name']} 竞价{s.get('gaokai_pct',0):+.1f}%→收{s['cur_pct']:+.1f}% 封板")
+
+        print(f"\n  【炸板股】（曾摸板未封住）")
+        for s in zhaban_win:
+            print(f"    ⚠️ {s['name']} 开{s['open']}({s.get('gaokai_pct',0):+.1f}%) "
+                  f"高{s['high']} 收{s['cur_pct']:+.1f}% 回落{s.get('pullback_pct',0):.1f}%")
+
+        print(f"\n  【收阴股】（收盘涨幅≤0）")
+        for s in gk_losers:
+            print(f"    ❌ {s['name']} 开{s['open']}({s.get('gaokai_pct',0):+.1f}%) "
+                  f"收{s['cur_pct']:+.1f}%")
+
+        print(f"\n  【强势股】（收涨>5%未涨停）")
+        for s in strong_names:
+            sv = next((x for x in gk_list if x["name"] == s), None)
+            if sv:
+                print(f"    🚀 {s} 竞价{sv.get('gaokai_pct',0):+.1f}%→收{sv['cur_pct']:+.1f}%")
+
+        # 竞价金额 vs 收盘表现相关性
+        print(f"\n  【大单追踪】（竞价金额>1亿）")
+        big = [s for s in gk_list if s.get("auction_amt", 0) >= 1e8]
+        for s in big:
+            print(f"    💰 {s['name']} 竞价{s['auction_amt']/1e8:.1f}亿 → "
+                  f"高开{s.get('gaokai_pct',0):+.1f}% 收{s['cur_pct']:+.1f}% {s['status']}")
+
+        print(f"\n{'='*60}")
+    else:
+        print(f"\n--- {now_hm} 盘中总结 ---")
+        if limit_names: print(f"  封板: {', '.join(limit_names)}")
+        if zhaban_names: print(f"  炸板: {', '.join(zhaban_names)}")
+        if strong_names: print(f"  强势: {', '.join(strong_names[:5])}")
+        if weak_names:   print(f"  回落: {', '.join(weak_names[:5])}")
 
     # 保存快照
     snap = {
