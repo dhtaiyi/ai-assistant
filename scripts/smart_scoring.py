@@ -82,7 +82,7 @@ def get_realtime_single(code):
         line = r.text.strip()
         if '"~' not in line:
             return None
-        m = re.search(r'"([^"]+)"', line)
+        m = re.search(r'=\"([^\"]+)\"', line)
         if not m:
             return None
         parts = m.group(1).split('~')
@@ -256,7 +256,7 @@ def get_market_sh_pct():
     """获取上证指数涨跌幅"""
     try:
         r = requests.get('http://qt.gtimg.cn/q=s_sh000001', timeout=3)
-        m = re.search(r'"([^"]+)"', r.text)
+        m = re.search(r'=\"([^\"]+)\"', r.text)
         if m:
             parts = m.group(1).split('~')
             return float(parts[5]) if len(parts) > 5 else 0
