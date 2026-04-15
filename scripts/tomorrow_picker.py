@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""明日预选工具 v2.0
+"""明日预选工具 v3.0 - 问财增强版
 
-基于今日数据生成明日重点标的：
-- 今日涨停股池分析（按板块/成交额）
-- 首板筛选（明日二板机会）
-- 连板股处理（晋级/掉队判断）
-- 主线板块识别
-- 操作计划输出
+集成问财选A股技能，获取更丰富的数据：
+- 涨停原因（同花顺官方）
+- 首次涨停时间
+- 换手率、振幅
+- 更准确的板块分类
 
 用法：
   python3 tomorrow_picker.py
@@ -17,6 +16,7 @@ import json
 import os
 import re
 import sys
+import time
 import requests
 from datetime import datetime, timedelta, date
 from pathlib import Path
@@ -26,9 +26,37 @@ HEADERS    = {"User-Agent": "Mozilla/5.0", "Referer": "https://finance.sina.com.
 HIST_DIR   = Path("/home/dhtaiyi/.openclaw/workspace/stock-data/candidates")
 os.makedirs(HIST_DIR, exist_ok=True)
 
-# ─── 数据获取 ────────────────────────────────────────────────────────────────
-def get_zt_stocks(n: int = 100) -> list[dict]:
-    """获取今日涨停股（非ST非新股）"""
+# 问财API配置
+IWENCAI_CLI = os.path.expanduser("~/.local/bin/iwencai-skillhub-cli")
+IWENCAI_SKILL = os.path.expanduser("~/.openclaw/workspace/skills/问财选A股/scripts/cli.py")
+IWENCAI_API_KEY = os.environ.get("IWENCAI_API_KEY", "sk-proj-01-NAItJumXGkKAe1Ha8v-rPenhNjrfud7CDgoY0DEAymigKrbbZSIwxhjOQG5RrqWytp8AZApOyf4RsS-q5d2FbyTbPZAYJC262Vbgthv9IizhxH3W-5a2kNpR3ifa0nAobbl6NQ")
+
+# ─── 问财数据获取 ────────────────────────────────────────────────────────────
+def get_zt_stocks_iwencai(n: int = 100) -> list[dict]:
+    """使用问财选A股获取今日涨停股（更丰富的字段）"""
+    try:
+        import subprocess
+        cmd = [
+            "python3", IWENCAI_SKILL,
+            "--query", "今日涨停股票，按成交额排序",
+            "--limit", str(n),
+            "--api-key", IWENCAI_API_KEY
+        ]
+        env = os.environ.copy()
+        env["IWENCAI_BASE_URL"] = "https://openapi.iwencai.com"
+        env["IWENCAI_API_KEY"] = IWENCAI_API_KEY
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, env=env)
+        if result.returncode == 0:
+            data = json.loads(result.stdout)
+            if data.get("success"):
+                return data.get("datas", [])
+    except Exception as e:
+        print(f"[问财] 涨停股获取失败: {e}")
+    return []
+
+# ─── 传统新浪数据获取（备用）─────────────────────────────────────────────────
+def get_zt_stocks_fallback(n: int = 100) -> list[dict]:
+    """备用：使用新浪接口获取涨停股"""
     url = "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeDataSimple"
     params = {"page": 1, "num": n, "sort": "changepercent", "asc": 0,
               "node": "hs_a", "_s_r_a": "page"}
@@ -43,344 +71,200 @@ def get_zt_stocks(n: int = 100) -> list[dict]:
             and "ST" not in s.get("name", "")
         ]
     except Exception as e:
-        print(f"[tomorrow_picker] 涨停数据获取失败: {e}")
+        print(f"[新浪] 涨停数据获取失败: {e}")
         return []
 
+# ─── 市场统计 ────────────────────────────────────────────────────────────────
 def get_market_stats() -> dict:
     """获取市场整体数据"""
-    stats = {"total": 0, "zt_count": 0, "up_count": 0,
-             "pct_change": 0, "amount": 0}
+    stats = {"涨停数": 0, "大涨数": 0, "指数": {}, "top_amount": []}
     try:
         url = "https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/Market_Center.getHQNodeDataSimple"
-        params = {"page": 1, "num": 5, "sort": "changepercent", "asc": 0,
-                  "node": "hs_a", "_s_r_a": "page"}
+        params = {"page": 1, "num": 200, "sort": "changepercent", "asc": 0, "node": "hs_a"}
         r = requests.get(url, params=params, headers=HEADERS, timeout=10)
         data = r.json()
-        if data:
-            stats["pct_change"] = float(data[0].get("changepercent", 0))
-    except Exception:
-        pass
-    # 从涨停数据推断
-    zt = get_zt_stocks()
-    stats["zt_count"] = len(zt)
-    stats["up_count"] = len([s for s in zt if float(s.get("changepercent", 0)) > 0])
-    total_amount = sum(float(s.get("amount", 0)) for s in zt)
-    stats["amount"] = total_amount / 1e8
+        stats["涨停数"] = sum(1 for s in data if float(s.get("changepercent", 0)) >= 9.9)
+        stats["大涨数"] = sum(1 for s in data if 5 <= float(s.get("changepercent", 0)) < 9.9)
+    except Exception as e:
+        print(f"[市场统计] 获取失败: {e}")
     return stats
 
-def load_yesterday_zt(date_str: str) -> list[dict]:
-    """加载昨日涨停股"""
-    path = HIST_DIR / f"{date_str}.json"
-    if path.exists():
-        try:
-            with open(path) as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return []
+# ─── 指数数据 ────────────────────────────────────────────────────────────────
+def get_index_data() -> dict:
+    """获取主要指数数据"""
+    indices = {}
+    try:
+        r = requests.get("http://qt.gtimg.cn/q=s_sh000001,s_sz399001,s_sz399006",
+                         headers=HEADERS, timeout=5)
+        for line in r.text.split("\n"):
+            m = re.search(r'="([^"]+)"', line)
+            if m:
+                parts = m.group(1).split("~")
+                if len(parts) > 5:
+                    name = parts[1]
+                    price = float(parts[3])
+                    pct = float(parts[5])
+                    indices[name] = {"price": price, "pct": pct}
+    except:
+        pass
+    return indices
 
-def save_today_zt(stocks: list[dict], date_str: str):
-    path = HIST_DIR / f"{date_str}.json"
-    with open(path, "w") as f:
-        json.dump(stocks, f, ensure_ascii=False, indent=2)
+# ─── 涨停股分析 ──────────────────────────────────────────────────────────────
+def analyze_zt_stocks(stocks: list[dict]) -> dict:
+    """分析涨停股池"""
+    if not stocks:
+        return {"板块统计": {}, "首板列表": [], "连板列表": [], "成交额TOP": []}
 
-# ─── 板块映射 ────────────────────────────────────────────────────────────────
-# 动态识别：基于涨停股名称关键词 + 成交额排序
-SECTOR_KEYWORDS = {
-    "光纤光通信": ["光迅", "长飞", "特发", "光智", "汇源", "通鼎", "长江通信", "永鼎", "中际旭创", "天孚", "新易盛", "博创"],
-    "AI算力":    ["算力", "浪潮", "寒武纪", "光模块", "CPO", "IDC", "铜缆", "华为"],
-    "机器人":    ["机器人", "减速器", "伺服", "电机", "灵巧", "工业母机"],
-    "创新药":    ["医药", "制药", "生物", "疫苗", "中药", "创新药", "AACR"],
-    "汽车零部件":["汽车", "零部件", "新能源车", "锂电", "固态电池"],
-    "化工":      ["化工", "染料", "钛白粉", "氟化工", "磷化工"],
-    "并购重组":  ["重组", "并购", "收购", "借壳"],
-    "消费电子":  ["苹果", "果链", "折叠屏", "OLED", "PCB"],
-    "军工":      ["军工", "卫星", "航天", "航空", "船舶"],
-}
-
-def guess_sector(name: str) -> str:
-    for sector, kws in SECTOR_KEYWORDS.items():
-        for kw in kws:
-            if kw in name:
-                return sector
-    return "其他"
-
-# ─── 核心分析 ────────────────────────────────────────────────────────────────
-def analyze_today() -> dict:
-    """分析今日数据，返回结构化结果"""
-    zt = get_zt_stocks()
-
-    # 基本统计
-    total_amount = sum(float(s.get("amount", 0)) for s in zt) / 1e8
-    market_stats = get_market_stats()
-
-    # 板块分析
-    sector_map: dict[str, list] = {}
-    for s in zt:
-        name = s["name"]
-        code = s["symbol"]
-        pct  = float(s.get("changepercent", 0))
-        amt  = float(s.get("amount", 0)) / 1e8
-        sec  = guess_sector(name)
-        if sec not in sector_map:
-            sector_map[sec] = []
-        sector_map[sec].append({
-            "name": name, "code": _norm_code(code),
-            "pct": pct, "amount": amt,
+    # 按涨停原因分组
+    sector_map = {}
+    for s in stocks:
+        reason = s.get("涨停原因[20260415]", "") or s.get("reason", "其他")
+        reason = reason.split("+")[0].strip()  # 取第一个标签
+        if reason not in sector_map:
+            sector_map[reason] = []
+        sector_map[reason].append({
+            "code": s.get("股票代码", ""),
+            "name": s.get("股票简称", s.get("name", "")),
+            "price": s.get("最新价", 0),
+            "pct": s.get("最新涨跌幅", 0),
+            "amount": s.get("成交额[20260415]", 0) or s.get("amount", 0),
+            "reason": s.get("涨停原因[20260415]", ""),
+            "first_zhangting": s.get("首次涨停时间[20260415]", ""),
+            "换手率": s.get("换手率[20260415]", 0),
+            "振幅": s.get("振幅[20260415]", 0),
         })
 
-    # 按成交额排序板块
-    sectors = sorted(
-        sector_map.items(),
-        key=lambda x: sum(st["amount"] for st in x[1]),
-        reverse=True,
-    )
+    # 按成交额排序各板块
+    for sector in sector_map:
+        sector_map[sector].sort(key=lambda x: x["amount"], reverse=True)
 
-    # 强势首板（成交额大、位置低）
-    first_board = []
-    high_board  = []  # 4板+
-    candidates  = []  # 明日重点
+    # 成交额TOP
+    top = sorted(stocks, key=lambda x: x.get("成交额[20260415]", 0) or x.get("amount", 0), reverse=True)[:10]
+    top_amount = [{
+        "code": s.get("股票代码", ""),
+        "name": s.get("股票简称", s.get("name", "")),
+        "amount": (s.get("成交额[20260415]", 0) or s.get("amount", 0)) / 1e8,
+        "pct": s.get("最新涨跌幅", 0),
+        "reason": s.get("涨停原因[20260415]", ""),
+    } for s in top]
 
-    for s in zt:
-        code = _norm_code(s["symbol"])
-        name = s["name"]
-        amt  = float(s.get("amount", 0)) / 1e8
-        pct  = float(s.get("changepercent", 0))
-        # 首板条件：成交>5000万，涨幅接近10%（非高位）
-        if amt > 0.5 and pct > 9.5 and pct < 10.2:
-            first_board.append({"name": name, "code": code,
-                                 "pct": pct, "amount": amt})
-        elif pct > 9.5:
-            candidates.append({"name": name, "code": code,
-                                 "pct": pct, "amount": amt})
+    # 首板 vs 连板（根据涨跌幅判断，涨停时间早的更可能是龙头）
+    zhangting_time = {s.get("股票代码", ""): s.get("首次涨停时间[20260415]", "23:59:59")
+                      for s in stocks if s.get("首次涨停时间[20260415]")}
 
-    first_board.sort(key=lambda x: x["amount"], reverse=True)
-    candidates.sort(key=lambda x: x["amount"], reverse=True)
+    first_board = [s for s in stocks if s.get("首次涨停时间[20260415]", "")]
+    first_board.sort(key=lambda x: x.get("首次涨停时间[20260415]", "99:99:99"))
 
     return {
-        "zt_count":   len(zt),
-        "total_amount": total_amount,
-        "sectors":    sectors,
-        "first_board": first_board,
-        "candidates":  candidates,
-        "market":      market_stats,
+        "板块统计": sector_map,
+        "首板列表": first_board[:20],
+        "连板列表": [],
+        "成交额TOP": top_amount,
+        "zhangting_time": zhangting_time,
     }
 
-def _norm_code(symbol: str) -> str:
-    """统一代码格式为6位"""
-    return symbol.replace("sz", "").replace("sh", "")
-
-# ─── 昨日连板追踪 ────────────────────────────────────────────────────────────
-def get_lianban_evolution() -> dict:
-    """获取昨日涨停股今日表现（连板晋级/掉队）"""
-    today     = datetime.now()
-    yesterday = today - timedelta(days=1 if today.weekday() != 0 else 3)
-    y_str     = yesterday.strftime("%Y%m%d")
-    y_zt      = load_yesterday_zt(y_str)
-
-    if not y_zt:
-        return {}
-
-    codes = [s["code"] for s in y_zt if _norm_code(s.get("symbol", s.get("code", "")))]
-    full_codes = ",".join(
-        ("sz" + c) if not c.startswith("sz") and not c.startswith("sh")
-        else c
-        for c in codes
-    )
-
-    try:
-        r = requests.get(f"http://qt.gtimg.cn/q={full_codes}", timeout=10)
-        r.encoding = "gbk"
-    except Exception:
-        return {}
-
-    # 解析
-    lianban_2, lianban_3plus, broke, faded = [], [], [], []
-    for line in r.text.strip().split("\n"):
-        if '"' not in line:
-            continue
-        m = re.search(r'=\s*"([^"]+)"', line)
-        if not m:
-            continue
-        parts = m.group(1).split("~")
-        if len(parts) < 34:
-            continue
-        try:
-            name  = parts[1]
-            price = float(parts[3])  if parts[3]  else 0
-            prev  = float(parts[4])  if parts[4]  else 0
-            high  = float(parts[33]) if parts[33] else 0
-            pct   = (price - prev) / prev * 100 if prev > 0 else 0
-            code  = _norm_code(line.split("=")[0].replace("v_", ""))
-
-            ever_limitup = (high >= prev * 1.099) if prev > 0 else False
-
-            # 找昨日涨停信息
-            y_info = next((s for s in y_zt
-                           if _norm_code(s.get("symbol", s.get("code", ""))) == code), {})
-            y_pct  = y_info.get("pct", 0) if y_info else 0
-
-            if pct >= 9.5:
-                if y_pct >= 9.5:
-                    lianban_3plus.append({"name": name, "code": code, "pct": pct})
-                else:
-                    lianban_2.append({"name": name, "code": code, "pct": pct})
-            elif ever_limitup and pct < 9.5:
-                broke.append({"name": name, "code": code, "pct": pct,
-                              "high_pct": (high/prev-1)*100 if prev > 0 else 0})
-            elif 5 <= pct < 9.5:
-                faded.append({"name": name, "code": code, "pct": pct})
-        except Exception:
-            continue
-
-    return {
-        "lianban_3plus": lianban_3plus,
-        "lianban_2":     lianban_2,
-        "broke":         broke,
-        "faded":         faded,
-    }
-
-# ─── 明日预选 ────────────────────────────────────────────────────────────────
-def generate_picks(today_data: dict, lianban: dict) -> dict:
-    """生成明日操作计划"""
-    zt_count  = today_data["zt_count"]
-    sectors   = today_data["sectors"]
-    first_bd  = today_data["first_board"]
-
-    # 情绪判断
+# ─── 情绪判断 ────────────────────────────────────────────────────────────────
+def judge_sentiment(zt_count: int) -> tuple[str, str]:
+    """判断市场情绪"""
     if zt_count >= 80:
-        emotion = "🔥 上升期（高潮）"
-        position = "40-60%"
-        strategy = "聚焦龙头，不恐高"
-    elif zt_count >= 50:
-        emotion = "📈 上升期"
-        position = "30-50%"
-        strategy = "主线首板二板，稳健操作"
-    elif zt_count >= 30:
-        emotion = "⚠️ 混沌期"
-        position = "20-30%"
-        strategy = "控制仓位，聚焦主线最强首板"
+        return "📈 上升期", "重仓龙头，积极参与连板"
+    elif zt_count >= 40:
+        return "⚖️ 混沌期", "轻仓试探，控制风险"
     else:
-        emotion = "❄️ 退潮期"
-        position = "10-20%"
-        strategy = "多看少动，等待情绪修复"
+        return "📉 退潮期", "空仓休息，不抄底"
 
-    # 风险标（高位连板，明日回避）
-    risk_stocks = []
-    if lianban.get("lianban_3plus"):
-        risk_stocks.extend(lianban["lianban_3plus"])
+# ─── 主函数 ─────────────────────────────────────────────────────────────────
+def main():
+    target_date = sys.argv[1] if len(sys.argv) > 1 else datetime.now().strftime("%Y%m%d")
+    today_str = datetime.now().strftime("%Y-%m-%d")
 
-    # 重点关注（首板二板）
-    watch_stocks = []
-    for s in first_bd[:8]:
-        if s not in risk_stocks:
-            watch_stocks.append(s)
-    if lianban.get("lianban_2"):
-        watch_stocks.extend(lianban["lianban_2"][:3])
+    print(f"============================================================")
+    print(f"📋 明日预选报告 v3.0 (问财增强版) | {today_str}")
+    print(f"============================================================")
 
-    return {
-        "emotion":      emotion,
-        "zt_count":     zt_count,
-        "position":     position,
-        "strategy":     strategy,
-        "main_sectors": [s[0] for s in sectors[:3]],
-        "watch_stocks": watch_stocks,
-        "risk_stocks":  risk_stocks,
-    }
+    # 获取涨停股（优先问财，备用新浪）
+    print("\n⏳ 获取今日涨停股数据...")
+    stocks = get_zt_stocks_iwencai(100)
+    if not stocks:
+        print("   → 问财无数据，切换新浪备用...")
+        stocks = get_zt_stocks_fallback(100)
 
-# ─── 输出格式化 ──────────────────────────────────────────────────────────────
-def print_report(today_data: dict, picks: dict, lianban: dict):
-    now = datetime.now().strftime("%Y-%m-%d %H:%M")
-    print(f"\n{'='*60}")
-    print(f"📋 明日预选报告 v2.0 | {now}")
-    print(f"{'='*60}")
+    # 市场统计
+    stats = get_market_stats()
+    indices = get_index_data()
 
-    # ── 今日概况 ──────────────────────────────────────────────────────────
     print(f"\n【今日概况】")
-    print(f"  涨停: {picks['zt_count']}只  总成交: {today_data['total_amount']:.0f}亿")
-    print(f"  情绪: {picks['emotion']}")
+    zt_count = stats.get("涨停数", len(stocks))
+    print(f"  涨停: {zt_count}只")
+    print(f"  大涨5-9%: {stats.get('大涨数', 0)}只")
 
-    # ── 主线板块 ──────────────────────────────────────────────────────────
+    if indices:
+        for name, data in list(indices.items())[:3]:
+            print(f"  {name}: {data['price']:.2f} {data['pct']:+.2f}%")
+
+    sentiment, strategy = judge_sentiment(zt_count)
+    print(f"  情绪: {sentiment}")
+
+    # 分析涨停股
+    if stocks:
+        analysis = analyze_zt_stocks(stocks)
+    else:
+        analysis = {"板块统计": {}, "成交额TOP": [], "首板列表": []}
+
+    # 主线板块
     print(f"\n【主线板块】(按成交额排序)")
-    for i, (sec, stocks) in enumerate(today_data["sectors"][:4], 1):
-        total = sum(s["amount"] for s in stocks)
-        names = ",".join(s["name"] for s in stocks[:3])
-        print(f"  {i}. {sec}  {total:.0f}亿 ({len(stocks)}只)")
-        print(f"     {names}")
+    if analysis["板块统计"]:
+        sorted_sectors = sorted(analysis["板块统计"].items(),
+                                key=lambda x: sum(s["amount"] for s in x[1]), reverse=True)
+        for i, (sector, members) in enumerate(sorted_sectors[:6], 1):
+            total_amount = sum(s["amount"] for s in members) / 1e8
+            top_stocks = ",".join(s["name"] for s in members[:3])
+            print(f"  {i}. {sector}  {total_amount:.0f}亿 ({len(members)}只)")
+            print(f"     {top_stocks}")
 
-    # ── 昨日连板追踪 ─────────────────────────────────────────────────────
-    if lianban:
-        if lianban.get("lianban_3plus"):
-            print(f"\n【3板+龙头】")
-            for s in lianban["lianban_3plus"]:
-                print(f"  👑 {s['name']}({s['code']}) +{s['pct']:.1f}%")
-        if lianban.get("lianban_2"):
-            print(f"\n【2板确认】明日关注3板机会")
-            for s in lianban["lianban_2"]:
-                print(f"  ✅ {s['name']}({s['code']}) +{s['pct']:.1f}%")
-        if lianban.get("broke"):
-            print(f"\n【炸板预警】")
-            for s in lianban["broke"]:
-                print(f"  💥 {s['name']}({s['code']}) {s['pct']:+.1f}%")
-
-    # ── 明日首板关注 ──────────────────────────────────────────────────────
+    # 明日首板关注
     print(f"\n【明日首板关注】(成交额排序)")
-    for s in today_data["first_board"][:8]:
-        print(f"  📈 {s['name']}({s['code']}) 成交{s['amount']:.1f}亿")
+    for i, s in enumerate(analysis.get("成交额TOP", [])[:8], 1):
+        amount = s.get("amount", 0)
+        reason = s.get("reason", "")
+        zt_time = ""
+        for st in analysis.get("首板列表", []):
+            if st.get("股票代码") == s.get("code"):
+                zt_time = st.get("首次涨停时间[20260415]", "")[11:16] if st.get("首次涨停时间[20260415]") else ""
+                break
+        time_str = f" {zt_time}" if zt_time else ""
+        print(f"  📈 {s['name']}({s['code']}) {s['pct']:+.1f}% {amount:.0f}亿{time_str}")
+        if reason:
+            print(f"     原因: {reason}")
 
-    # ── 操作计划 ──────────────────────────────────────────────────────────
-    print(f"\n{'─'*60}")
+    # 操作计划
+    print(f"\n────────────────────────────────────────────────────────────")
     print(f"【操作计划】")
-    print(f"  仓位:   {picks['position']}")
-    print(f"  策略:   {picks['strategy']}")
-    print(f"  买入:   10:30前成交>5000万的率先涨停股")
+    print(f"  仓位:   {'50-70%' if '上升' in sentiment else '20-30%' if '混沌' in sentiment else '0%'}")
+    print(f"  策略:   {strategy}")
+    if analysis["成交额TOP"]:
+        top1 = analysis["成交额TOP"][0]
+        print(f"  重点:   {top1['name']} {top1['pct']:+.1f}% {top1['amount']:.0f}亿")
     print(f"  止损:   -7%无条件出")
     print(f"  禁止:   涨停<30家时不追连板")
 
-    if picks["risk_stocks"]:
-        print(f"\n【明日回避】")
-        for s in picks["risk_stocks"]:
-            print(f"  🚫 {s.get('name','?')}({s.get('code','?')}) 3板+高位风险")
+    print(f"\n⚠️ 以上仅为小小雨的分析，不构成投资建议，股市有风险！")
+    print(f"============================================================")
 
-    print(f"\n{'='*60}")
-    print("⚠️ 以上仅为小小雨的分析，不构成投资建议，股市有风险！")
-    print(f"{'='*60}\n")
-
-# ─── 主函数 ──────────────────────────────────────────────────────────────────
-def main():
-    target_date = None
-    if "--date" in sys.argv:
-        idx = sys.argv.index("--date")
-        target_date = sys.argv[idx + 1]
-    else:
-        target_date = datetime.now().strftime("%Y%m%d")
-
-    # 分析今日
-    today_data = analyze_today()
-    # 保存今日涨停股
-    save_today_zt(today_data["candidates"], target_date)
-
-    # 昨日连板追踪
-    lianban = get_lianban_evolution()
-
-    # 生成明日预选
-    picks = generate_picks(today_data, lianban)
-
-    # 输出报告
-    print_report(today_data, picks, lianban)
-
-    # 保存结果
-    result = {
-        "date":     target_date,
-        "analyzed": datetime.now().isoformat(),
-        "today":    today_data,
-        "lianban":  lianban,
-        "picks":    picks,
+    # 保存报告
+    report = {
+        "date": today_str,
+        "zt_count": zt_count,
+        "sentiment": sentiment,
+        "strategy": strategy,
+        "sectors": {k: [{"code": s["code"], "name": s["name"], "amount": s["amount"], "pct": s["pct"], "reason": s["reason"]}
+                        for s in v] for k, v in analysis.get("板块统计", {}).items()},
+        "top_stocks": analysis.get("成交额TOP", []),
     }
     out_path = HIST_DIR / f"tomorrow_{target_date}.json"
     with open(out_path, "w") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-    print(f"📁 报告已保存: {out_path}")
+        json.dump(report, f, ensure_ascii=False, indent=2)
+    print(f"\n📁 报告已保存: {out_path}")
 
 if __name__ == "__main__":
     main()
