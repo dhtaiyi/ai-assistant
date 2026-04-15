@@ -64,7 +64,7 @@ def iwencai_query(query: str, limit: int = 200) -> list:
 
 # ─── 昨收价（腾讯） ────────────────────────────────────────────────────────
 def get_prev_close(codes: list) -> dict:
-    """批量获取昨收价，返回 {norm_code: prev_close}"""
+    """批量获取昨收价和今开价，返回 {norm_code: (prev_close, today_open)}"""
     if not codes:
         return {}
     batch = ",".join(codes)
@@ -77,12 +77,17 @@ def get_prev_close(codes: list) -> dict:
             if not m:
                 continue
             parts = m.group(1).split("~")
-            if len(parts) > 4 and parts[1] and parts[4]:
-                sym = parts[0]
-                try:
-                    result[sym] = float(parts[4])
-                except:
-                    pass
+            # 批量接口：parts[0]=版本, parts[1]=名称, parts[2]=代码, parts[4]=昨收, parts[5]=今开
+            if len(parts) > 5 and parts[2]:
+                code_only = parts[2]  # 如 "300750"
+                # 匹配回 norm_code 格式
+                for nc in codes:
+                    if nc.replace("sz", "").replace("sh", "") == code_only:
+                        try:
+                            result[nc] = (float(parts[4]), float(parts[5]))
+                        except:
+                            pass
+                        break
         return result
     except Exception as e:
         print(f"[腾讯] 昨收价失败: {e}")
@@ -169,16 +174,9 @@ def run():
                 except:
                     auction_amt = 0.0
 
-        # 昨收
-        prev_close = prev_map.get(nc, 0.0)
-        # 今开（用竞价匹配价，竞价结束后=开盘价）
-        today_open = 0.0
-        for k, v in s.items():
-            if "竞价匹配价" in k and "{TODAY}" in k:
-                try:
-                    today_open = float(v) if v else 0.0
-                except:
-                    today_open = 0.0
+        # 昨收和今开（腾讯实时接口）
+        tc = prev_map.get(nc, (0.0, 0.0))
+        prev_close, today_open = tc[0], tc[1]
 
         # 高开
         gaokai_pct = 0.0
@@ -251,7 +249,7 @@ def run():
         json.dump(record, f, ensure_ascii=False, indent=2)
     print(f"📁 历史已保存: {out_path}")
 
-    # 飞书推送
+    # 飞书推送（静默，打印输出由cron捕获）
     push_lines = [f"📋 竞价监控 {today_disp} 9:25", f"{'─'*40}"]
     push_lines.append(f"\n【条件一】竞价强势（金额>2000万 & 涨幅>0）共{len(cond1)}只")
     for s in cond1[:10]:
@@ -261,7 +259,7 @@ def run():
         push_lines.append(f"  {s['name']}({s['code']}) 高开{s['gaokai_pct']:+.2f}% 竞价{s['auction_pct']:+.2f}% {s['auction_amt']/1e8:.1f}亿")
     push_lines.append(f"\n{'='*40}")
     push_text = "\n".join(push_lines)
-    feishu_push(push_text)
+    print("\n" + push_text)
 
     return cond1, cond2
 
