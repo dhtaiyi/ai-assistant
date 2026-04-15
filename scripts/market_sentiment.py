@@ -151,14 +151,19 @@ def get_sentiment():
     log.append(f"市场状态: {status_desc} ({status})")
     
     # 非交易时段，但午休时仍显示上午数据分析
-    if status in ["pre_market", "closed", "auction"]:
+    if status in ["pre_market", "auction"]:
         log.append(f"\n📊 当前指数: 上证 {indices.get('上证指数',{}).get('price','?')} ({sh_pct:+.2f}%)")
         log.append(f"  深证 {indices.get('深证成指',{}).get('price','?')} ({sz_pct:+.2f}%)")
         log.append(f"  创业板 {indices.get('创业板指',{}).get('price','?')} ({cy_pct:+.2f}%)")
         log.append(f"\n{'='*50}")
-        log.append(f"⏰ 等待市场开盘/休市")
+        log.append(f"⏰ 等待市场开盘")
         log.append(f"{'='*50}")
         return "\n".join(log), None
+    
+    if status == "closed":
+        # 收盘后仍执行完整分析（使用收盘数据）
+        log.append(f"\n📊 【收盘数据分析】")
+        pass  # 继续执行盘中分析
     
     if status == "lunch":
         # 午休时仍执行分析（用上午数据）
